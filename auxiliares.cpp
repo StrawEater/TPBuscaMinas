@@ -37,3 +37,13 @@ int getPosIndexEnBanderitas(banderitas& b, pos p){
     }
     return -1;
 }
+
+//Devuelve un vector de tipo Banderita indentico al argumento, excepto por no conterner
+//al elemento que se encontraba en indexPosicion
+void eliminarPosicionDeBanderita(banderitas& b, int indexPosicion){
+    banderitas nuevoVectorBanderitas;
+    for (int i = 0; i < b.size(); ++i) {
+        if (i != indexPosicion) nuevoVectorBanderitas.push_back(b[i]);
+    }
+    b = nuevoVectorBanderitas;
+}

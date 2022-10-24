@@ -7,3 +7,13 @@
 #include "testDefiniciones.h"
 
 using namespace std;
+
+TEST(perdioTEST, todaviaNoPerdio){
+    jugadas j = jugadasMitadJuego;
+    ASSERT_FALSE(perdio(t, j));
+}
+
+TEST(perdioTEST, Perdio){
+    jugadas j = jugadasPerdioJuego;
+    ASSERT_TRUE(perdio(t, j));
+}

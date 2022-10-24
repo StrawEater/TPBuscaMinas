@@ -9,8 +9,8 @@
 
 using namespace std;
 
-banderitas b = {pos(2,2),pos(3,1),pos(5,8),pos(3,4),pos(1,2),pos(9,9)};
+banderitas b2 = {pos(2,2),pos(3,1),pos(5,8),pos(3,4),pos(1,2),pos(9,9)};
 
 TEST(cambiarBanderitasTest, pruebaBoluda){
-    (cambiarBanderita(t, jugadasValidas, pos(3,1), b));
+    (cambiarBanderita(t, jugadasValidas, pos(3,1), b2));
 }

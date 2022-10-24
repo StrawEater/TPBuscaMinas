@@ -12,3 +12,5 @@
 bool posicionValida(tablero& t, pos p);
 
 int getPosIndexEnBanderitas(banderitas& b, pos p);
+
+void eliminarPosicionDeBanderita(banderitas& b, int indexPosicion);

@@ -44,13 +44,21 @@ void cambiarBanderita(tablero& t, jugadas& j, pos p, banderitas& b) {
     if (indexBanderita == -1){
         b.push_back(p);
     }else{
-        b.erase(b.begin()+indexBanderita);
+        eliminarPosicionDeBanderita(b,indexBanderita);
     }
 }
 
 /******++++**************************** EJERCICIO perdio ***********+++***********************/
 bool perdio(tablero& t, jugadas& j) {
-    // ...
+    for (int i = 0; i < j.size(); ++i) {
+        pos posDeJugada = j[i].first;
+        int columna = posDeJugada.first;
+        int fila = posDeJugada.second;
+        if (t[fila][columna]){
+            return true;
+        }
+    }
+    return false;
 }
 
 /******++++**************************** EJERCICIO gano ***********+++***********************/
