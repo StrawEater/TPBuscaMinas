@@ -22,3 +22,18 @@ bool posicionValida(tablero& t, pos p){
     bool ColumnaValida = coordX >= 0 && coordX < t[0].size();
     return FilaValida && ColumnaValida;
 }
+
+int getPosIndexEnBanderitas(banderitas& b, pos p){
+    int coordXPos = p.first;
+    int coordYPos = p.second;
+
+    for (int i = 0; i < b.size(); ++i) {
+        int coordXBanderita = b[i].first;
+        int coordYBanderita = b[i].second;
+
+        if (coordXBanderita == coordXPos && coordYBanderita == coordYPos){
+            return i;
+        }
+    }
+    return -1;
+}

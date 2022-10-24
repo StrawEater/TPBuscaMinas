@@ -40,7 +40,12 @@ int minasAdyacentes(tablero& t, pos p) {
 /******++++**************************** EJERCICIO plantarBanderita ***********+++***********************/
 
 void cambiarBanderita(tablero& t, jugadas& j, pos p, banderitas& b) {
-    // ...
+    int indexBanderita = getPosIndexEnBanderitas(b,p);
+    if (indexBanderita == -1){
+        b.push_back(p);
+    }else{
+        b.erase(b.begin()+indexBanderita);
+    }
 }
 
 /******++++**************************** EJERCICIO perdio ***********+++***********************/
