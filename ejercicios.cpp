@@ -63,7 +63,28 @@ bool perdio(tablero& t, jugadas& j) {
 
 /******++++**************************** EJERCICIO gano ***********+++***********************/
 bool gano(tablero& t, jugadas& j) {
-    // ...
+    //El jugador gana si se dan dos condiciones:
+    //  1. No se jugó un casillero bomba
+    //  2. La cantidad de jugadas es la misma que casilleros sin bomba
+
+    int moduloTablero = 0;  //Un contador eficiente de casilleros del tablero
+    
+    //Empiezo a recorrer el tablero
+    for(int a=0;a<t.size();a++) {
+        for(int b=0;b<t[a].size();b++) {
+            if(t[a][b]) {                       //Si en algun casillero hay una bomba...
+                moduloTablero--;
+                pos posicionTablero(a,b);
+                for(int c=0;c<j.size();c++) {   //...recorro la lista de jugadas en búsqueda de ese casillero
+                    if(sonPosIguales(posicionTablero, j[c].first))
+                        return false;           //De haber sido jugado, no gana y retorna false
+                }
+            }
+            moduloTablero++;
+        }
+    }
+    //No toque ninguna bomba, ahora falta que #jugadas = #casillerosNoBomba
+    return moduloTablero == j.size();
 }
 
 /******++++**************************** EJERCICIO jugarPlus ***********+++***********************/
