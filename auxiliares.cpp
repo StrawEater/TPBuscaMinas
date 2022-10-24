@@ -47,3 +47,13 @@ void eliminarPosicionDeBanderita(banderitas& b, int indexPosicion){
     }
     b = nuevoVectorBanderitas;
 }
+
+bool sonPosIguales(pos p1, pos p2){
+    int coordXPos1 = p1.first;
+    int coordYPos1 = p1.second;
+
+    int coordXPos2 = p2.first;
+    int coordYPos2 = p2.second;
+
+    return coordXPos1 == coordXPos2 && coordYPos1 == coordYPos2;
+}

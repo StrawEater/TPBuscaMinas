@@ -43,8 +43,4 @@ static jugadas jugadasValidas = {
         jugada(pos(4, 1), 2),jugada(pos(4, 3), 1),jugada(pos(4, 4), 0),
 };
 
-static banderitas b = {
-        pos(2,2),pos(3,1),
-        pos(5,8),pos(3,4),
-        pos(1,2),pos(9,9),
-};
+

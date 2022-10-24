@@ -14,3 +14,6 @@ bool posicionValida(tablero& t, pos p);
 int getPosIndexEnBanderitas(banderitas& b, pos p);
 
 void eliminarPosicionDeBanderita(banderitas& b, int indexPosicion);
+
+bool sonPosIguales(pos p1, pos p2);
+
