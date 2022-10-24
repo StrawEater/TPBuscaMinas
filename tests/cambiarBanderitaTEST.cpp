@@ -16,17 +16,35 @@ static banderitas b = {
 };
 
 bool esMismaBanderitaConPosAgregada(banderitas bandOriginal, banderitas bandAgregada, pos p) {
+    //Verifico que todas las posiciones sean iguales y esten en la misma posicion
     for (int i = 0; i < bandOriginal.size(); ++i) {
         if(!sonPosIguales(bandOriginal[i], bandAgregada[i])) return false;
     }
-    return bandAgregada.size() == bandAgregada.size() && sonPosIguales(bandAgregada[bandAgregada.size()-1],p);
+    //Por ultimo verifico que la unica diferencia entre los vectores sea la posicion p, que deberia estar en el ultimo index
+    return (bandAgregada.size() == bandOriginal.size() + 1) && sonPosIguales(bandAgregada[bandAgregada.size()-1],p);
 }
 
-bool esMismaBanderitaConPosEliminada(banderitas b1, banderitas b2, pos p) {
-
+bool esMismaBanderitaConPosEliminada(banderitas bandOriginal, banderitas bandEliminada, pos p) {
+    //Verifico que todas las posiciones sean iguales y esten en la misma posicion a excepcion de la pos eliminada
+    for (int i = 0 , j = 0; i < bandOriginal.size(); ++i,++j) {
+        if(!sonPosIguales(bandOriginal[i], bandEliminada[j])){
+            //Si llego al index de la pos eliminada, retraso al contador de bandEliminada por 1, para sincronizarlo
+            //con el contador de bandOriginales
+            if (sonPosIguales(bandOriginal[i], bandEliminada[j])){
+                j--;
+            } else {
+                return false;
+            }
+        }
+    }
+    //Por ultimo verifico que la unica diferencia entre los vectores sea la posicion p, que deberia estar en el ultimo index
+    return (bandOriginal.size() == bandEliminada.size() + 1);
 }
 
 TEST(cambiarBanderitasTest, pruebaBoluda){
-    banderitas valorAntiguoBanderitas = b.co(b.begin(), b.end(),)
-    ASSERT_TRUE(cambiarBanderita(t,jugadasValidas,pos(2,2),b))
+    banderitas copiaBanderitas = banderitas(b);
+    banderitas valorAntiguoBanderitas = banderitas(copiaBanderitas);
+    cambiarBanderita(t,jugadasValidas,pos(2,2),copiaBanderitas);
+
+    ASSERT_TRUE(esMismaBanderitaConPosAgregada(valorAntiguoBanderitas,copiaBanderitas, pos(2,3)));
 }
