@@ -9,3 +9,4 @@
 
 #include "definiciones.h"
 
+bool posicionValida(tablero& t, pos p);

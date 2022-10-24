@@ -11,7 +11,7 @@ file(GLOB DIR_TESTS "tests/*.cpp")
 
 set(SOURCE_FILES main.cpp
         auxiliares.cpp
-        ejercicios.cpp)
+        ejercicios.cpp tests/testDefiniciones.h)
 
 add_executable(tpi ${SOURCE_FILES}
         ${DIR_TESTS}
