@@ -16,3 +16,19 @@ int getPosIndexEnBanderitas(banderitas& b, pos p);
 void eliminarPosicionDeBanderita(banderitas& b, int indexPosicion);
 
 bool sonPosIguales(pos p1, pos p2);
+
+
+vector<pos> caminosAutomaticos(tablero& t, banderitas& b, pos p, jugadas& j, int tamTableroX, int tamTableroY);
+
+//La variante profunda de cada funcion llama a su contraparte (arriba/abajo llaman a izquierda/derecha) profunda
+void busquedaIzquierda(tablero& t, banderitas& b, pos p, jugadas& j, int tamTableroX, int tamTableroY, int ejeY);
+void busquedaIzquierdaProfunda(tablero& t, banderitas& b, pos p, jugadas& j, int tamTableroX, int tamTableroY);
+
+void busquedaDerecha(tablero& t, banderitas& b, pos p, jugadas& j, int tamTableroX, int tamTableroY, int ejeY);
+void busquedaDerechaProfunda(tablero& t, banderitas& b, pos p, jugadas& j, int tamTableroX, int tamTableroY);
+
+void busquedaArriba(tablero& t, banderitas& b, pos p, jugadas& j, int tamTableroX, int tamTableroY);
+void busquedaArribaProfunda(tablero& t, banderitas& b, pos p, jugadas& j, int tamTableroX, int tamTableroY);
+
+void busquedaAbajo(tablero& t, banderitas& b, pos p, jugadas& j, int tamTableroX, int tamTableroY);
+void busquedaAbajoProfunda(tablero& t, banderitas& b, pos p, jugadas& j, int tamTableroX, int tamTableroY);
