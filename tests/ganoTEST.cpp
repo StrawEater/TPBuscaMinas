@@ -8,7 +8,17 @@
 
 using namespace std;
 
-TEST(ganoTEST, todaviaNoGano){
-    jugadas j = jugadasValidas;
+TEST(ganoTEST, Gano){
+    jugadas j = jugadasGano;
+    ASSERT_TRUE(gano(t, j));
+}
+
+TEST(aunNoganoTEST, aunNoGano){
+    jugadas j = aunNoGano;
+    ASSERT_FALSE(gano(t, j));
+}
+
+TEST(noganoTEST, noGano){
+    jugadas j = noGano;
     ASSERT_FALSE(gano(t, j));
 }
