@@ -89,10 +89,58 @@ bool gano(tablero& t, jugadas& j) {
 
 /******++++**************************** EJERCICIO jugarPlus ***********+++***********************/
 void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
-    // ...
+
 }
 
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
+//faltan las funciones de las guardas y ademas ver si se puede achicar.
 bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p) {
-    // ...
+    vector<pos> posiblesPos;
+    for(int i=0; i<j.size; i++){
+        pos posA=j[i].first;
+        if(posPerteneceAlTablero(posA,t)){
+            if (minasAdyacentes(t, posA) == 2){
+                if(noEstaEnBordes(t, posA)) {
+                    if (esPatronVertical(t, posA)) {
+                        if(pos(posA.first-1,posA.second) no es jugada ni banderita){
+                            posiblesPos.push_back(la posicion de la guarda);
+                        }
+                        if(pos(posA.first+1,posA.second) no es jugada ni banderita){
+                            posiblesPos.push_back(la posicion de la guarda);
+                        }
+                        else {}
+                    }
+                    else if (esPatronHorizontal(t, posA)) {
+                        if(pos(posA.first,posA.second-1) no es jugada ni banderita){
+                            posiblesPos.push_back(la posicion de la guarda);
+                        }
+                        if(pos(posA.first,posA.second+1) no es jugada ni banderita){
+                            posiblesPos.push_back(la posicion de la guarda);
+                        }
+                        else{}
+                    }
+                } else {
+                    if(esPatronVertical(t, posA)){
+                        if(pos(posA.first-1,posA.second) no es jugada ni es bandera y esta en el tablero){
+                            posiblesPos.push_back(la posicion de la guarda);
+                        }
+                        else if(pos(posA.first+1, posA.second) no es jugada ni es bandera y esta en el tablero){
+                            posiblesPos.push_back(la posicion de la guarda)
+                        } else {}
+                    }
+                    else if(esPatronHorizontal(t,posA)){
+                        if(pos(posA.first,posA.second-1) no es jugada ni es bandera y esta en el tablero){
+                            posiblesPos.push_back(la posicion de la guarda);
+                        }
+                        else if(pos(posA.first,posA.second+1) no es jugada ni es bandera y esta en el tablero){
+                            posiblesPos.push_back(la posicion de la guarda)
+                        } else {}
+                    } else {}
+                }
+            } else {}
+        } else {
+            return false;
+        }
+    }
 }
+
