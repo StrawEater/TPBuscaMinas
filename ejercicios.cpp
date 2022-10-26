@@ -35,8 +35,6 @@ int minasAdyacentes(tablero& t, pos p) {
     return cantMinasAdyacentes;
 }
 
-
-
 /******++++**************************** EJERCICIO plantarBanderita ***********+++***********************/
 
 void cambiarBanderita(tablero& t, jugadas& j, pos p, banderitas& b) {

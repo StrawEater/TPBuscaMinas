@@ -15,4 +15,6 @@ int getPosIndexEnBanderitas(banderitas& b, pos p);
 
 void eliminarPosicionDeBanderita(banderitas& b, int indexPosicion);
 
+int getPosIndexEnJugadas(jugadas& j, pos p);
+
 bool sonPosIguales(pos p1, pos p2);

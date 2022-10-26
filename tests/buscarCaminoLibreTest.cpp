@@ -9,17 +9,20 @@
 
 using namespace std;
 
-// ┌───┬───┬───┬───┬───┐
-// │ * │ * │ 2 │ 1 │ 1 │
-// ├───┼───┼───┼───┼───┤
-// │ 3 │ 3 │ 3 │ * │ 1 │
-// ├───┼───┼───┼───┼───┤
-// │ 1 │ * │ 2 │ 1 │ 1 │
-// ├───┼───┼───┼───┼───┤
-// │ 2 │ 3 │ 2 │ 1 │ 0 │
-// ├───┼───┼───┼───┼───┤
-// │ * │ 2 │ * │ 1 │ 0 │
-// └───┴───┴───┴───┴───┘
+#pragma region Tableros
+
+#pragma region Tablero1
+//┌───┬───┬───┬───┬───┐
+//│ * │ * │ b │ ■ │ 1 │
+//├───┼───┼───┼───┼───┤
+//│ b │ 3 │ 3 │ * │ b │
+//├───┼───┼───┼───┼───┤
+//│ 1 │ * │ 2 │ 1 │ 1 │
+//├───┼───┼───┼───┼───┤
+//│ 2 │ 3 │ 2 │ ■ │ 0 │
+//├───┼───┼───┼───┼───┤
+//│ * │ b │ * │ ■ │ 0 │
+//└───┴───┴───┴───┴───┘
 
 static tablero t1 = {
         { cMINA,  cMINA,  cVACIA, cVACIA, cVACIA },
@@ -31,31 +34,36 @@ static tablero t1 = {
 
 static banderitas banderitasTab1 = {
         pos(2,0),
-        pos(4,1),pos(0,1),
+        pos(0,1),pos(4,1),
+        //
+        //
         pos(1,4),
 };
 
 static jugadas jugadasTab1 = {
-        jugada(pos(2, 0), 2), jugada(pos(3, 2), 2), jugada(pos(4, 0), 0),
-        jugada(pos(4, 3), 0),
+        jugada(pos(3, 0), 1),
+        //
+        //
+        jugada(pos(3, 3), 0),jugada(pos(3, 4), 1),
 };
 
+#pragma endregion Tablero1
 
-
+#pragma region Tablero2
 //┌───┬───┬───┬───┬───┬───┬───┐
-//│ 0 │ 1 │ 1 │ * │ 0 │ 1 │ 0 │
+//│ 0 │ 0 │ 1 │ * │ 2 │ 1 │ 1 │
 //├───┼───┼───┼───┼───┼───┼───┤
-//│ 0 │ 1 │ 0 │ 2 │ 1 │ * │ 1 │
+//│ 1 │ 1 │ 2 │ 1 │ 2 │ * │ 1 │
 //├───┼───┼───┼───┼───┼───┼───┤
-//│ 1 │ * │ 1 │ 2 │ 0 │ 1 │ 0 │
+//│ 1 │ * │ 1 │ 0 │ 1 │ 1 │ 1 │
 //├───┼───┼───┼───┼───┼───┼───┤
-//│ 0 │ 1 │ 0 │ 1 │ 2 │ 2 │ 1 │
+//│ 1 │ 2 │ 2 │ 1 │ 0 │ 0 │ 0 │
 //├───┼───┼───┼───┼───┼───┼───┤
-//│ 2 │ 2 │ * │ 0 │ 1 │ 0 │ 1 │
+//│ 0 │ 1 │ * │ 2 │ 1 │ 1 │ 0 │
 //├───┼───┼───┼───┼───┼───┼───┤
-//│ 1 │ 0 │ 1 │ 0 │ * │ 1 │ 1 │
+//│ 1 │ 2 │ 1 │ 2 │ * │ 1 │ 0 │
 //├───┼───┼───┼───┼───┼───┼───┤
-//│ * │ 1 │ 1 │ 0 │ 0 │ 0 │ 0 │
+//│ * │ 1 │ 0 │ 1 │ 1 │ 1 │ 0 │
 //└───┴───┴───┴───┴───┴───┴───┘
 static tablero t2 = {
         { cVACIA, cVACIA, cVACIA, cMINA, cVACIA, cVACIA, cVACIA },
@@ -67,6 +75,24 @@ static tablero t2 = {
         { cMINA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA },
 };
 
+static banderitas banderitasTab2 = {
+        //
+        pos(5,1),pos(4,1),
+        //
+        //
+        pos(1,4),
+};
+
+static jugadas jugadasTab2 = {
+        jugada(pos(3, 0), 1),
+        //
+        //
+        jugada(pos(3, 3), 0),jugada(pos(3, 4), 1),
+};
+
+#pragma endregion Tablero2
+
+#pragma region Tablero3
 //┌───┬───┬───┬───┬───┬───┐
 //│ 0 │ 0 │ 0 │ 0 │ 1 │ * │
 //├───┼───┼───┼───┼───┼───┤
@@ -89,6 +115,9 @@ static tablero t3 = {
         { cMINA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA},
 };
 
+#pragma endregion Tablero3
+
+#pragma region Tablero4
 //┌───┬───┬───┬───┬───┬───┬───┬───┐
 //│ 0 │ 1 │ 1 │ 1 │ 1 │ 0 │ 1 │ * │
 //├───┼───┼───┼───┼───┼───┼───┼───┤
@@ -117,7 +146,11 @@ static tablero t4 = {
         { cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cMINA },
 };
 
-void printTablero(tablero ts){
+#pragma endregion Tablero4
+
+#pragma endregion Tableros
+
+void printTablero(tablero ts, banderitas banderitasTab, jugadas jugadasTab){
     for (int i = 0; i < ts.size(); ++i) {
         cout << "//";
         for (int j = 0; j < ts[0].size(); ++j){
@@ -147,8 +180,21 @@ void printTablero(tablero ts){
         cout << "//";
         for (int j = 0; j < ts[0].size(); ++j){
             cout<<"│";
-            string minasAdy = ts[i][j] ? "*" : std::to_string(minasAdyacentes(ts,pos(i,j)));
-            cout<<" "+ minasAdy + " ";
+            if (getPosIndexEnJugadas(jugadasTab,pos(j,i)) != -1){
+                cout<<" ■ ";
+            } else if(getPosIndexEnBanderitas(banderitasTab,pos(j,i)) != -1){
+                if (ts[i][j]){
+                    cout<<" B ";
+                } else{
+                    cout<<" b ";
+                }
+            } else if (ts[i][j]){
+                cout<<" * ";
+            }else{
+                string minasAdy = std::to_string(minasAdyacentes(ts,pos(j,i)));
+                cout<<" "+ minasAdy + " ";
+
+            }
         }
         cout<<"│";
         cout<<"\n";
@@ -167,12 +213,13 @@ void printTablero(tablero ts){
 
 
 }
-/*
+
+
 TEST(buscarCaminoLibre, imprimirAlgo){
-    printTablero(t4);
+    printTablero(t1, banderitasTab1, jugadasTab1);
     ASSERT_TRUE(true);
 }
- */
+
 jugadas caminoLibre(){
     return {};
 }
@@ -191,52 +238,49 @@ bool mismasJugadas(jugadas jugadasEsperadas, jugadas jugadasDevueltas){
     return jugadasEsperadas.size() == jugadasDevueltas.size();
 }
 
-bool diferentesJugadas(jugadas jugadasAntiguas, jugadas jugadasDevueltas){
-    for (int i = 0; i < jugadasAntiguas.size(); ++i) {
-        for (int j = 0; j < jugadasDevueltas.size(); ++j) {
-            if (sonPosIguales(jugadasDevueltas[j].first, jugadasAntiguas[i].first)){
-                return false;
-            }
-        }
-    }
-    return true;
-}
-
-bool listaUnica(jugadas jugadasDevueltas){
-    for (int i = 0; i < jugadasDevueltas.size(); ++i) {
-        for (int j = i+1; j < jugadasDevueltas.size(); ++j) {
-            if (sonPosIguales(jugadasDevueltas[i].first, jugadasDevueltas[j].first)){
-                return false;
-            }
-        }
-    }
-}
-
-bool JugadasValidasSinBanderaSinYaJugada(tablero ts, banderitas b, jugadas jugadasOriginales, jugadas jugadasDevueltas){
-
-    if (!diferentesJugadas(jugadasOriginales,jugadasDevueltas)){
-        return false;
-    }
-
-    for (int i = 0; i < jugadasDevueltas.size(); ++i) {
-        if (getPosIndexEnBanderitas(b,jugadasDevueltas[i].first) != -1){
-            return false;
-        }
-        if (!posicionValida(ts, jugadasDevueltas[i].first)){
-            return false;
-        }
-    }
-    return true;
-}
-
 TEST(buscarCaminoLibre, tablero1pos_4_0){
-    pos posicionJugada = pos(4,0);
+    pos posJugada = pos(4,0);
     jugadas jugadasEsperadas = {
             jugada(pos(4, 0), 1),
             };
     jugadas jugadasDevueltas = {jugada(pos(4, 0), 1),};
-    bool esListaUnica = listaUnica(jugadasDevueltas);
-    bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
-    bool todasJugadasValidas = JugadasValidasSinBanderaSinYaJugada(t1,banderitasTab1,jugadasTab1,jugadasDevueltas)
-    ASSERT_TRUE(esListaUnica && sonMismasJugadas);
+    if (minasAdyacentes(t1,posJugada) > 0){
+        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
+    } else{
+        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
+        ASSERT_TRUE(sonMismasJugadas);
+    }
+
+}
+
+TEST(buscarCaminoLibre, tablero1pos_4_4){
+    pos posJugada = pos(4,4);
+    jugadas jugadasEsperadas = {
+            jugada(pos(4, 3), 0),
+            jugada(pos(4, 4), 0),
+    };
+    jugadas jugadasDevueltas = {jugada(pos(4, 0), 1),};
+    if (minasAdyacentes(t1,posJugada) > 0){
+        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
+    } else{
+        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
+        ASSERT_TRUE(sonMismasJugadas);
+    }
+
+}
+
+TEST(buscarCaminoLibre, tablero2pos_4_4){
+    pos posJugada = pos(4,4);
+    jugadas jugadasEsperadas = {
+            jugada(pos(4, 3), 0),
+            jugada(pos(4, 4), 0),
+    };
+    jugadas jugadasDevueltas = {jugada(pos(4, 0), 1),};
+    if (minasAdyacentes(t1,posJugada) > 0){
+        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
+    } else{
+        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
+        ASSERT_TRUE(sonMismasJugadas);
+    }
+
 }

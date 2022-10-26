@@ -24,14 +24,21 @@ bool posicionValida(tablero& t, pos p){
 }
 
 int getPosIndexEnBanderitas(banderitas& b, pos p){
-    int coordXPos = p.first;
-    int coordYPos = p.second;
-
     for (int i = 0; i < b.size(); ++i) {
-        int coordXBanderita = b[i].first;
-        int coordYBanderita = b[i].second;
+        pos posBanderita = b[i];
+        if (sonPosIguales(posBanderita,p)){
+            return i;
+        }
+    }
+    return -1;
+}
 
-        if (coordXBanderita == coordXPos && coordYBanderita == coordYPos){
+int getPosIndexEnJugadas(jugadas& j, pos p){
+
+    for (int i = 0; i < j.size(); ++i) {
+        pos posJugada = j[i].first;
+
+        if (sonPosIguales(posJugada,p)){
             return i;
         }
     }
