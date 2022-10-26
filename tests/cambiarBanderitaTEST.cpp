@@ -30,7 +30,7 @@ bool esMismaBanderitaConPosEliminada(banderitas bandOriginal, banderitas bandEli
         if(!sonPosIguales(bandOriginal[i], bandEliminada[j])){
             //Si llego al index de la pos eliminada, retraso al contador de bandEliminada por 1, para sincronizarlo
             //con el contador de bandOriginales
-            if (sonPosIguales(bandOriginal[i], bandEliminada[j])){
+            if (sonPosIguales(bandOriginal[i], p)){
                 j--;
             } else {
                 return false;
@@ -41,10 +41,19 @@ bool esMismaBanderitaConPosEliminada(banderitas bandOriginal, banderitas bandEli
     return (bandOriginal.size() == bandEliminada.size() + 1);
 }
 
-TEST(cambiarBanderitasTest, pruebaBoluda){
+TEST(cambiarBanderitasTest, agregarBandera){
+    banderitas copiaBanderitas = banderitas(b);
+    banderitas valorAntiguoBanderitas = banderitas(copiaBanderitas);
+    cambiarBanderita(t,jugadasValidas,pos(2,3),copiaBanderitas);
+
+    ASSERT_TRUE(esMismaBanderitaConPosAgregada(valorAntiguoBanderitas,copiaBanderitas, pos(2,3)));
+}
+
+
+TEST(cambiarBanderitasTest, sacarBandera){
     banderitas copiaBanderitas = banderitas(b);
     banderitas valorAntiguoBanderitas = banderitas(copiaBanderitas);
     cambiarBanderita(t,jugadasValidas,pos(2,2),copiaBanderitas);
 
-    ASSERT_TRUE(esMismaBanderitaConPosAgregada(valorAntiguoBanderitas,copiaBanderitas, pos(2,3)));
+    ASSERT_TRUE(esMismaBanderitaConPosEliminada(valorAntiguoBanderitas,copiaBanderitas, pos(2,2)));
 }
