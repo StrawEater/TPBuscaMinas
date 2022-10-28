@@ -92,4 +92,5 @@ bool noBanderitaNiJugada(jugadas j,banderitas b,pos p){
     return getPosIndexEnJugadas(j, p)==-1 && getPosIndexEnBanderitas(b,p)==-1;
 }
 
+//bool esBordePeroNoEsquina(tablero t, pos p){
 

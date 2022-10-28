@@ -93,51 +93,49 @@ void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
 bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p) {
     vector<pos> posiblesPos;
-    return true;
-    /*for(int i=0; i<j.size; i++){
-        pos posA=j[i].first;
-        if(posicionValida(t, posA)){
-            if (minasAdyacentes(t, posA) == 2){
-                if(noBorde(t, posA)) {
+    for (int i = 0; i < j.size(); i++) {
+        pos posA = j[i].first;
+        if (posicionValida(t, posA)) {
+            if (minasAdyacentes(t, posA) == 2) {
+                pos posAlfa = pos(posA.first, posA.second - 1);
+                pos posBeta = pos(posA.first, posA.second + 1);
+                pos posCelta = pos(posA.first - 1, posA.second);
+                pos posDelta = pos(posA.first + 1, posA.second);
+                if (noBorde(t, posA)) {
                     if (patronVertical(t, j, posA)) {
-                        if(noBanderitaNiJugada(pos(posA.first-1,posA.second),j,b)){
-                            posiblesPos.push_back(la posicion de la guarda);
+                        if (noBanderitaNiJugada(j, b, posAlfa)) {
+                            posiblesPos.push_back(posAlfa);
                         }
-                        if(noBanderitaNiJugada(pos(posA.first+1,posA.second))){
-                            posiblesPos.push_back(la posicion de la guarda);
+                        if (noBanderitaNiJugada(j, b, posBeta)) {
+                            posiblesPos.push_back(posBeta);
+                        } else {}
+                    } else if (patronHorizontal(t, j, posA)) {
+                        if (noBanderitaNiJugada(j, b, posCelta)) {
+                            posiblesPos.push_back(posCelta);
                         }
-                        else {}
-                    }
-                    else if (patronHorizontal(t, j,posA)) {
-                        if(noBanderitaNiJugada(pos(posA.first,posA.second-1))){
-                            posiblesPos.push_back(la posicion de la guarda);
-                        }
-                        if(noBanderitaNiJugada(pos(posA.first,posA.second+1))){
-                            posiblesPos.push_back(la posicion de la guarda);
-                        }
-                        else{}
-                    }
-                } else {//ver bien este caso
-                    if(patronVertical(t, j, posA)){
-                        if(pos(posA.first-1,posA.second) no es jugada ni es bandera y esta en el tablero){
-                            posiblesPos.push_back(la posicion de la guarda);
-                        }
-                        else if(pos(posA.first+1, posA.second) no es jugada ni es bandera y esta en el tablero){
-                            posiblesPos.push_back(la posicion de la guarda)
+                        if (noBanderitaNiJugada(j, b, posDelta)) {
+                            posiblesPos.push_back(posDelta);
                         } else {}
                     }
-                    else if(patronHorizontal(t, j, posA)){
-                        if(pos(posA.first,posA.second-1) no es jugada ni es bandera y esta en el tablero){
-                            posiblesPos.push_back(la posicion de la guarda);
+                } else {
+                    if (patronVertical(t, j, posA)) {
+                        if (noBanderitaNiJugada(j, b, posAlfa)) {
+                            posiblesPos.push_back(posAlfa);
                         }
-                        else if(pos(posA.first,posA.second+1) no es jugada ni es bandera y esta en el tablero){
-                            posiblesPos.push_back(la posicion de la guarda)
+                        if (noBanderitaNiJugada(j, b, posBeta)) {
+                            posiblesPos.push_back(posBeta);
+                        } else {}
+                    } else if (patronHorizontal(t, j, posA)) {
+                        if (noBanderitaNiJugada(j, b, posCelta)) {
+                            posiblesPos.push_back(posCelta);
+                        }
+                        if (noBanderitaNiJugada(j, b, posDelta)) {
+                            posiblesPos.push_back(posDelta);
                         } else {}
                     } else {}
                 }
             } else {}
-        } else {
-            return false;
         }
     }
-*/}
+    return posiblesPos.size() != 0;
+}
