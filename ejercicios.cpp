@@ -19,16 +19,16 @@ using namespace std;
 //Devuelve la cantidad de minas adyacentes a la posicion dada
 int minasAdyacentes(tablero& t, pos p) {
     int cantMinasAdyacentes = 0;
-    int coordY = p.first;
-    int coordX = p.second;
+    int fila = p.first;
+    int columna = p.second;
     //Recorro las 8 celdas adyacentes a la posicion, como tambien la posicion misma
     for (int i = -1; i <= 1; ++i) {
         for (int j = -1; j <= 1; ++j) {
             //Si la posicion actual es igual a la posicion origina, la ignoro
             if (i == 0 && j == 0) continue;
             //En otro caso, verifico que sea una posicion valida y agrego 1 al contador si la posicion tiene mina
-            if (posicionValida(t,pos(coordX+i,coordY+j))){
-                cantMinasAdyacentes += t[coordY+j][coordX+i] ? 1 : 0;
+            if (posicionValida(t,pos(fila+i,columna+j))){
+                cantMinasAdyacentes += t[fila+j][columna+i] ? 1 : 0;
             }
         }
     }
@@ -94,12 +94,13 @@ void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
 //faltan las funciones de las guardas y ademas ver si se puede achicar.
 bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p) {
     vector<pos> posiblesPos;
-    for(int i=0; i<j.size; i++){
+    return true;
+    /*for(int i=0; i<j.size; i++){
         pos posA=j[i].first;
         if(posicionValida(t, posA)){
             if (minasAdyacentes(t, posA) == 2){
                 if(noBorde(t, posA)) {
-                    if (esPatronVertical(t, j, posA)) {
+                    if (patronVertical(t, j, posA)) {
                         if(noBanderitaNiJugada(pos(posA.first-1,posA.second),j,b)){
                             posiblesPos.push_back(la posicion de la guarda);
                         }
@@ -108,7 +109,7 @@ bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p) {
                         }
                         else {}
                     }
-                    else if (esPatronHorizontal(t, j,posA)) {
+                    else if (patronHorizontal(t, j,posA)) {
                         if(noBanderitaNiJugada(pos(posA.first,posA.second-1))){
                             posiblesPos.push_back(la posicion de la guarda);
                         }
@@ -118,7 +119,7 @@ bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p) {
                         else{}
                     }
                 } else {//ver bien este caso
-                    if(esPatronVertical(t, j, posA)){
+                    if(patronVertical(t, j, posA)){
                         if(pos(posA.first-1,posA.second) no es jugada ni es bandera y esta en el tablero){
                             posiblesPos.push_back(la posicion de la guarda);
                         }
@@ -126,7 +127,7 @@ bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p) {
                             posiblesPos.push_back(la posicion de la guarda)
                         } else {}
                     }
-                    else if(esPatronHorizontal(t, j, posA)){
+                    else if(patronHorizontal(t, j, posA)){
                         if(pos(posA.first,posA.second-1) no es jugada ni es bandera y esta en el tablero){
                             posiblesPos.push_back(la posicion de la guarda);
                         }
@@ -140,31 +141,4 @@ bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p) {
             return false;
         }
     }
-}
-
-bool noBorde(tablero t, pos p){
-    return (0<p.first && p.first<t.size()-1)&&(0<p.second && p.second<t.size()-1);
-}
-bool esJugada(j,p){
-
-}
-
-bool verificoConDePos(tablero t,jugadas j,pos p){
-    return esJugada(j, p) && minasAdyacentes(t, p)==1;
-}
-
-bool patronVertical(tablero t, jugadas j,pos p){
-    pos pos1 = pos (p.first-1,p.second);
-    pos pos2 = pos (p.first+1, p.second);
-    return verificoConDePos(t, j,pos1 ) && verificoConDePos(t, j,pos2);
-}
-
-bool patronHorizontal(tablero t, jugadas j,pos p){
-    pos pos3 = pos (p.first,p.second-1);
-    pos pos4 = pos (p.first, p.second+1);
-    return verificoConDePos(t, j,pos3) && verificoConDePos(t, j,pos4);
-}
-
-bool noBanderitaNiJugada(){
-
-}
+*/}

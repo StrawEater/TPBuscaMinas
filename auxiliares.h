@@ -18,3 +18,15 @@ void eliminarPosicionDeBanderita(banderitas& b, int indexPosicion);
 int getPosIndexEnJugadas(jugadas& j, pos p);
 
 bool sonPosIguales(pos p1, pos p2);
+
+bool noBorde(tablero t, pos p);
+
+bool esJugada(jugadas j,pos p);
+
+bool verificoConDePos(tablero t,jugadas j,pos p);
+
+bool patronVertical(tablero t, jugadas j,pos p);
+
+bool patronHorizontal(tablero t, jugadas j,pos p);
+
+bool noBanderitaNiJugada(jugadas j,banderitas b,pos p);

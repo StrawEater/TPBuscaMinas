@@ -16,10 +16,10 @@ using namespace std;
 //Que Ninguna de ellas sean negativas. Que la cordY no sea mayor a la cantidad de filas del tablero y
 //que la cordX no sea mayor a la cantidad de columnas
 bool posicionValida(tablero& t, pos p){
-    int coordX = p.second;
-    int coordY = p.first;
-    bool FilaValida = coordY >= 0 && coordY < t.size();
-    bool ColumnaValida = coordX >= 0 && coordX < t[0].size();
+    int columna = p.second;
+    int fila = p.first;
+    bool FilaValida = fila >= 0 && fila < t.size();
+    bool ColumnaValida = columna >= 0 && columna < t[0].size();
     return FilaValida && ColumnaValida;
 }
 
@@ -56,11 +56,12 @@ void eliminarPosicionDeBanderita(banderitas& b, int indexPosicion){
 }
 
 bool sonPosIguales(pos p1, pos p2){
-    int coordYPos1 = p1.first;
-    int coordXPos1 = p1.second;
+    int filaPos1 = p1.first;
+    int columnaPos1 = p1.second;
 
-    int coordYPos2 = p2.first;
-    int coordXPos2 = p2.second;
+    int filaPos2 = p2.first;
+    int columnaPos2 = p2.second;
 
-    return coordXPos1 == coordXPos2 && coordYPos1 == coordYPos2;
+    return filaPos1 == filaPos2 && columnaPos1 == columnaPos2;
 }
+
