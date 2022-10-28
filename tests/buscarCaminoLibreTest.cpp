@@ -100,15 +100,15 @@ static jugadas jugadasTab2 = {
 
 #pragma region Tablero3
 //┌───┬───┬───┬───┬───┬───┐
-//│ 0 │ 0 │ 0 │ 0 │ 1 │ * │
+//│ 0 │ 1 │ 1 │ 1 │ 1 │ * │
 //├───┼───┼───┼───┼───┼───┤
-//│ 1 │ 1 │ * │ 1 │ 2 │ 1 │
+//│ 0 │ 1 │ * │ 1 │ 1 │ 1 │
 //├───┼───┼───┼───┼───┼───┤
-//│ 1 │ 0 │ 2 │ 0 │ 1 │ 0 │
+//│ 0 │ 2 │ 2 │ 2 │ 0 │ 0 │
 //├───┼───┼───┼───┼───┼───┤
-//│ 1 │ 1 │ * │ 2 │ 2 │ 1 │
+//│ 0 │ 1 │ * │ 2 │ 1 │ 1 │
 //├───┼───┼───┼───┼───┼───┤
-//│ 1 │ 1 │ 0 │ 1 │ * │ 1 │
+//│ 1 │ 2 │ 1 │ 2 │ * │ 1 │
 //├───┼───┼───┼───┼───┼───┤
 //│ * │ 1 │ 0 │ 1 │ 1 │ 1 │
 //└───┴───┴───┴───┴───┴───┘
@@ -121,25 +121,41 @@ static tablero t3 = {
         { cMINA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA},
 };
 
+static banderitas banderitasTab3 = {
+        pos(0,5),
+        pos(1,2),
+        pos(3,2),
+        //
+        //
+
+};
+
+static jugadas jugadasTab3 = {
+        jugada(pos(0, 0), 0), jugada(pos (0, 1), 1), jugada(pos (0, 2), 1),
+        jugada(pos (1, 5), 1),
+        jugada(pos (4, 0), 1), jugada(pos (4, 1), 2)
+        //
+};
+
 #pragma endregion Tablero3
 
 #pragma region Tablero4
 //┌───┬───┬───┬───┬───┬───┬───┬───┐
-//│ 0 │ 1 │ 1 │ 1 │ 1 │ 0 │ 1 │ * │
+//│ 0 │ 0 │ 0 │ 0 │ 1 │ 1 │ 2 │ * │
 //├───┼───┼───┼───┼───┼───┼───┼───┤
-//│ 0 │ 1 │ 0 │ 1 │ 1 │ * │ 1 │ 0 │
+//│ 1 │ 1 │ 1 │ 0 │ 1 │ * │ 2 │ 1 │
 //├───┼───┼───┼───┼───┼───┼───┼───┤
-//│ 0 │ * │ 1 │ 1 │ 0 │ 0 │ 0 │ 0 │
+//│ 1 │ * │ 1 │ 0 │ 1 │ 1 │ 1 │ 0 │
 //├───┼───┼───┼───┼───┼───┼───┼───┤
-//│ 0 │ 0 │ 0 │ 0 │ 1 │ 1 │ 1 │ 0 │
+//│ 1 │ 1 │ 1 │ 0 │ 0 │ 0 │ 0 │ 0 │
 //├───┼───┼───┼───┼───┼───┼───┼───┤
-//│ 1 │ 1 │ 1 │ 0 │ 1 │ 0 │ 1 │ 0 │
+//│ 1 │ 1 │ 0 │ 1 │ 1 │ 1 │ 0 │ 0 │
 //├───┼───┼───┼───┼───┼───┼───┼───┤
-//│ * │ 0 │ 1 │ 0 │ * │ 1 │ 1 │ 0 │
+//│ * │ 1 │ 0 │ 1 │ * │ 1 │ 0 │ 0 │
 //├───┼───┼───┼───┼───┼───┼───┼───┤
-//│ 2 │ 2 │ 1 │ 0 │ 0 │ 0 │ 1 │ 1 │
+//│ 1 │ 1 │ 0 │ 1 │ 1 │ 1 │ 1 │ 1 │
 //├───┼───┼───┼───┼───┼───┼───┼───┤
-//│ 0 │ 1 │ 0 │ 0 │ 0 │ 0 │ 1 │ * │
+//│ 0 │ 0 │ 0 │ 0 │ 0 │ 0 │ 1 │ * │
 //└───┴───┴───┴───┴───┴───┴───┴───┘
 static tablero t4 = {
         { cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cMINA },
@@ -150,6 +166,18 @@ static tablero t4 = {
         { cMINA, cVACIA, cVACIA, cVACIA, cMINA, cVACIA, cVACIA, cVACIA },
         { cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA },
         { cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cMINA },
+};
+
+static banderitas banderitasTab4 = {
+        pos(),
+        //
+        //
+
+};
+
+static jugadas jugadasTab4 = {
+        jugada(pos(0, 0), 0),
+        //
 };
 
 #pragma endregion Tablero4
@@ -222,7 +250,7 @@ void printTablero(tablero ts, banderitas banderitasTab, jugadas jugadasTab){
 
 
 TEST(buscarCaminoLibre, imprimirAlgo){
-    printTablero(t2, banderitasTab2, jugadasTab2);
+    printTablero(t4, {}, {});
     ASSERT_TRUE(true);
 }
 
