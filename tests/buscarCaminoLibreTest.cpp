@@ -147,11 +147,11 @@ static jugadas jugadasTab3 = {
 //├───┼───┼───┼───┼───┼───┼───┼───┤
 //│ ■ │ B │ 1 │ 0 │ 1 │ 1 │ 1 │ 0 │
 //├───┼───┼───┼───┼───┼───┼───┼───┤
-//│ ■ │ 1 │ ■ │ 0 │ 0 │ 0 │ 0 │ 0 │
+//│ ■ │ 1 │ 1 │ 0 │ 0 │ 0 │ 0 │ 0 │
 //├───┼───┼───┼───┼───┼───┼───┼───┤
 //│ ■ │ ■ │ 0 │ 1 │ 1 │ 1 │ 0 │ ■ │
 //├───┼───┼───┼───┼───┼───┼───┼───┤
-//│ * │ 1 │ 0 │ 1 │ * │ ■ │ 0 │ 0 │
+//│ * │ 1 │ 0 │ 1 │ * │ 1 │ 0 │ 0 │
 //├───┼───┼───┼───┼───┼───┼───┼───┤
 //│ 1 │ 1 │ 0 │ 1 │ 1 │ 1 │ 1 │ 1 │
 //├───┼───┼───┼───┼───┼───┼───┼───┤
@@ -179,9 +179,8 @@ static banderitas banderitasTab4 = {
 static jugadas jugadasTab4 = {
         jugada(pos(0, 0), 0),
         jugada(pos(2,0), 1),
-        jugada(pos(3,0), 1), jugada(pos(3,2), 1),
+        jugada(pos(3,0), 1),
         jugada(pos(4,0), 1), jugada(pos(4,1), 1), jugada( pos(4, 7), 0),
-        jugada( pos(5,5),1),
         jugada(pos(7,0), 1)
         //
 };
@@ -256,12 +255,8 @@ void printTablero(tablero ts, banderitas banderitasTab, jugadas jugadasTab){
 
 
 TEST(buscarCaminoLibre, imprimirAlgo){
-    printTablero(t4, banderitasTab4, jugadasTab4);
+    printTablero(t4, {banderitasTab4}, {jugadasTab4});
     ASSERT_TRUE(true);
-}
-
-jugadas caminoLibre(){
-    return {};
 }
 
 bool mismasJugadas(jugadas jugadasEsperadas, jugadas jugadasDevueltas){
@@ -270,6 +265,9 @@ bool mismasJugadas(jugadas jugadasEsperadas, jugadas jugadasDevueltas){
         for (int j = 0; j < jugadasDevueltas.size(); ++j) {
             if (sonPosIguales(jugadasDevueltas[j].first, jugadasEsperadas[i].first)){
                 encontrada = true;
+                if (jugadasDevueltas[j].second != jugadasEsperadas[i].second){
+                    return false;
+                }
                 break;
             }
         }
@@ -278,12 +276,14 @@ bool mismasJugadas(jugadas jugadasEsperadas, jugadas jugadasDevueltas){
     return jugadasEsperadas.size() == jugadasDevueltas.size();
 }
 
-TEST(buscarCaminoLibre, tablero1pos_4_0){
-    pos posJugada = pos(4,0);
+#pragma region TestTablero1
+
+TEST(buscarCaminoLibre, tablero1pos_0_4){
+    pos posJugada = pos(0,4);
     jugadas jugadasEsperadas = {
-            jugada(pos(4, 0), 1),
+            jugada(pos(0, 4), 1),
             };
-    jugadas jugadasDevueltas = {jugada(pos(4, 0), 1),};
+    jugadas jugadasDevueltas = {jugada(pos(0, 4), 1),};
     if (minasAdyacentes(t1,posJugada) > 0){
         ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
     } else{
@@ -296,10 +296,10 @@ TEST(buscarCaminoLibre, tablero1pos_4_0){
 TEST(buscarCaminoLibre, tablero1pos_4_4){
     pos posJugada = pos(4,4);
     jugadas jugadasEsperadas = {
-            jugada(pos(4, 3), 0),
+            jugada(pos(3, 4), 0),
             jugada(pos(4, 4), 0),
     };
-    jugadas jugadasDevueltas = {jugada(pos(4, 0), 1),};
+    jugadas jugadasDevueltas = {jugada(pos(4, 4), 0), jugada(pos(3, 4), 0)};
     if (minasAdyacentes(t1,posJugada) > 0){
         ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
     } else{
@@ -309,13 +309,20 @@ TEST(buscarCaminoLibre, tablero1pos_4_4){
 
 }
 
-TEST(buscarCaminoLibre, tablero2pos_4_4){
-    pos posJugada = pos(4,4);
+#pragma endregion TestTablero1
+
+#pragma region TestTablero2
+TEST(buscarCaminoLibre, tablero2pos_6_6){
+    pos posJugada = pos(6,6);
     jugadas jugadasEsperadas = {
-            jugada(pos(4, 3), 0),
-            jugada(pos(4, 4), 0),
+            jugada(pos(6, 6), 0),
+            jugada(pos(5, 6), 0),
+            jugada(pos(4, 6), 0),
+            jugada(pos(3, 6), 0),
+            jugada(pos(3, 5), 0),
+            jugada(pos(3, 4), 0),
     };
-    jugadas jugadasDevueltas = {jugada(pos(4, 0), 1),};
+    jugadas jugadasDevueltas = {jugada(pos(4, 4), 1),};
     if (minasAdyacentes(t1,posJugada) > 0){
         ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
     } else{
@@ -324,6 +331,120 @@ TEST(buscarCaminoLibre, tablero2pos_4_4){
     }
 
 }
+
+TEST(buscarCaminoLibre, tablero2pos_6_2){
+    pos posJugada = pos(6,2);
+    jugadas jugadasEsperadas = {
+            jugada(pos(6, 2), 0),
+    };
+    jugadas jugadasDevueltas = {jugada(pos(6, 2), 0),};
+    if (minasAdyacentes(t1,posJugada) > 0){
+        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
+    } else{
+        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
+        ASSERT_TRUE(sonMismasJugadas);
+    }
+
+}
+
+TEST(buscarCaminoLibre, tablero2pos_3_0){
+    pos posJugada = pos(3,0);
+    jugadas jugadasEsperadas = {
+            jugada(pos(3, 0), 1),
+    };
+    jugadas jugadasDevueltas = {jugada(pos(3, 0), 1),};
+    if (minasAdyacentes(t1,posJugada) > 0){
+        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
+    } else{
+        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
+        ASSERT_TRUE(sonMismasJugadas);
+    }
+
+}
+
+TEST(buscarCaminoLibre, tablero2pos_2_3){
+    pos posJugada = pos(2,3);
+    jugadas jugadasEsperadas = {
+            jugada(pos(2, 3), 0),
+    };
+    jugadas jugadasDevueltas = {jugada(pos(2, 3), 0),};
+    if (minasAdyacentes(t1,posJugada) > 0){
+        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
+    } else{
+        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
+        ASSERT_TRUE(sonMismasJugadas);
+    }
+
+}
+
+TEST(buscarCaminoLibre, tablero2pos_2_6){
+    pos posJugada = pos(2,6);
+    jugadas jugadasEsperadas = {
+            jugada(pos(2, 6), 0),
+    };
+    jugadas jugadasDevueltas = {jugada(pos(2, 6), 0),};
+    if (minasAdyacentes(t1,posJugada) > 0){
+        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
+    } else{
+        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
+        ASSERT_TRUE(sonMismasJugadas);
+    }
+
+}
+
+#pragma endregion TestTablero2
+
+#pragma region TestTablero3
+
+TEST(buscarCaminoLibre, tablero3pos_1_0){
+    pos posJugada = pos(1,0);
+    jugadas jugadasEsperadas = {
+            jugada(pos(1, 0), 0),
+            jugada(pos(2, 0), 0),
+            jugada(pos(3, 0), 0),
+    };
+    jugadas jugadasDevueltas = {jugada(pos(1, 0), 0),};
+    if (minasAdyacentes(t1,posJugada) > 0){
+        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
+    } else{
+        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
+        ASSERT_TRUE(sonMismasJugadas);
+    }
+
+}
+
+TEST(buscarCaminoLibre, tablero3pos_2_5){
+    pos posJugada = pos(2,5);
+    jugadas jugadasEsperadas = {
+            jugada(pos(2, 5), 0),
+            jugada(pos(2, 4), 0),
+    };
+    jugadas jugadasDevueltas = {jugada(pos(2, 5), 0),};
+    if (minasAdyacentes(t1,posJugada) > 0){
+        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
+    } else{
+        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
+        ASSERT_TRUE(sonMismasJugadas);
+    }
+
+}
+
+TEST(buscarCaminoLibre, tablero3pos_3_3){
+    pos posJugada = pos(3,3);
+    jugadas jugadasEsperadas = {
+            jugada(pos(3, 3), 2),
+    };
+    jugadas jugadasDevueltas = {jugada(pos(3, 3), 2),};
+    if (minasAdyacentes(t1,posJugada) > 0){
+        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
+    } else{
+        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
+        ASSERT_TRUE(sonMismasJugadas);
+    }
+
+}
+
+#pragma endregion TestTablero3
 
 TEST(buscarCaminoLibre, tablero4pos_0_0){
     pos posJugada = pos(0,0);

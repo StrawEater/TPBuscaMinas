@@ -64,3 +64,32 @@ bool sonPosIguales(pos p1, pos p2){
 
     return coordXPos1 == coordXPos2 && coordYPos1 == coordYPos2;
 }
+
+bool noBorde(tablero t, pos p){
+    return (0<p.first && p.first<t.size()-1)&&(0<p.second && p.second<t.size()-1);
+}
+bool esJugada(jugadas j,pos p){
+    return (getPosIndexEnJugadas(j,p)!=-1);
+}
+
+bool verificoConDePos(tablero t,jugadas j,pos p){
+    return posicionValida(t,p) && esJugada(j, p) && (minasAdyacentes(t, p)==1);
+}
+
+bool patronVertical(tablero t, jugadas j,pos p){
+    pos pos1 = pos (p.first-1,p.second);
+    pos pos2 = pos (p.first+1, p.second);
+    return (verificoConDePos(t, j,pos1 ) && verificoConDePos(t, j,pos2));
+}
+
+bool patronHorizontal(tablero t, jugadas j,pos p){
+    pos pos3 = pos (p.first,p.second-1);
+    pos pos4 = pos (p.first, p.second+1);
+    return verificoConDePos(t, j,pos3) && verificoConDePos(t, j,pos4);
+}
+
+bool noBanderitaNiJugada(jugadas j,banderitas b,pos p){
+    return getPosIndexEnJugadas(j, p)==-1 && getPosIndexEnBanderitas(b,p)==-1;
+}
+
+

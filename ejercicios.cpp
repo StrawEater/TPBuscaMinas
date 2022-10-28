@@ -70,7 +70,7 @@ bool gano(tablero& t, jugadas& j) {
     //Empiezo a recorrer el tablero
     for(int a=0;a<t.size();a++) {
         for(int b=0;b<t[a].size();b++) {
-            if(t[b][a]) {                       //Si en algun casillero hay una bomba...
+            if(t[a][b]) {                       //Si en algun casillero hay una bomba...
                 moduloTablero--;
                 pos posicionTablero(a,b);
                 for(int c=0;c<j.size();c++) {   //...recorro la lista de jugadas en búsqueda de ese casillero
@@ -92,5 +92,52 @@ void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
 
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
 bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p) {
-    // ...
-}
+    vector<pos> posiblesPos;
+    return true;
+    /*for(int i=0; i<j.size; i++){
+        pos posA=j[i].first;
+        if(posicionValida(t, posA)){
+            if (minasAdyacentes(t, posA) == 2){
+                if(noBorde(t, posA)) {
+                    if (patronVertical(t, j, posA)) {
+                        if(noBanderitaNiJugada(pos(posA.first-1,posA.second),j,b)){
+                            posiblesPos.push_back(la posicion de la guarda);
+                        }
+                        if(noBanderitaNiJugada(pos(posA.first+1,posA.second))){
+                            posiblesPos.push_back(la posicion de la guarda);
+                        }
+                        else {}
+                    }
+                    else if (patronHorizontal(t, j,posA)) {
+                        if(noBanderitaNiJugada(pos(posA.first,posA.second-1))){
+                            posiblesPos.push_back(la posicion de la guarda);
+                        }
+                        if(noBanderitaNiJugada(pos(posA.first,posA.second+1))){
+                            posiblesPos.push_back(la posicion de la guarda);
+                        }
+                        else{}
+                    }
+                } else {//ver bien este caso
+                    if(patronVertical(t, j, posA)){
+                        if(pos(posA.first-1,posA.second) no es jugada ni es bandera y esta en el tablero){
+                            posiblesPos.push_back(la posicion de la guarda);
+                        }
+                        else if(pos(posA.first+1, posA.second) no es jugada ni es bandera y esta en el tablero){
+                            posiblesPos.push_back(la posicion de la guarda)
+                        } else {}
+                    }
+                    else if(patronHorizontal(t, j, posA)){
+                        if(pos(posA.first,posA.second-1) no es jugada ni es bandera y esta en el tablero){
+                            posiblesPos.push_back(la posicion de la guarda);
+                        }
+                        else if(pos(posA.first,posA.second+1) no es jugada ni es bandera y esta en el tablero){
+                            posiblesPos.push_back(la posicion de la guarda)
+                        } else {}
+                    } else {}
+                }
+            } else {}
+        } else {
+            return false;
+        }
+    }
+*/}

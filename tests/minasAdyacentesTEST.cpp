@@ -12,9 +12,9 @@ TEST(minasAdyacentesTest, celdaCentro){
 }
 
 TEST(minasAdyacentesTest, celdaBorde){
-    EXPECT_EQ(minasAdyacentes(t, pos(4,0)),1);
+    EXPECT_EQ(minasAdyacentes(t, pos(0,4)),1);
 }
 
 TEST(minasAdyacentesTest, celdaConBomba){
-    EXPECT_EQ(minasAdyacentes(t, pos(3,1)),0);
+    EXPECT_EQ(minasAdyacentes(t, pos(1,3)),0);
 }
