@@ -92,9 +92,12 @@ void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
     //Tal que busca todos los casilleros adyacentes al clickeado vacíos y los muestra, hasta toparse con casilleros c/mina ady.
     //Me falta declarar un vector que vaya almacenando las posiciones recorridas válidas
     //Me falta englobar todas las funcinoes en una gran función que llame al algoritmo y devuelva un vector
-    int tamTableroY = t.size();
-    int tamTableroX = t[0].size();
-    vector<pos> caminos = caminosAutomaticos(t, b, p, j, tamTableroX, tamTableroY);
+    jugadas vectorAuxiliar;
+    jugadas & vectorAuxiliarRef = vectorAuxiliar;
+    caminoLibre(t, b, p, true, "arriba", vectorAuxiliarRef);
+    caminoLibre(t, b, p, true, "abajo", vectorAuxiliarRef);
+    caminoLibre(t, b, p, true, "izquierda", vectorAuxiliarRef);
+    caminoLibre(t, b, p, true, "derecha", vectorAuxiliarRef);
 }
 
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
