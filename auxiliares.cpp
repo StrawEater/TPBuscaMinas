@@ -16,22 +16,29 @@ using namespace std;
 //Que Ninguna de ellas sean negativas. Que la cordY no sea mayor a la cantidad de filas del tablero y
 //que la cordX no sea mayor a la cantidad de columnas
 bool posicionValida(tablero& t, pos p){
-    int coordX = p.first;
-    int coordY = p.second;
+    int coordX = p.second;
+    int coordY = p.first;
     bool FilaValida = coordY >= 0 && coordY < t.size();
     bool ColumnaValida = coordX >= 0 && coordX < t[0].size();
     return FilaValida && ColumnaValida;
 }
 
 int getPosIndexEnBanderitas(banderitas& b, pos p){
-    int coordXPos = p.first;
-    int coordYPos = p.second;
-
     for (int i = 0; i < b.size(); ++i) {
-        int coordXBanderita = b[i].first;
-        int coordYBanderita = b[i].second;
+        pos posBanderita = b[i];
+        if (sonPosIguales(posBanderita,p)){
+            return i;
+        }
+    }
+    return -1;
+}
 
-        if (coordXBanderita == coordXPos && coordYBanderita == coordYPos){
+int getPosIndexEnJugadas(jugadas& j, pos p){
+
+    for (int i = 0; i < j.size(); ++i) {
+        pos posJugada = j[i].first;
+
+        if (sonPosIguales(posJugada,p)){
             return i;
         }
     }
@@ -49,11 +56,11 @@ void eliminarPosicionDeBanderita(banderitas& b, int indexPosicion){
 }
 
 bool sonPosIguales(pos p1, pos p2){
-    int coordXPos1 = p1.first;
-    int coordYPos1 = p1.second;
+    int coordYPos1 = p1.first;
+    int coordXPos1 = p1.second;
 
-    int coordXPos2 = p2.first;
-    int coordYPos2 = p2.second;
+    int coordYPos2 = p2.first;
+    int coordXPos2 = p2.second;
 
     return coordXPos1 == coordXPos2 && coordYPos1 == coordYPos2;
 }
