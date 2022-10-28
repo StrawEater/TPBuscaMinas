@@ -1,0 +1,42 @@
+jugarPlus (tablero, banderitas, posicion, jugadas)
+Tal que busca todos los casilleros adyacentes al clickeado vacíos y los muestra, hasta toparse con casilleros c/mina ady.
+
+
+
+Usando un algoritmo de busqueda que busque:
+	Hacia arriba: por cada casillero que sube, busca en ambos laterales casilleros vacios
+	Hacia abajo: idem arriba
+	Hacia izquierda/derecha: por cada casillero que se corre, busca hacia arriba y abajo casilleros vacios
+	Todas las jugadas que pasen se agregan a un vector, que luego será pusheado a "jugadas"
+		La info que hay que tener en cada ciclo es: ((posx,posy), minasAdyacentes)
+		El vector se pasa por referencia, y se va modificando
+
+Condiciones de corte:
+	Que el casillero a analizar 
+		no haya sido jugado (tener casilleros vacíos en alguna dirección corta la búsqueda)
+		no contenga minas adyacentes (tener mina adyacente corta la búsqueda)
+		sea inválido (se pase de rango)
+
+
+
+
+
+Deprecated
+#################################################
+Algoritmo de busqueda V2: (no marca casilleros con minas adyacentes)
+
+	Hacia arriba/abajo, busca adicionalmente en un casillero adyacente a la izquierda y derecha por bombas
+		Donde la encuentra, dependiendo del casillero:
+			Central: Baja/Sube uno y juega todos los siguientes hasta la posición jugada
+			Izquierdo/Derecho: Juega uno a la derecha/izquierda, dos abajo/arriba, lo marca y juega todos hacia abajo/arriba hasta la posición jugada
+		Sobre el primer casillero que se juega se corre el algoritmo nuevamente en las cuatro direcciones.
+
+	Hacia izquierda/derecha, busca adicionalmente en un casillero adyacente hacia arriba y abajo por bombas
+		Donde la encuentra, dependiendo del casillero:
+			Central: Va uno a la derecha/izquierda y juega todos los siguientes hasta la posición jugada
+			Superior/Inferior: Juega uno hacia abajo/arriba, dos hacia la derecha/izquierda, lo marca y juega todos hacia la derecha/izquierda hasta la posición jugada
+	Sobre el primer casillero que se juega se corre el algoritmo nuevamente en las cuatro direcciones.
+
+
+	En cualquier caso, llegar al casillero final del tablero cuenta como una bomba pero donde dice dos, ahora es uno
+	Al finalizar el algoritmo devuelve el vector con todas las jugadas nuevas y las mete en el vector de jugadas
