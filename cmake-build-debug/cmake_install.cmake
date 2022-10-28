@@ -1,4 +1,4 @@
-# Install script for directory: /home/clinux01/CLionProjects/TPBuscaMinasJuan
+# Install script for directory: /home/clinux01/CLionProjects/TPBuscaMinas
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,7 +44,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/clinux01/CLionProjects/TPBuscaMinasJuan/cmake-build-debug/lib/googletest-master/cmake_install.cmake")
+  include("/home/clinux01/CLionProjects/TPBuscaMinas/cmake-build-debug/lib/googletest-master/cmake_install.cmake")
 
 endif()
 
@@ -56,5 +56,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/clinux01/CLionProjects/TPBuscaMinasJuan/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/clinux01/CLionProjects/TPBuscaMinas/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
