@@ -88,9 +88,9 @@ bool patronHorizontal(tablero t, jugadas j,pos p){
     return verificoConDePos(t, j,pos3) && verificoConDePos(t, j,pos4);
 }
 
-bool noBanderitaNiJugada(jugadas j,banderitas b,pos p){
-    return getPosIndexEnJugadas(j, p)==-1 && getPosIndexEnBanderitas(b,p)==-1;
+bool esValidaYnoBanderitaNiJugada(tablero t,jugadas j, banderitas b, pos p){
+    return posicionValida(t,p) && getPosIndexEnJugadas(j, p)==-1 && getPosIndexEnBanderitas(b,p)==-1;
 }
 
-//bool esBordePeroNoEsquina(tablero t, pos p){
+
 

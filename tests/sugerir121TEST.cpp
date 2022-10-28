@@ -197,19 +197,19 @@ static jugadas jugadasTab5 = {
 #pragma endregion Tableros
 
 TEST(sugerir121TEST, imprimirAlgo){
-    printTablero(t5, banderitasTab5, jugadasTab5);
+    printTablero(t2, banderitasTab5, {});
     ASSERT_TRUE(true);
 }
 
 
 TEST(sugerir121TEST, tablero1){
     pos p = pos(0,0);
-    ASSERT_TRUE(sugerirAutomatico121(t1, banderitasTab1, jugadasTab1, p));
+    ASSERT_FALSE(sugerirAutomatico121(t1, banderitasTab1, jugadasTab1, p));
 }
 
 TEST(sugerir121TEST, tablero2){
     pos p = pos(0,0);
-    ASSERT_FALSE(sugerirAutomatico121(t2, banderitasTab2, jugadasTab2, p));
+    ASSERT_TRUE(sugerirAutomatico121(t2, banderitasTab2, jugadasTab2, p));
 }
 
 TEST(sugerir121TEST, tablero3){

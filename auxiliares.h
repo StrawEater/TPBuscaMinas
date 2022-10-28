@@ -29,7 +29,7 @@ bool patronVertical(tablero t, jugadas j, pos p);
 
 bool patronHorizontal(tablero t, jugadas j, pos p);
 
-bool noBanderitaNiJugada(jugadas j, banderitas b, pos p);
+bool esValidaYnoBanderitaNiJugada(tablero t, jugadas j, banderitas b, pos p);
 
 
 

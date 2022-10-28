@@ -103,33 +103,33 @@ bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p) {
                 pos posDelta = pos(posA.first + 1, posA.second);
                 if (noBorde(t, posA)) {
                     if (patronVertical(t, j, posA)) {
-                        if (noBanderitaNiJugada(j, b, posAlfa)) {
+                        if (esValidaYnoBanderitaNiJugada(t,j, b, posAlfa)) {
                             posiblesPos.push_back(posAlfa);
                         }
-                        if (noBanderitaNiJugada(j, b, posBeta)) {
+                        if (esValidaYnoBanderitaNiJugada(t,j, b, posBeta)) {
                             posiblesPos.push_back(posBeta);
                         } else {}
                     } else if (patronHorizontal(t, j, posA)) {
-                        if (noBanderitaNiJugada(j, b, posCelta)) {
+                        if (esValidaYnoBanderitaNiJugada(t,j, b, posCelta)) {
                             posiblesPos.push_back(posCelta);
                         }
-                        if (noBanderitaNiJugada(j, b, posDelta)) {
+                        if (esValidaYnoBanderitaNiJugada(t,j, b, posDelta)) {
                             posiblesPos.push_back(posDelta);
                         } else {}
                     }
                 } else {
                     if (patronVertical(t, j, posA)) {
-                        if (noBanderitaNiJugada(j, b, posAlfa)) {
+                        if (esValidaYnoBanderitaNiJugada(t,j, b, posAlfa)) {
                             posiblesPos.push_back(posAlfa);
                         }
-                        if (noBanderitaNiJugada(j, b, posBeta)) {
+                        if (esValidaYnoBanderitaNiJugada(t,j, b, posBeta)) {
                             posiblesPos.push_back(posBeta);
                         } else {}
                     } else if (patronHorizontal(t, j, posA)) {
-                        if (noBanderitaNiJugada(j, b, posCelta)) {
+                        if (esValidaYnoBanderitaNiJugada(t,j, b, posCelta)) {
                             posiblesPos.push_back(posCelta);
                         }
-                        if (noBanderitaNiJugada(j, b, posDelta)) {
+                        if (esValidaYnoBanderitaNiJugada(t,j, b, posDelta)) {
                             posiblesPos.push_back(posDelta);
                         } else {}
                     } else {}
