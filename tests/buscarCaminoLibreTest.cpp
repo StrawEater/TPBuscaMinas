@@ -33,37 +33,37 @@ static tablero t1 = {
 };
 
 static banderitas banderitasTab1 = {
-        pos(2,0),
-        pos(0,1),pos(4,1),
+        pos(0,2),
+        pos(1,2),pos(1,4),
         //
         //
-        pos(1,4),
+        pos(4,1),
 };
 
 static jugadas jugadasTab1 = {
-        jugada(pos(3, 0), 1),
+        jugada(pos(0, 3), 1),
         //
-        //
-        jugada(pos(3, 3), 0),jugada(pos(3, 4), 1),
+        jugada(pos(3, 3), 0),
+        jugada(pos(4, 3), 1),
 };
 
 #pragma endregion Tablero1
 
 #pragma region Tablero2
 //┌───┬───┬───┬───┬───┬───┬───┐
-//│ 0 │ 0 │ 1 │ * │ 2 │ 1 │ 1 │
+//│ ■ │ ■ │ ■ │ * │ 2 │ ■ │ b │
 //├───┼───┼───┼───┼───┼───┼───┤
-//│ 1 │ 1 │ 2 │ 1 │ 2 │ * │ 1 │
+//│ ■ │ 1 │ 2 │ 1 │ 2 │ * │ 1 │
 //├───┼───┼───┼───┼───┼───┼───┤
-//│ 1 │ * │ 1 │ 0 │ 1 │ 1 │ 1 │
+//│ 1 │ B │ 1 │ 0 │ 1 │ 1 │ 1 │
 //├───┼───┼───┼───┼───┼───┼───┤
-//│ 1 │ 2 │ 2 │ 1 │ 0 │ 0 │ 0 │
+//│ 1 │ 2 │ ■ │ 1 │ 0 │ 0 │ 0 │
 //├───┼───┼───┼───┼───┼───┼───┤
-//│ 0 │ 1 │ * │ 2 │ 1 │ 1 │ 0 │
+//│ b │ ■ │ * │ 2 │ 1 │ b │ 0 │
 //├───┼───┼───┼───┼───┼───┼───┤
-//│ 1 │ 2 │ 1 │ 2 │ * │ 1 │ 0 │
+//│ b │ ■ │ 1 │ 2 │ * │ 1 │ 0 │
 //├───┼───┼───┼───┼───┼───┼───┤
-//│ * │ 1 │ 0 │ 1 │ 1 │ 1 │ 0 │
+//│ * │ ■ │ 0 │ 1 │ 1 │ 1 │ 0 │
 //└───┴───┴───┴───┴───┴───┴───┘
 static tablero t2 = {
         { cVACIA, cVACIA, cVACIA, cMINA, cVACIA, cVACIA, cVACIA },
@@ -76,18 +76,24 @@ static tablero t2 = {
 };
 
 static banderitas banderitasTab2 = {
+        pos(0,6),
         //
-        pos(5,1),pos(4,1),
+        pos(2,1),
         //
+        pos(4,0),pos(4,5),
+        pos(5,0),
         //
-        pos(1,4),
+
 };
 
 static jugadas jugadasTab2 = {
-        jugada(pos(3, 0), 1),
+        jugada(pos(0, 0), 0), jugada(pos(0, 1), 0),jugada(pos(0, 2), 1), jugada(pos(0, 5), 1),
+        jugada(pos(1, 0), 1),
         //
-        //
-        jugada(pos(3, 3), 0),jugada(pos(3, 4), 1),
+        jugada(pos(3, 2), 2),
+        jugada(pos(4, 1), 1),
+        jugada(pos(5, 1), 2),
+        jugada(pos(6, 1), 1),
 };
 
 #pragma endregion Tablero2
@@ -180,9 +186,9 @@ void printTablero(tablero ts, banderitas banderitasTab, jugadas jugadasTab){
         cout << "//";
         for (int j = 0; j < ts[0].size(); ++j){
             cout<<"│";
-            if (getPosIndexEnJugadas(jugadasTab,pos(j,i)) != -1){
+            if (getPosIndexEnJugadas(jugadasTab,pos(i,j)) != -1){
                 cout<<" ■ ";
-            } else if(getPosIndexEnBanderitas(banderitasTab,pos(j,i)) != -1){
+            } else if(getPosIndexEnBanderitas(banderitasTab,pos(i,j)) != -1){
                 if (ts[i][j]){
                     cout<<" B ";
                 } else{
@@ -191,7 +197,7 @@ void printTablero(tablero ts, banderitas banderitasTab, jugadas jugadasTab){
             } else if (ts[i][j]){
                 cout<<" * ";
             }else{
-                string minasAdy = std::to_string(minasAdyacentes(ts,pos(j,i)));
+                string minasAdy = std::to_string(minasAdyacentes(ts,pos(i,j)));
                 cout<<" "+ minasAdy + " ";
 
             }
@@ -216,7 +222,7 @@ void printTablero(tablero ts, banderitas banderitasTab, jugadas jugadasTab){
 
 
 TEST(buscarCaminoLibre, imprimirAlgo){
-    printTablero(t1, banderitasTab1, jugadasTab1);
+    printTablero(t2, banderitasTab2, jugadasTab2);
     ASSERT_TRUE(true);
 }
 
