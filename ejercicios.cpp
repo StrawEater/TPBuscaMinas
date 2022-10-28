@@ -87,9 +87,7 @@ bool gano(tablero& t, jugadas& j) {
 
 /******++++**************************** EJERCICIO jugarPlus ***********+++***********************/
 void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
-    //Tal que busca todos los casilleros adyacentes al clickeado vacíos y los muestra, hasta toparse con casilleros c/mina ady.
-    //Me falta declarar un vector que vaya almacenando las posiciones recorridas válidas
-    //Me falta englobar todas las funcinoes en una gran función que llame al algoritmo y devuelva un vector
+    //Me falta la funcion que purga vectorAuxiliar y lo mergea con j
     jugadas vectorAuxiliar;
     jugadas & vectorAuxiliarRef = vectorAuxiliar;
     caminoLibre(t, b, p, true, "arriba", vectorAuxiliarRef);
