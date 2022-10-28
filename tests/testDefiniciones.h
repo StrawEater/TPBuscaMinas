@@ -67,5 +67,69 @@ static jugadas noGano = {
         jugada(pos(4, 1), 2),jugada(pos(4, 3), 1),jugada(pos(4, 4), 0),
 };
 
+static void printTablero(tablero ts, banderitas banderitasTab, jugadas jugadasTab){
+    for (int i = 0; i < ts.size(); ++i) {
+        cout << "//";
+        for (int j = 0; j < ts[0].size(); ++j){
+
+            if (j == 0){
+
+                if (i == 0) {
+                    cout << "┌";
+                }else{
+                    cout << "├";
+                }
+            }else{
+                if (i == 0) {
+                    cout<<"┬";
+                }else{
+                    cout << "┼";
+                }
+            }
+            cout<<"───";
+        }
+        if (i == 0) {
+            cout<<"┐";
+        }else{
+            cout << "┤";
+        }
+        cout<<"\n";
+        cout << "//";
+        for (int j = 0; j < ts[0].size(); ++j){
+            cout<<"│";
+            if (getPosIndexEnJugadas(jugadasTab,pos(i,j)) != -1){
+                cout<<" ■ ";
+            } else if(getPosIndexEnBanderitas(banderitasTab,pos(i,j)) != -1){
+                if (ts[i][j]){
+                    cout<<" B ";
+                } else{
+                    cout<<" b ";
+                }
+            } else if (ts[i][j]){
+                cout<<" * ";
+            }else{
+                string minasAdy = std::to_string(minasAdyacentes(ts,pos(i,j)));
+                cout<<" "+ minasAdy + " ";
+
+            }
+        }
+        cout<<"│";
+        cout<<"\n";
+    }
+    for (int j = 0; j < ts[0].size(); ++j){
+        if (j == 0){
+            cout << "//";
+            cout<<"└";
+        }else{
+            cout<<"┴";
+        }
+        cout<<"───";
+    }
+    cout<<"┘";
+    cout<<"\n";
+
+
+}
+
 
 //--------------------------------------

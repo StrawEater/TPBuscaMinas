@@ -100,15 +100,15 @@ static jugadas jugadasTab2 = {
 
 #pragma region Tablero3
 //┌───┬───┬───┬───┬───┬───┐
-//│ ■ │ ■ │ ■ │ 1 │ 1 │ B │
+//│ 0 │ 1 │ 1 │ 1 │ 1 │ * │
 //├───┼───┼───┼───┼───┼───┤
-//│ 0 │ 1 │ B │ 1 │ 1 │ ■ │
+//│ 0 │ 1 │ * │ 1 │ 1 │ 1 │
 //├───┼───┼───┼───┼───┼───┤
 //│ 0 │ 2 │ 2 │ 2 │ 0 │ 0 │
 //├───┼───┼───┼───┼───┼───┤
-//│ 0 │ 1 │ B │ 2 │ 1 │ 1 │
+//│ 0 │ 1 │ * │ 2 │ 1 │ 1 │
 //├───┼───┼───┼───┼───┼───┤
-//│ ■ │ ■ │ 1 │ 2 │ * │ 1 │
+//│ 1 │ 2 │ 1 │ 2 │ * │ 1 │
 //├───┼───┼───┼───┼───┼───┤
 //│ * │ 1 │ 0 │ 1 │ 1 │ 1 │
 //└───┴───┴───┴───┴───┴───┘
@@ -188,71 +188,6 @@ static jugadas jugadasTab4 = {
 #pragma endregion Tablero4
 
 #pragma endregion Tableros
-
-void printTablero(tablero ts, banderitas banderitasTab, jugadas jugadasTab){
-    for (int i = 0; i < ts.size(); ++i) {
-        cout << "//";
-        for (int j = 0; j < ts[0].size(); ++j){
-
-            if (j == 0){
-
-                if (i == 0) {
-                    cout << "┌";
-                }else{
-                    cout << "├";
-                }
-            }else{
-                if (i == 0) {
-                    cout<<"┬";
-                }else{
-                    cout << "┼";
-                }
-            }
-            cout<<"───";
-        }
-        if (i == 0) {
-            cout<<"┐";
-        }else{
-            cout << "┤";
-        }
-        cout<<"\n";
-        cout << "//";
-        for (int j = 0; j < ts[0].size(); ++j){
-            cout<<"│";
-            if (getPosIndexEnJugadas(jugadasTab,pos(i,j)) != -1){
-                cout<<" ■ ";
-            } else if(getPosIndexEnBanderitas(banderitasTab,pos(i,j)) != -1){
-                if (ts[i][j]){
-                    cout<<" B ";
-                } else{
-                    cout<<" b ";
-                }
-            } else if (ts[i][j]){
-                cout<<" * ";
-            }else{
-                string minasAdy = std::to_string(minasAdyacentes(ts,pos(i,j)));
-                cout<<" "+ minasAdy + " ";
-
-            }
-        }
-        cout<<"│";
-        cout<<"\n";
-    }
-    for (int j = 0; j < ts[0].size(); ++j){
-        if (j == 0){
-            cout << "//";
-            cout<<"└";
-        }else{
-            cout<<"┴";
-        }
-        cout<<"───";
-    }
-    cout<<"┘";
-    cout<<"\n";
-
-
-}
-
 
 TEST(buscarCaminoLibre, imprimirAlgo){
     printTablero(t4, {banderitasTab4}, {jugadasTab4});
@@ -445,3 +380,119 @@ TEST(buscarCaminoLibre, tablero3pos_3_3){
 }
 
 #pragma endregion TestTablero3
+
+TEST(buscarCaminoLibre, tablero4pos_0_0){
+    pos posJugada = pos(0,0);
+    jugadas jugadasEsperadas = {
+            jugada(pos(0, 0), 0),
+            jugada(pos(0, 1), 0),
+            jugada(pos(0, 2), 0),
+            jugada(pos(0,3), 0),
+            jugada(pos(1,3), 0),
+            jugada(pos(2,3), 0),
+            jugada(pos(2,7), 0),
+            jugada(pos(3,3), 0),
+            jugada(pos(3,4), 0),
+            jugada(pos(3,5), 0),
+            jugada(pos(3,6), 0),
+            jugada(pos(3,7), 0),
+            jugada(pos(4,6), 0),
+            jugada(pos(4,7), 0),
+            jugada(pos(5,6), 0),
+            jugada(pos(5,7), 0)
+    };
+    jugadas jugadasDevueltas = {jugada(pos(4, 0), 1),};
+    if (minasAdyacentes(t1,posJugada) > 0){
+        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
+    } else{
+        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
+        ASSERT_TRUE(sonMismasJugadas);
+    }
+
+}
+
+
+TEST(buscarCaminoLibre, tablero4pos_7_0){
+    pos posJugada = pos(7,0);
+    jugadas jugadasEsperadas = {
+            jugada(pos(7,0),0),
+            jugada(pos(7, 1), 0),
+            jugada(pos(7, 2), 0),
+            jugada(pos(7, 3), 0),
+            jugada(pos(7, 4), 0),
+            jugada(pos(7, 5), 0),
+            jugada(pos(6, 2), 0),
+            jugada(pos(5, 2), 0),
+            jugada(pos(4, 2), 0)
+
+    };
+    jugadas jugadasDevueltas = {jugada(pos(4, 0), 1),};
+    if (minasAdyacentes(t1,posJugada) > 0){
+        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
+    } else{
+        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
+        ASSERT_TRUE(sonMismasJugadas);
+    }
+
+}
+
+
+TEST(buscarCaminoLibre, tablero4pos_5_5){
+    pos posJugada = pos(5,5);
+    jugadas jugadasEsperadas = {
+            jugada(pos(5, 5), 1),
+    };
+    jugadas jugadasDevueltas = {jugada(pos(4, 0), 1),};
+    if (minasAdyacentes(t1,posJugada) > 0){
+        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
+    } else{
+        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
+        ASSERT_TRUE(sonMismasJugadas);
+    }
+
+}
+
+TEST(buscarCaminoLibre, tablero4pos_3_2){
+    pos posJugada = pos(3,2);
+    jugadas jugadasEsperadas = {
+            jugada(pos(3,2),1),
+    };
+    jugadas jugadasDevueltas = {jugada(pos(4, 0), 1),};
+    if (minasAdyacentes(t1,posJugada) > 0){
+        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
+    } else{
+        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
+        ASSERT_TRUE(sonMismasJugadas);
+    }
+
+}
+
+TEST(buscarCaminoLibre, tablero4pos_4_7){
+    pos posJugada = pos(4,7);
+    jugadas jugadasEsperadas = {
+            jugada(pos(0, 0), 0),
+            jugada(pos(0, 1), 0),
+            jugada(pos(0, 2), 0),
+            jugada(pos(0,3), 0),
+            jugada(pos(1,3), 0),
+            jugada(pos(2,3), 0),
+            jugada(pos(2,7), 0),
+            jugada(pos(3,3), 0),
+            jugada(pos(3,4), 0),
+            jugada(pos(3,5), 0),
+            jugada(pos(3,6), 0),
+            jugada(pos(3,7), 0),
+            jugada(pos(4,6), 0),
+            jugada(pos(4,7), 0),
+            jugada(pos(5,6), 0),
+            jugada(pos(5,7), 0)
+    };
+    jugadas jugadasDevueltas = {jugada(pos(4, 0), 1),};
+    if (minasAdyacentes(t1,posJugada) > 0){
+        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
+    } else{
+        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
+        ASSERT_TRUE(sonMismasJugadas);
+    }
+
+}
