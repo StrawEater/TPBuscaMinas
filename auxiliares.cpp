@@ -94,3 +94,88 @@ bool esValidaYnoBanderitaNiJugada(tablero t,jugadas j, banderitas b, pos p){
 
 
 
+void caminoLibre(tablero& t, banderitas& b, pos p, bool profunda, string direccion, jugadas& j) {
+
+    //Primero determino en base a la direccion el modo de funcionamiento del algoritmo
+    int ejeFijo, ejeVariable, direccionMovimiento, ejeTableroRelevante;
+    bool testeoEnRango;
+    pair<string,string> direccionAlternativa;
+    pos posicionActual, posicionSiguiente;
+
+    if(direccion == "arriba") {
+        ejeFijo = p.first;
+        ejeVariable = p.second;
+        direccionMovimiento = 1;
+        ejeTableroRelevante = t[0].size();
+        testeoEnRango = ejeVariable < ejeTableroRelevante;
+        pair direccionAlternativa("izquierda","derecha");
+        pos posicionActual(ejeFijo,ejeVariable);
+        pos posicionSiguiente(ejeFijo, ejeVariable+=direccionMovimiento);
+    }
+    else if(direccion == "abajo") {
+        ejeFijo = p.first;
+        ejeVariable = p.second;
+        direccionMovimiento = -1;
+        ejeTableroRelevante = t[0].size();
+        testeoEnRango = ejeVariable > ejeTableroRelevante;
+        pair direccionAlternativa("izquierda","derecha");
+        pos posicionActual(ejeFijo,ejeVariable);
+        pos posicionSiguiente(ejeFijo, ejeVariable+=direccionMovimiento);
+    }
+    else if(direccion == "izquierda") {
+        ejeFijo = p.second;
+        ejeVariable = p.first;
+        direccionMovimiento = -1;
+        ejeTableroRelevante = t.size();
+        testeoEnRango = ejeVariable > ejeTableroRelevante;
+        pair direccionAlternativa("arriba","abajo");
+        pos posicionActual(ejeVariable,ejeFijo);
+        pos posicionSiguiente(ejeVariable+=direccionMovimiento, ejeFijo);
+    }
+    else if(direccion == "derecha") {
+        ejeFijo = p.second;
+        ejeVariable = p.first;
+        direccionMovimiento = 1;
+        ejeTableroRelevante = t.size();
+        testeoEnRango = ejeVariable < ejeTableroRelevante;
+        pair direccionAlternativa("arriba","abajo");
+        pos posicionActual(ejeVariable,ejeFijo);
+        pos posicionSiguiente(ejeVariable+=direccionMovimiento, ejeFijo);
+    }
+
+
+    //Ya tengo las variables del algoritmo determinadas, ahora empiezo a ciclar
+    for(;testeoEnRango; ejeVariable+=direccionMovimiento) {
+        
+        //Chequeo que, de ser profunda y...
+        //1. Si la siguiente celda es inválida o choca con banderita/adyacentes
+        if(profunda && (ejeVariable+1 == ejeTableroRelevante || minasAdyacentes(t, posicionSiguiente) != 0 || getPosIndexEnBanderitas(b, posicionSiguiente) != -1)) {
+            //Cambio la dirección de movimiento, profunda en ambos lados y agrego la jugada al vector
+            jugada jugadaActual(posicionActual, minasAdyacentes(t, posicionActual));
+            j.push_back(jugadaActual);
+            caminoLibre(t, b, p, true, direccionAlternativa.first, j);
+            caminoLibre(t, b, p, true, direccionAlternativa.second, j);
+        }
+
+        //2. Si la siguiente celda es válida y no choca con banderita/adyacentes
+        else if(profunda && minasAdyacentes(t, posicionSiguiente) == 0 && getPosIndexEnBanderitas(b, posicionSiguiente) == -1) {
+            //Agrego jugada en el vector (falta agregar)
+            jugada jugadaActual(posicionActual, minasAdyacentes(t, posicionActual));
+            j.push_back(jugadaActual);
+            //Busco hacia direcciones alternativas
+            caminoLibre(t, b, p, false, direccionAlternativa.first, j);
+            caminoLibre(t, b, p, false, direccionAlternativa.second, j);
+        }
+
+        //La búsqueda entonces es no profunda. Me fijo si tengo adyacentes/banderitas
+        //3. De haber adyacentes/banderitas, corto la búsqueda
+        if(minasAdyacentes(t, posicionActual) == 0 || getPosIndexEnBanderitas(b, posicionActual) == -1) {
+                break;
+        }
+        else {
+        //No hay adyacentes/banderitas, agrego la jugada y sigo
+            jugada jugadaActual(posicionActual, minasAdyacentes(t, posicionActual));
+            j.push_back(jugadaActual);
+        }
+    }
+}
