@@ -97,51 +97,23 @@ void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
 }
 
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
-bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p) {
+bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p){
     vector<pos> posiblesPos;
     for (int i = 0; i < j.size(); i++) {
         pos posA = j[i].first;
-        if (posicionValida(t, posA)) {
-            if (minasAdyacentes(t, posA) == 2) {
-                pos posAlfa = pos(posA.first, posA.second - 1);
-                pos posBeta = pos(posA.first, posA.second + 1);
-                pos posCelta = pos(posA.first - 1, posA.second);
-                pos posDelta = pos(posA.first + 1, posA.second);
-                if (noBorde(t, posA)) {
-                    if (patronVertical(t, j, posA)) {
-                        if (esValidaYnoBanderitaNiJugada(t,j, b, posAlfa)) {
-                            posiblesPos.push_back(posAlfa);
-                        }
-                        if (esValidaYnoBanderitaNiJugada(t,j, b, posBeta)) {
-                            posiblesPos.push_back(posBeta);
-                        } else {}
-                    } else if (patronHorizontal(t, j, posA)) {
-                        if (esValidaYnoBanderitaNiJugada(t,j, b, posCelta)) {
-                            posiblesPos.push_back(posCelta);
-                        }
-                        if (esValidaYnoBanderitaNiJugada(t,j, b, posDelta)) {
-                            posiblesPos.push_back(posDelta);
-                        } else {}
-                    }
-                } else {
-                    if (patronVertical(t, j, posA)) {
-                        if (esValidaYnoBanderitaNiJugada(t,j, b, posAlfa)) {
-                            posiblesPos.push_back(posAlfa);
-                        }
-                        if (esValidaYnoBanderitaNiJugada(t,j, b, posBeta)) {
-                            posiblesPos.push_back(posBeta);
-                        } else {}
-                    } else if (patronHorizontal(t, j, posA)) {
-                        if (esValidaYnoBanderitaNiJugada(t,j, b, posCelta)) {
-                            posiblesPos.push_back(posCelta);
-                        }
-                        if (esValidaYnoBanderitaNiJugada(t,j, b, posDelta)) {
-                            posiblesPos.push_back(posDelta);
-                        } else {}
-                    } else {}
-                }
-            } else {}
+        int minasAd = j[i].second;
+        if(minasAd==2 && posicionValida(t, posA)){
+            pos posAlfa = pos(posA.first, posA.second - 1);
+            pos posBeta = pos(posA.first, posA.second + 1);
+            pos posCelta = pos(posA.first - 1, posA.second);
+            pos posDelta = pos(posA.first + 1, posA.second);
+            if (noBorde(t, posA)) {
+                patron_Y_Asignacion_P(t,j,b,p,posAlfa, posBeta, posCelta, poseDelta);
+            } else {
+                patron_Y_Asignacion_A_P(t,j,b,p,posAlfa, posBeta, posCelta, poseDelta);
+            }
+        } else {
+            return false;
         }
     }
-    return posiblesPos.size() != 0;
 }
