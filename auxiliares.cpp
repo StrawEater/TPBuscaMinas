@@ -89,7 +89,7 @@ bool patronHorizontal(tablero t, jugadas j,pos p3, pos p4){
 }
 
 bool esValidaYnoBanderitaNiJugada(tablero t,jugadas j, banderitas b, pos p){
-    return posicionValida(t,p) && getPosIndexEnJugadas(j, p)==-1 && getPosIndexEnBanderitas(b,p)==-1;
+    return posicionValida(t,p) && !esJugada(j,p) && noEsBanderita(b,p);
 }
 
 
