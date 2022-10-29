@@ -72,20 +72,20 @@ bool esJugada(jugadas j,pos p){
     return (getPosIndexEnJugadas(j,p)!=-1);
 }
 
+bool noEsBanderita(banderitas b, pos p){
+    return (getPosIndexEnBanderitas(b,p)==-1);
+}
+
 bool verificoConDePos(tablero t,jugadas j,pos p){
-    return posicionValida(t,p) && esJugada(j, p) && (minasAdyacentes(t, p)==1);
+    return posicionValida(t,p) && esJugada(j, p) && (minasAdyacentes(t, p)==1) && noEsBanderita(b,p);
 }
 
-bool patronVertical(tablero t, jugadas j,pos p){
-    pos pos1 = pos (p.first-1,p.second);
-    pos pos2 = pos (p.first+1, p.second);
-    return (verificoConDePos(t, j,pos1 ) && verificoConDePos(t, j,pos2));
+bool patronVertical(tablero t, jugadas j,pos p1, pos p2){
+    return (verificoConDePos(t, j, p1) && verificoConDePos(t, j, p2));
 }
 
-bool patronHorizontal(tablero t, jugadas j,pos p){
-    pos pos3 = pos (p.first,p.second-1);
-    pos pos4 = pos (p.first, p.second+1);
-    return verificoConDePos(t, j,pos3) && verificoConDePos(t, j,pos4);
+bool patronHorizontal(tablero t, jugadas j,pos p3, pos p4){
+    return verificoConDePos(t, j,p3) && verificoConDePos(t, j,p4);
 }
 
 bool esValidaYnoBanderitaNiJugada(tablero t,jugadas j, banderitas b, pos p){
@@ -94,7 +94,7 @@ bool esValidaYnoBanderitaNiJugada(tablero t,jugadas j, banderitas b, pos p){
 
 
 bool patron_Y_Asignacion_A_P(tablero t,jugadas j,banderitas b, pos posA,pos& p,pos posAlfa, pos posBeta, pos posCelta, pos posDelta){
-    if (patronVertical(t, j, posA)) {
+    if (patronVertical(t, j, posCelta, posDelta)) {
         if (esValidaYnoBanderitaNiJugada(t,j, b, posAlfa)) {
             p = posAlfa;
             return true;
@@ -104,7 +104,7 @@ bool patron_Y_Asignacion_A_P(tablero t,jugadas j,banderitas b, pos posA,pos& p,p
             return true;
         } 
         else {}
-    } else if (patronHorizontal(t, j, posA)) {
+    } else if (patronHorizontal(t, j, posAlfa, posBeta)) {
         if (esValidaYnoBanderitaNiJugada(t,j, b, posCelta)) {
             p = posCelta;
             return true;
