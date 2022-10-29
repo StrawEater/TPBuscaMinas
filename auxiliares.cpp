@@ -76,15 +76,15 @@ bool noEsBanderita(banderitas b, pos p){
     return (getPosIndexEnBanderitas(b,p)==-1);
 }
 
-bool verificoConDePos(tablero t,jugadas j,pos p){
+bool verificoConDePos(tablero t,jugadas j,banderitas b,pos p){
     return posicionValida(t,p) && esJugada(j, p) && (minasAdyacentes(t, p)==1) && noEsBanderita(b,p);
 }
 
-bool patronVertical(tablero t, jugadas j,pos p1, pos p2){
-    return (verificoConDePos(t, j, p1) && verificoConDePos(t, j, p2));
+bool patronVertical(tablero t, jugadas j,banderitas b,pos p1, pos p2){
+    return (verificoConDePos(t, j, b ,p1) && verificoConDePos(t, j, b, p2));
 }
 
-bool patronHorizontal(tablero t, jugadas j,pos p3, pos p4){
+bool patronHorizontal(tablero t, jugadas j,banderitas b,pos p3, pos p4){
     return verificoConDePos(t, j,p3) && verificoConDePos(t, j,p4);
 }
 
