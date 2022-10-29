@@ -98,7 +98,6 @@ void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
 
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
 bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p){
-    vector<pos> posiblesPos;
     for (int i = 0; i < j.size(); i++) {
         pos posA = j[i].first;
         int minasAd = j[i].second;
@@ -112,8 +111,7 @@ bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p){
             } else {
                 patron_Y_Asignacion_A_P(t,j,b,posA,p,posAlfa, posBeta, posCelta, posDelta);
             }
-        } else {
-            return false;
-        }
+        } else {}
     }
+    return false;
 }
