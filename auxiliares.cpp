@@ -93,7 +93,7 @@ bool esValidaYnoBanderitaNiJugada(tablero t,jugadas j, banderitas b, pos p){
 }
 
 
-bool patron_Y_Asignacion_A_P(tablerto t,jugadas j,banderitas,pos& p,pos posAlfa, pos posBeta, pos posCelta, poss posDelta){
+bool patron_Y_Asignacion_A_P(tablero t,jugadas j,banderitas b, pos posA,pos& p,pos posAlfa, pos posBeta, pos posCelta, pos posDelta){
     if (patronVertical(t, j, posA)) {
         if (esValidaYnoBanderitaNiJugada(t,j, b, posAlfa)) {
             p = posAlfa;
@@ -131,7 +131,7 @@ void caminoLibre(tablero& t, banderitas& b, pos p, bool profunda, string direcci
         direccionMovimiento = 1;
         ejeTableroRelevante = t[0].size();
         testeoEnRango = ejeVariable < ejeTableroRelevante;
-        pair direccionAlternativa("izquierda","derecha");
+        pair<string,string> direccionAlternativa("izquierda","derecha");
         pos posicionActual(ejeFijo,ejeVariable);
         pos posicionSiguiente(ejeFijo, ejeVariable+=direccionMovimiento);
     }
@@ -141,7 +141,7 @@ void caminoLibre(tablero& t, banderitas& b, pos p, bool profunda, string direcci
         direccionMovimiento = -1;
         ejeTableroRelevante = t[0].size();
         testeoEnRango = ejeVariable > ejeTableroRelevante;
-        pair direccionAlternativa("izquierda","derecha");
+        pair<string,string> direccionAlternativa("izquierda","derecha");
         pos posicionActual(ejeFijo,ejeVariable);
         pos posicionSiguiente(ejeFijo, ejeVariable+=direccionMovimiento);
     }
@@ -151,7 +151,7 @@ void caminoLibre(tablero& t, banderitas& b, pos p, bool profunda, string direcci
         direccionMovimiento = -1;
         ejeTableroRelevante = t.size();
         testeoEnRango = ejeVariable > ejeTableroRelevante;
-        pair direccionAlternativa("arriba","abajo");
+        pair<string,string> direccionAlternativa("arriba","abajo");
         pos posicionActual(ejeVariable,ejeFijo);
         pos posicionSiguiente(ejeVariable+=direccionMovimiento, ejeFijo);
     }
@@ -161,7 +161,7 @@ void caminoLibre(tablero& t, banderitas& b, pos p, bool profunda, string direcci
         direccionMovimiento = 1;
         ejeTableroRelevante = t.size();
         testeoEnRango = ejeVariable < ejeTableroRelevante;
-        pair direccionAlternativa("arriba","abajo");
+        pair<string,string> direccionAlternativa("arriba","abajo");
         pos posicionActual(ejeVariable,ejeFijo);
         pos posicionSiguiente(ejeVariable+=direccionMovimiento, ejeFijo);
     }

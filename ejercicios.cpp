@@ -108,9 +108,9 @@ bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p){
             pos posCelta = pos(posA.first - 1, posA.second);
             pos posDelta = pos(posA.first + 1, posA.second);
             if (noBorde(t, posA)) {
-                patron_Y_Asignacion_P(t,j,b,p,posAlfa, posBeta, posCelta, poseDelta);
+                patron_Y_Asignacion_A_P(t,j,b,posA,p,posAlfa, posBeta, posCelta, posDelta);
             } else {
-                patron_Y_Asignacion_A_P(t,j,b,p,posAlfa, posBeta, posCelta, poseDelta);
+                patron_Y_Asignacion_A_P(t,j,b,posA,p,posAlfa, posBeta, posCelta, posDelta);
             }
         } else {
             return false;
