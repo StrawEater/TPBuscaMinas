@@ -31,6 +31,8 @@ bool patronHorizontal(tablero t, jugadas j, pos p);
 
 bool esValidaYnoBanderitaNiJugada(tablero t, jugadas j, banderitas b, pos p);
 
+bool patron_Y_Asignacion_A_P(tablerto t,jugadas j,banderitas,pos& p,pos posAlfa, pos posBeta, pos posCelta, poss posDelta);
+
 bool sonPosIguales(pos p1, pos p2);
 
 void caminoLibre(tablero& t, banderitas& b, pos p, bool profunda, string direccion, jugadas& j) {
