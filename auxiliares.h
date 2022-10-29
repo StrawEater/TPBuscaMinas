@@ -24,11 +24,13 @@ bool noBorde(tablero t, pos p);
 
 bool esJugada(jugadas j, pos p);
 
-bool verificoConDePos(tablero t, jugadas j, pos p);
+bool noEsBanderita(banderitas b, pos p);
 
-bool patronVertical(tablero t, jugadas j, pos p);
+bool verificoConDePos(tablero t, jugadas j, banderitas b,pos p);
 
-bool patronHorizontal(tablero t, jugadas j, pos p);
+bool patronVertical(tablero t, jugadas j, banderitas b,pos p1, pos p2);
+
+bool patronHorizontal(tablero t, jugadas j, banderitas b,pos p3, pos4);
 
 bool esValidaYnoBanderitaNiJugada(tablero t, jugadas j, banderitas b, pos p);
 
