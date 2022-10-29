@@ -93,6 +93,29 @@ bool esValidaYnoBanderitaNiJugada(tablero t,jugadas j, banderitas b, pos p){
 }
 
 
+bool patron_Y_Asignacion_A_P(tablerto t,jugadas j,banderitas,pos& p,pos posAlfa, pos posBeta, pos posCelta, poss posDelta){
+    if (patronVertical(t, j, posA)) {
+        if (esValidaYnoBanderitaNiJugada(t,j, b, posAlfa)) {
+            p = posAlfa;
+            return true;
+        }
+        else if (esValidaYnoBanderitaNiJugada(t,j, b, posBeta)) {
+            p = posBeta;
+            return true;
+        } 
+        else {}
+    } else if (patronHorizontal(t, j, posA)) {
+        if (esValidaYnoBanderitaNiJugada(t,j, b, posCelta)) {
+            p = posCelta;
+            return true;
+        }
+        else if (esValidaYnoBanderitaNiJugada(t,j, b, posDelta)) {
+            p = posDelta;
+            return true;
+        } 
+        else {}
+    } else {}
+}
 
 void caminoLibre(tablero& t, banderitas& b, pos p, bool profunda, string direccion, jugadas& j) {
 
