@@ -40,3 +40,5 @@ patron_Y_Asignacion_A_P(tablero t, jugadas j, banderitas b, bool& valor,pos posA
 bool sonPosIguales(pos p1, pos p2);
 
 void caminoLibre(tablero& t, banderitas& b, pos p, bool profunda, string direccion, jugadas& j);
+
+void quitarDuplicados(jugadas& origen);

@@ -202,3 +202,23 @@ void caminoLibre(tablero& t, banderitas& b, pos p, bool profunda, string direcci
         }
     }
 }
+
+void quitarDuplicados(jugadas& origen) {
+    //Primero purgo el vector origen de jugadas duplicadas
+        //Declaro un vector temporal
+        //Me fijo el primer elemento del origen, y si está duplicado no lo agrego al temporal
+        //Si no está duplicado, lo agrego al temporal
+    jugadas vectorTemporal;
+    for(int a=0;a<origen.size()-1;a++) {
+        bool duplicado = false;
+        for(int b=1;b<origen.size();b++) {
+            if(origen[a].first.first == origen[b].first.first && origen[a].first.second == origen[b].first.second) {
+                duplicado = true;
+                break;
+            }
+        }
+        if(!duplicado)
+            vectorTemporal.push_back(origen[a]);
+    }
+    origen = vectorTemporal;
+}

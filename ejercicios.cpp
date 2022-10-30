@@ -87,13 +87,19 @@ bool gano(tablero& t, jugadas& j) {
 
 /******++++**************************** EJERCICIO jugarPlus ***********+++***********************/
 void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
-    //Me falta la funcion que purga vectorAuxiliar y lo mergea con j
+    //Declaro un vector de jugadas y su referencia
     jugadas vectorAuxiliar;
     jugadas & vectorAuxiliarRef = vectorAuxiliar;
+
+    //Llamo al algoritmo que calcula caminos libres desde la posición jugada hacia todas las direcciones, y le paso el vector
     caminoLibre(t, b, p, true, "arriba", vectorAuxiliarRef);
     caminoLibre(t, b, p, true, "abajo", vectorAuxiliarRef);
     caminoLibre(t, b, p, true, "izquierda", vectorAuxiliarRef);
     caminoLibre(t, b, p, true, "derecha", vectorAuxiliarRef);
+
+    //Quito duplicados a las jugadas que hizo el algoritmo y se las agrego a las jugadas hechas
+    quitarDuplicados(vectorAuxiliarRef);
+    j.insert(j.end(), vectorAuxiliar.begin(), vectorAuxiliar.end());
 }
 
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
