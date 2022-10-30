@@ -30,11 +30,12 @@ bool verificoConDePos(tablero t, jugadas j, banderitas b,pos p);
 
 bool patronVertical(tablero t, jugadas j, banderitas b,pos p1, pos p2);
 
-bool patronHorizontal(tablero t, jugadas j, banderitas b,pos p3, pos4);
+bool patronHorizontal(tablero t, jugadas j, banderitas b,pos p3, pos p4);
 
 bool esValidaYnoBanderitaNiJugada(tablero t, jugadas j, banderitas b, pos p);
 
-bool patron_Y_Asignacion_A_P(tablero t,jugadas j,banderitas b, pos posA,pos& p,pos posAlfa, pos posBeta, pos posCelta, pos posDelta);
+bool
+patron_Y_Asignacion_A_P(tablero t, jugadas j, banderitas b, bool& valor,pos posA, pos &p, pos posAlfa, pos posBeta, pos posCelta,pos posDelta);
 
 bool sonPosIguales(pos p1, pos p2);
 
