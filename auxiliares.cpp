@@ -127,6 +127,25 @@ bool jugadaHecha(jugada jugadaChequeada, jugadas juego) {
 }
 }
 
+// JUGAR PLUS 2V
+//https://en.wikipedia.org/wiki/Flood_fill
+void caminoLibre2V(tablero& t, banderitas& b, pos p, jugadas& j, bool jugadaOriginal){
+    if (esValidaYnoBanderitaNiJugada(t,j,b,p) && minasAdyacentes(t,p) == 0){
+        j.push_back(jugada(p, minasAdyacentes(t,p)));
+        pos celdaDerecha = pos(p.first,p.second+1);
+        caminoLibre2V(t,b,celdaDerecha,j, false);
+        pos celdaIzquierda = pos(p.first,p.second-1);
+        caminoLibre2V(t,b,celdaIzquierda,j, false);
+        pos celdaAbajo = pos(p.first+1,p.second);
+        caminoLibre2V(t,b,celdaAbajo,j, false);
+        pos celdaArriba = pos(p.first-1,p.second);
+        caminoLibre2V(t,b,celdaArriba,j, false);
+    }
+    else if(jugadaOriginal && minasAdyacentes(t,p) > 0){
+        j.push_back(jugada(p, minasAdyacentes(t,p)));
+    }
+}
+
 void caminoLibre(tablero& t, banderitas& b, pos p, bool profunda, string direccion, jugadas& j) {
 
     //Primero determino en base a la direccion el modo de funcionamiento del algoritmo

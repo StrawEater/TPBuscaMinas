@@ -223,9 +223,12 @@ jugadas subVectorJugadas(jugadas vectorJugadas, int inicio, int final){
 
 void testJugadasDevueltas(pos posJugada, jugadas jugadasEsperadas, tablero t, banderitas banderitasTablero, jugadas jugadasTablero){
     int cantidadDeJugadasOriginales = jugadasTablero.size();
+
     caminoLibre(t,banderitasTablero,posJugada, true,"arriba",jugadasTablero);
+    //jugadasTablero.push_back(jugada(posJugada, minasAdyacentes(t,posJugada)));
+
     jugadas jugadasNuevas = subVectorJugadas(jugadasTablero,cantidadDeJugadasOriginales,jugadasTablero.size());
-    if (minasAdyacentes(t1,posJugada) > 0){
+    if (minasAdyacentes(t,posJugada) > 0){
         ASSERT_TRUE(jugadasNuevas.size() == 1 && sonPosIguales(jugadasNuevas[0].first, posJugada));
     } else{
         bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasNuevas);
@@ -351,10 +354,9 @@ TEST(buscarCaminoLibre, tablero3pos_3_3){
 
 #pragma endregion TestTablero3
 
-TEST(buscarCaminoLibre, tablero4pos_0_0){
-    pos posJugada = pos(0,0);
+TEST(buscarCaminoLibre, tablero4pos_0_1){
+    pos posJugada = pos(0,1);
     jugadas jugadasEsperadas = {
-            jugada(pos(0, 0), 0),
             jugada(pos(0, 1), 0),
             jugada(pos(0, 2), 0),
             jugada(pos(0,3), 0),
@@ -367,9 +369,8 @@ TEST(buscarCaminoLibre, tablero4pos_0_0){
             jugada(pos(3,6), 0),
             jugada(pos(3,7), 0),
             jugada(pos(4,6), 0),
-            jugada(pos(4,7), 0),
             jugada(pos(5,6), 0),
-            jugada(pos(5,7), 0)
+            jugada(pos(5,7), 0),
     };
     jugadas jugadasDevueltas = {jugada(pos(4, 0), 1),};
     testJugadasDevueltas(posJugada, jugadasEsperadas, t4, banderitasTab4, jugadasTab4);
@@ -377,10 +378,9 @@ TEST(buscarCaminoLibre, tablero4pos_0_0){
 }
 
 
-TEST(buscarCaminoLibre, tablero4pos_7_0){
-    pos posJugada = pos(7,0);
+TEST(buscarCaminoLibre, tablero4pos_7_1){
+    pos posJugada = pos(7,1);
     jugadas jugadasEsperadas = {
-            jugada(pos(7,0),0),
             jugada(pos(7, 1), 0),
             jugada(pos(7, 2), 0),
             jugada(pos(7, 3), 0),
@@ -417,10 +417,9 @@ TEST(buscarCaminoLibre, tablero4pos_3_2){
 
 }
 
-TEST(buscarCaminoLibre, tablero4pos_4_7){
-    pos posJugada = pos(4,7);
+TEST(buscarCaminoLibre, tablero4pos_4_6){
+    pos posJugada = pos(4,6);
     jugadas jugadasEsperadas = {
-            jugada(pos(0, 0), 0),
             jugada(pos(0, 1), 0),
             jugada(pos(0, 2), 0),
             jugada(pos(0,3), 0),
@@ -433,7 +432,6 @@ TEST(buscarCaminoLibre, tablero4pos_4_7){
             jugada(pos(3,6), 0),
             jugada(pos(3,7), 0),
             jugada(pos(4,6), 0),
-            jugada(pos(4,7), 0),
             jugada(pos(5,6), 0),
             jugada(pos(5,7), 0)
     };
