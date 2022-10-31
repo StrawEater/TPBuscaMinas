@@ -211,7 +211,27 @@ bool mismasJugadas(jugadas jugadasEsperadas, jugadas jugadasDevueltas){
     return jugadasEsperadas.size() == jugadasDevueltas.size();
 }
 
+jugadas subVectorJugadas(jugadas vectorJugadas, int inicio, int final){
+    jugadas subVectorJ = jugadas();
+    for (int i = inicio; i < final; ++i) {
+        subVectorJ.push_back(vectorJugadas[i]);
+    }
+    return subVectorJ;
+}
+
 #pragma region TestTablero1
+
+void testJugadasDevueltas(pos posJugada, jugadas jugadasEsperadas, tablero t, banderitas banderitasTablero, jugadas jugadasTablero){
+    int cantidadDeJugadasOriginales = jugadasTablero.size();
+    caminoLibre(t,banderitasTablero,posJugada, true,"arriba",jugadasTablero);
+    jugadas jugadasNuevas = subVectorJugadas(jugadasTablero,cantidadDeJugadasOriginales,jugadasTablero.size());
+    if (minasAdyacentes(t1,posJugada) > 0){
+        ASSERT_TRUE(jugadasNuevas.size() == 1 && sonPosIguales(jugadasNuevas[0].first, posJugada));
+    } else{
+        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasNuevas);
+        ASSERT_TRUE(sonMismasJugadas);
+    }
+}
 
 TEST(buscarCaminoLibre, tablero1pos_0_4){
     pos posJugada = pos(0,4);
@@ -219,13 +239,8 @@ TEST(buscarCaminoLibre, tablero1pos_0_4){
             jugada(pos(0, 4), 1),
             };
     jugadas jugadasDevueltas = {jugada(pos(0, 4), 1),};
-    if (minasAdyacentes(t1,posJugada) > 0){
-        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
-    } else{
-        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
-        ASSERT_TRUE(sonMismasJugadas);
-    }
 
+    testJugadasDevueltas(posJugada, jugadasEsperadas, t1, banderitasTab1, jugadasTab1);
 }
 
 TEST(buscarCaminoLibre, tablero1pos_4_4){
@@ -235,12 +250,7 @@ TEST(buscarCaminoLibre, tablero1pos_4_4){
             jugada(pos(4, 4), 0),
     };
     jugadas jugadasDevueltas = {jugada(pos(4, 4), 0), jugada(pos(3, 4), 0)};
-    if (minasAdyacentes(t1,posJugada) > 0){
-        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
-    } else{
-        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
-        ASSERT_TRUE(sonMismasJugadas);
-    }
+    testJugadasDevueltas(posJugada, jugadasEsperadas, t1, banderitasTab1, jugadasTab1);
 
 }
 
@@ -258,12 +268,7 @@ TEST(buscarCaminoLibre, tablero2pos_6_6){
             jugada(pos(3, 4), 0),
     };
     jugadas jugadasDevueltas = {jugada(pos(4, 4), 1),};
-    if (minasAdyacentes(t1,posJugada) > 0){
-        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
-    } else{
-        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
-        ASSERT_TRUE(sonMismasJugadas);
-    }
+    testJugadasDevueltas(posJugada, jugadasEsperadas, t2, banderitasTab2, jugadasTab2);
 
 }
 
@@ -273,12 +278,7 @@ TEST(buscarCaminoLibre, tablero2pos_6_2){
             jugada(pos(6, 2), 0),
     };
     jugadas jugadasDevueltas = {jugada(pos(6, 2), 0),};
-    if (minasAdyacentes(t1,posJugada) > 0){
-        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
-    } else{
-        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
-        ASSERT_TRUE(sonMismasJugadas);
-    }
+    testJugadasDevueltas(posJugada, jugadasEsperadas, t2, banderitasTab2, jugadasTab2);
 
 }
 
@@ -288,12 +288,7 @@ TEST(buscarCaminoLibre, tablero2pos_3_0){
             jugada(pos(3, 0), 1),
     };
     jugadas jugadasDevueltas = {jugada(pos(3, 0), 1),};
-    if (minasAdyacentes(t1,posJugada) > 0){
-        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
-    } else{
-        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
-        ASSERT_TRUE(sonMismasJugadas);
-    }
+    testJugadasDevueltas(posJugada, jugadasEsperadas, t2, banderitasTab2, jugadasTab2);
 
 }
 
@@ -303,12 +298,7 @@ TEST(buscarCaminoLibre, tablero2pos_2_3){
             jugada(pos(2, 3), 0),
     };
     jugadas jugadasDevueltas = {jugada(pos(2, 3), 0),};
-    if (minasAdyacentes(t1,posJugada) > 0){
-        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
-    } else{
-        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
-        ASSERT_TRUE(sonMismasJugadas);
-    }
+    testJugadasDevueltas(posJugada, jugadasEsperadas, t2, banderitasTab2, jugadasTab2);
 
 }
 
@@ -318,12 +308,7 @@ TEST(buscarCaminoLibre, tablero2pos_2_6){
             jugada(pos(2, 6), 0),
     };
     jugadas jugadasDevueltas = {jugada(pos(2, 6), 0),};
-    if (minasAdyacentes(t1,posJugada) > 0){
-        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
-    } else{
-        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
-        ASSERT_TRUE(sonMismasJugadas);
-    }
+    testJugadasDevueltas(posJugada, jugadasEsperadas, t2, banderitasTab2, jugadasTab2);
 
 }
 
@@ -339,12 +324,7 @@ TEST(buscarCaminoLibre, tablero3pos_1_0){
             jugada(pos(3, 0), 0),
     };
     jugadas jugadasDevueltas = {jugada(pos(1, 0), 0),};
-    if (minasAdyacentes(t1,posJugada) > 0){
-        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
-    } else{
-        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
-        ASSERT_TRUE(sonMismasJugadas);
-    }
+    testJugadasDevueltas(posJugada, jugadasEsperadas, t3, banderitasTab3, jugadasTab3);
 
 }
 
@@ -355,12 +335,7 @@ TEST(buscarCaminoLibre, tablero3pos_2_5){
             jugada(pos(2, 4), 0),
     };
     jugadas jugadasDevueltas = {jugada(pos(2, 5), 0),};
-    if (minasAdyacentes(t1,posJugada) > 0){
-        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
-    } else{
-        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
-        ASSERT_TRUE(sonMismasJugadas);
-    }
+    testJugadasDevueltas(posJugada, jugadasEsperadas, t3, banderitasTab3, jugadasTab3);
 
 }
 
@@ -370,12 +345,7 @@ TEST(buscarCaminoLibre, tablero3pos_3_3){
             jugada(pos(3, 3), 2),
     };
     jugadas jugadasDevueltas = {jugada(pos(3, 3), 2),};
-    if (minasAdyacentes(t1,posJugada) > 0){
-        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
-    } else{
-        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
-        ASSERT_TRUE(sonMismasJugadas);
-    }
+    testJugadasDevueltas(posJugada, jugadasEsperadas, t3, banderitasTab3, jugadasTab3);
 
 }
 
@@ -402,12 +372,7 @@ TEST(buscarCaminoLibre, tablero4pos_0_0){
             jugada(pos(5,7), 0)
     };
     jugadas jugadasDevueltas = {jugada(pos(4, 0), 1),};
-    if (minasAdyacentes(t1,posJugada) > 0){
-        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
-    } else{
-        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
-        ASSERT_TRUE(sonMismasJugadas);
-    }
+    testJugadasDevueltas(posJugada, jugadasEsperadas, t4, banderitasTab4, jugadasTab4);
 
 }
 
@@ -427,12 +392,7 @@ TEST(buscarCaminoLibre, tablero4pos_7_0){
 
     };
     jugadas jugadasDevueltas = {jugada(pos(4, 0), 1),};
-    if (minasAdyacentes(t1,posJugada) > 0){
-        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
-    } else{
-        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
-        ASSERT_TRUE(sonMismasJugadas);
-    }
+    testJugadasDevueltas(posJugada, jugadasEsperadas, t4, banderitasTab4, jugadasTab4);
 
 }
 
@@ -443,12 +403,7 @@ TEST(buscarCaminoLibre, tablero4pos_5_5){
             jugada(pos(5, 5), 1),
     };
     jugadas jugadasDevueltas = {jugada(pos(4, 0), 1),};
-    if (minasAdyacentes(t1,posJugada) > 0){
-        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
-    } else{
-        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
-        ASSERT_TRUE(sonMismasJugadas);
-    }
+    testJugadasDevueltas(posJugada, jugadasEsperadas, t4, banderitasTab4, jugadasTab4);
 
 }
 
@@ -458,12 +413,7 @@ TEST(buscarCaminoLibre, tablero4pos_3_2){
             jugada(pos(3,2),1),
     };
     jugadas jugadasDevueltas = {jugada(pos(4, 0), 1),};
-    if (minasAdyacentes(t1,posJugada) > 0){
-        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
-    } else{
-        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
-        ASSERT_TRUE(sonMismasJugadas);
-    }
+    testJugadasDevueltas(posJugada, jugadasEsperadas, t4, banderitasTab4, jugadasTab4);
 
 }
 
@@ -488,11 +438,6 @@ TEST(buscarCaminoLibre, tablero4pos_4_7){
             jugada(pos(5,7), 0)
     };
     jugadas jugadasDevueltas = {jugada(pos(4, 0), 1),};
-    if (minasAdyacentes(t1,posJugada) > 0){
-        ASSERT_TRUE(jugadasDevueltas.size() == 1 && sonPosIguales(jugadasDevueltas[0].first, posJugada));
-    } else{
-        bool sonMismasJugadas = mismasJugadas(jugadasEsperadas, jugadasDevueltas);
-        ASSERT_TRUE(sonMismasJugadas);
-    }
+    testJugadasDevueltas(posJugada, jugadasEsperadas, t4, banderitasTab4, jugadasTab4);
 
 }
