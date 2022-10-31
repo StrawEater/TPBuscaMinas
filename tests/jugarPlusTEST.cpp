@@ -354,6 +354,7 @@ TEST(jugarPlusTest, tablero3pos_3_3){
 
 #pragma endregion TestTablero3
 
+#pragma region TestTablero4
 TEST(jugarPlusTest, tablero4pos_0_1){
     pos posJugada = pos(0,1);
     jugadas jugadasEsperadas = {
@@ -377,7 +378,6 @@ TEST(jugarPlusTest, tablero4pos_0_1){
 
 }
 
-
 TEST(jugarPlusTest, tablero4pos_7_1){
     pos posJugada = pos(7,1);
     jugadas jugadasEsperadas = {
@@ -395,7 +395,6 @@ TEST(jugarPlusTest, tablero4pos_7_1){
     testJugadasDevueltas(posJugada, jugadasEsperadas, t4, banderitasTab4, jugadasTab4);
 
 }
-
 
 TEST(jugarPlusTest, tablero4pos_5_5){
     pos posJugada = pos(5,5);
@@ -439,3 +438,4 @@ TEST(jugarPlusTest, tablero4pos_4_6){
     testJugadasDevueltas(posJugada, jugadasEsperadas, t4, banderitasTab4, jugadasTab4);
 
 }
+#pragma endregion TestTablero4
