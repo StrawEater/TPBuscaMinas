@@ -87,6 +87,8 @@ bool gano(tablero& t, jugadas& j) {
 
 /******++++**************************** EJERCICIO jugarPlus ***********+++***********************/
 void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
+    caminoLibre2V(t,b,p,j, true);
+    /*
     //Declaro un vector de jugadas y su referencia
     jugadas vectorAuxiliar;
     jugadas & vectorAuxiliarRef = vectorAuxiliar;
@@ -99,6 +101,7 @@ void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
 
     //Le agrego al vector de jugadas las jugadas hechas
     j.insert(j.end(), vectorAuxiliar.begin(), vectorAuxiliar.end());
+     */
 }
 
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/

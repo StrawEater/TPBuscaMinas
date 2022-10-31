@@ -117,7 +117,7 @@ bool patron_Y_Asignacion_A_P(tablero t, jugadas j, banderitas b, bool& valor,pos
     } else {}
 }
 
-bool jugadaHecha(jugada jugadaChequeada, jugadas juego) {
+/*bool jugadaHecha(jugada jugadaChequeada, jugadas juego) {
     for(int i=0;i<juego.size();i++) {
         if(juego[i].first == jugadaChequeada.first) {
             return true;
@@ -125,7 +125,7 @@ bool jugadaHecha(jugada jugadaChequeada, jugadas juego) {
         }
     return false;
 }
-}
+}*/
 
 // JUGAR PLUS 2V
 //https://en.wikipedia.org/wiki/Flood_fill
@@ -146,7 +146,7 @@ void caminoLibre2V(tablero& t, banderitas& b, pos p, jugadas& j, bool jugadaOrig
     }
 }
 
-void caminoLibre(tablero& t, banderitas& b, pos p, bool profunda, string direccion, jugadas& j) {
+/*void caminoLibre(tablero& t, banderitas& b, pos p, bool profunda, string direccion, jugadas& j) {
 
     //Primero determino en base a la direccion el modo de funcionamiento del algoritmo
     int ejeFijo, ejeVariable, direccionMovimiento, ejeTableroRelevante;
@@ -248,4 +248,4 @@ void quitarDuplicados(jugadas& origen) {
             vectorTemporal.push_back(origen[a]);
     }
     origen = vectorTemporal;
-}
+}*/

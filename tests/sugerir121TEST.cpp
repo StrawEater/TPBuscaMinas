@@ -44,7 +44,7 @@ static jugadas jugadasTab1 = {
 //├───┼───┼───┼───┼───┼───┼───┤
 //│ b │ ■ │ * │ 2 │ 1 │ b │ 0 │
 //├───┼───┼───┼───┼───┼───┼───┤
-//│ b │ ■ │ 1 │ 2 │ * │ 1 │ 0 │
+//│ 1 │ ■ │ 1 │ 2 │ * │ 1 │ 0 │
 //├───┼───┼───┼───┼───┼───┼───┤
 //│ * │ ■ │ 0 │ 1 │ 1 │ 1 │ 0 │
 //└───┴───┴───┴───┴───┴───┴───┘
@@ -64,7 +64,7 @@ static banderitas banderitasTab2 = {
         pos(2,1),
         //
         pos(4,0),pos(4,5),
-        pos(5,0),
+        //
         //
 
 };
@@ -194,10 +194,61 @@ static jugadas jugadasTab5 = {
 
 #pragma endregion Tablero4
 
+#pragma region Tablero6
+//┌───┬───┬───┬───┬───┬───┬───┐
+//│ ■ │ ■ │ ■ │ * │ 2 │ ■ │ b │
+//├───┼───┼───┼───┼───┼───┼───┤
+//│ ■ │ ■ │ 2 │ ■ │ 2 │ * │ 1 │
+//├───┼───┼───┼───┼───┼───┼───┤
+//│ 1 │ B │ 1 │ 0 │ 1 │ 1 │ 1 │
+//├───┼───┼───┼───┼───┼───┼───┤
+//│ 1 │ 2 │ ■ │ 1 │ 0 │ 0 │ 0 │
+//├───┼───┼───┼───┼───┼───┼───┤
+//│ b │ ■ │ * │ 2 │ 1 │ b │ 0 │
+//├───┼───┼───┼───┼───┼───┼───┤
+//│ b │ ■ │ 1 │ 2 │ * │ 1 │ 0 │
+//├───┼───┼───┼───┼───┼───┼───┤
+//│ * │ ■ │ 0 │ 1 │ 1 │ 1 │ 0 │
+//└───┴───┴───┴───┴───┴───┴───┘
+
+
+static tablero t6 = {
+        { cVACIA, cVACIA, cVACIA, cMINA, cVACIA, cVACIA, cVACIA },
+        { cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cMINA, cVACIA },
+        { cVACIA, cMINA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA },
+        { cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA },
+        { cVACIA, cVACIA, cMINA, cVACIA, cVACIA, cVACIA, cVACIA },
+        { cVACIA, cVACIA, cVACIA, cVACIA, cMINA, cVACIA, cVACIA },
+        { cMINA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA },
+};
+
+static banderitas banderitasTab6 = {
+        pos(0,6),
+        //
+        pos(2,1),
+        //
+        pos(4,0),pos(4,5),
+        pos(5,0),
+        //
+
+};
+
+static jugadas jugadasTab6 = {
+        jugada(pos(0, 0), 0), jugada(pos(0, 1), 0),jugada(pos(0, 2), 1), jugada(pos(0, 5), 1),
+        jugada(pos(1, 0), 1), jugada(pos(1, 1), 1), jugada(pos(1, 3), 1),
+        //
+        jugada(pos(3, 2), 2),
+        jugada(pos(4, 1), 1),
+        jugada(pos(5, 1), 2),
+        jugada(pos(6, 1), 1),
+};
+
+#pragma endregion Tablero6
+
 #pragma endregion Tableros
 
 TEST(sugerir121TEST, imprimirAlgo){
-    printTablero(t2, banderitasTab5, {});
+    printTablero(t6, banderitasTab6, jugadasTab6);
     ASSERT_TRUE(true);
 }
 
@@ -225,5 +276,10 @@ TEST(sugerir121TEST, tablero4){
 TEST(sugerir121TEST, tablero5){
     pos p = pos (0,0);
     ASSERT_FALSE(sugerirAutomatico121(t5, banderitasTab5, jugadasTab5, p));
+}
+
+TEST(sugerir121TEST, tablero6){
+    pos p = pos (0,0);
+    ASSERT_TRUE(sugerirAutomatico121(t6, banderitasTab6, jugadasTab6, p));
 }
 
