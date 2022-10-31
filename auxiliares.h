@@ -42,3 +42,5 @@ bool sonPosIguales(pos p1, pos p2);
 void caminoLibre(tablero& t, banderitas& b, pos p, bool profunda, string direccion, jugadas& j);
 
 void quitarDuplicados(jugadas& origen);
+
+bool jugadaHecha(jugada jugadaChequeada, jugadas juego);

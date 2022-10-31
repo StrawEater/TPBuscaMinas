@@ -97,8 +97,7 @@ void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
     caminoLibre(t, b, p, true, "izquierda", vectorAuxiliarRef);
     caminoLibre(t, b, p, true, "derecha", vectorAuxiliarRef);
 
-    //Quito duplicados a las jugadas que hizo el algoritmo y se las agrego a las jugadas hechas
-    quitarDuplicados(vectorAuxiliarRef);
+    //Le agrego al vector de jugadas las jugadas hechas
     j.insert(j.end(), vectorAuxiliar.begin(), vectorAuxiliar.end());
 }
 
