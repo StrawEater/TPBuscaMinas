@@ -87,15 +87,18 @@ bool esJugada(jugadas j,pos p){
 bool noEsBanderita(banderitas b, pos p){
     return (getPosIndexEnBanderitas(b,p)==-1); // Complejidad: n + 1 (getPosIndexEnJugadas tiene complejidad n y la comparacion tiene complejida 1)
 }
-
+//Verifico condiciones sobre las posiciones para ver si pueden formar parte del patron.
+//COMPLEJIDAD:
 bool verificoConDePos(tablero t,jugadas j,banderitas b,pos p){
     return posicionValida(t,p) && esJugada(j, p) && (minasAdyacentes(t, p)==1) && noEsBanderita(b,p);
 }
-
+//Existencia de patron vertical.
+//COMPLEJIDAD:
 bool patronVertical(tablero t, jugadas j,banderitas b,pos p1, pos p2){
     return (verificoConDePos(t, j, b ,p1) && verificoConDePos(t, j, b, p2));
 }
-
+//Existencia de patron horizontal.
+//COMPLEJIDAD:
 bool patronHorizontal(tablero t, jugadas j,banderitas b,pos p3, pos p4){
     return verificoConDePos(t, j, b,p3) && verificoConDePos(t, j, b,p4);
 }
@@ -108,29 +111,28 @@ bool esValidaYnoBanderitaNiJugada(tablero t,jugadas j, banderitas b, pos p){
                                                                         //  esJugada tiene complejidad n
                                                                         //  noEsBanderita tiene complejidad n)
 }
-
-
-bool patron_Y_Asignacion_A_P(tablero t, jugadas j, banderitas b, bool& valor,pos posA, pos &p, pos posLeft, pos posRight, pos posUp,pos posDown) {
+//Se le asigna a p una posible posicion de las que cumplen las condiciones
+// y valor es modificado de false a true.
+//COMPLEJIDAD:
+bool asignoPosicionYValor(tablero t, jugadas j, banderitas b, bool& valor, pos& p, pos posA, pos posB){
+    if (esValidaYnoBanderitaNiJugada(t,j, b, posA)) {
+        p = posA;
+        valor = true;
+    }
+    else if (esValidaYnoBanderitaNiJugada(t,j, b, posB)) {
+        p = posB;
+        valor = true;
+    }
+    else {}
+}
+//Le asignamos a p alguna de sus posibles opciones y a valor se lo modifica de igual manera,
+// esto en caso de que se generara un patron. Sino no pasa nada.
+//COMPLEJIDAD:
+bool patron_Y_Asignacion_A_P(tablero t, jugadas j, banderitas b, bool& valor, pos &p, pos posLeft, pos posRight, pos posUp,pos posDown) {
     if (patronVertical(t, j, b,posUp, posDown)) {
-        if (esValidaYnoBanderitaNiJugada(t,j, b, posLeft)) {
-            p = posLeft;
-            valor = true;
-        }
-        else if (esValidaYnoBanderitaNiJugada(t,j, b, posRight)) {
-            p = posRight;
-            valor = true;
-        } 
-        else {}
+        asignoPosicionYValor(t,j,b,valor,p,posLeft,posRight);
     } else if (patronHorizontal(t, j, b,posLeft, posRight)) {
-        if (esValidaYnoBanderitaNiJugada(t,j, b, posUp)) {
-            p = posUp;
-            valor = true;
-        }
-        else if (esValidaYnoBanderitaNiJugada(t,j, b, posDown)) {
-            p = posDown;
-            valor = true;
-        } 
-        else {}
+        asignoPosicionYValor(t,j,b,valor,p, posUp,posDown);
     } else {}
 }
 

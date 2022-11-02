@@ -121,10 +121,10 @@ void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
 }
 
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
-//nos devuelve un valor booleando dependiendo de si existe un patron 121,
-// si es true se modifica el p ingresado por uno seguro a jugar y si es false.
+//Devuelve un valor (true o false) dependiendo de si existe o no un patron 121,
+//si es true se modifica el p ingresado por uno seguro a jugar y si es false no nos interesa lo que pase con p.
 bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p){
-    bool valor = false; //damos origen a un valor para que printee la funcion.
+    bool valor = false; //damos origen a un valor para que devuelva la funcion.
     //ciclamos en el vector de jugadas para encontrar una posicion ya jugada que tenga 2 minas adyacentes y
     // ver si con otras ya jugadas que tengan 1 mina adyacente se tiene un patron 121.
     for (int i = 0; i < j.size(); i++) {
@@ -137,7 +137,7 @@ bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p){
             pos posUp = pos(posA.first - 1, posA.second);
             pos posDown = pos(posA.first + 1, posA.second);
             //verificamos el patron con las posibles posiciones y la encontrada con las 2 minas adyacentes. 
-            patron_Y_Asignacion_A_P(t, j, b, valor, posA, p, posLeft, posRight, posUp, posDown);
+            patron_Y_Asignacion_A_P(t, j, b, valor, p, posLeft, posRight, posUp, posDown);
         }
     }
     return valor;

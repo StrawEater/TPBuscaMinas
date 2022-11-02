@@ -32,8 +32,10 @@ bool patronHorizontal(tablero t, jugadas j, banderitas b,pos p3, pos p4);
 
 bool esValidaYnoBanderitaNiJugada(tablero t, jugadas j, banderitas b, pos p);
 
+bool asignoPosicionYValor(tablero t, jugadas j, banderitas b, bool& valor, pos& p, pos posA, pos posB);
+
 bool
-patron_Y_Asignacion_A_P(tablero t, jugadas j, banderitas b, bool& valor,pos posA, pos &p, pos posLeft, pos posRight, pos posUp,pos posDown);
+patron_Y_Asignacion_A_P(tablero t, jugadas j, banderitas b, bool& valor, pos &p, pos posLeft, pos posRight, pos posUp,pos posDown);
 
 bool sonPosIguales(pos p1, pos p2);
 
