@@ -24,7 +24,7 @@ int minasAdyacentes(tablero& t, pos p) {
     //Recorro las 8 celdas adyacentes a la posicion, como tambien la posicion misma
     for (int i = -1; i <= 1; ++i) {
         for (int j = -1; j <= 1; ++j) {
-            //Si la posicion actual es igual a la posicion origina, la ignoro
+            //Si la posicion actual es igual a la posicion original, la ignoro
             if (i == 0 && j == 0) continue;
             //En otro caso, verifico que sea una posicion valida y agrego 1 al contador si la posicion tiene mina
             if (posicionValida(t,pos(coordX+i,coordY+j))){
@@ -37,25 +37,36 @@ int minasAdyacentes(tablero& t, pos p) {
 
 /******++++**************************** EJERCICIO plantarBanderita ***********+++***********************/
 
+// Dado un vector de Banderitas y una posicion, junto con otros parametros, cambia el estado de la posicion dada.
+// Si la posicion ya era una banderita, se la elimina del vector banderitas(Deja de ser banderita)
+// Si la posicion no era una banderita, se la agrega al vector banderitas(Se convierte en una banderita)
 void cambiarBanderita(tablero& t, jugadas& j, pos p, banderitas& b) {
+    //Verifico que la posicion se encontraba en Banderitas
     int indexBanderita = getPosIndexEnBanderitas(b,p);
+    //Si no lo hacia, la agrega
     if (indexBanderita == -1){
         b.push_back(p);
     }else{
+        // Si lo hacia, la elimino
         eliminarPosicionDeBanderita(b,indexBanderita);
     }
 }
 
 /******++++**************************** EJERCICIO perdio ***********+++***********************/
+//Dado un vector de jugadas y un tablero, devuelve si el estado del juego implica que el usuario perdio
+// Que un usuario pierda implica que alguna de sus jugadas fue en una celda que contenia una mina
 bool perdio(tablero& t, jugadas& j) {
+    //recorro todas las jugadas
     for (int i = 0; i < j.size(); ++i) {
         pos posDeJugada = j[i].first;
-        int columna = posDeJugada.first;
-        int fila = posDeJugada.second;
+        int columna = posDeJugada.second;
+        int fila = posDeJugada.first;
+        //Si la posicion de la celda jugada tiene un bomba, es porque perdi.
         if (t[fila][columna]){
             return true;
         }
     }
+    //Si ninguna celda jugada tiene una bomba en ella, aun no perdi.
     return false;
 }
 
@@ -86,8 +97,13 @@ bool gano(tablero& t, jugadas& j) {
 }
 
 /******++++**************************** EJERCICIO jugarPlus ***********+++***********************/
+// Dado un tablero, banderitas, jugadas, y la posicion de la celda que el usuario decidio jugar, devuelve el nuevo vector de jugadas
+// El nuevo vector de jugadas deberia contener:
+// la jugadas que ya se encontraban en el antiguo vector
+// la jugada que represente la posicion que el usuario decidio jugar en este momento
+// todas las jugadas que representan a las celdas a las que es posible llegar desde la Pos Origal a ella sin pasar por ninguna celda con minas adyacentes
 void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
-    caminoLibre2V(t,b,p,j, true);
+    caminoLibre2V(t,b,p,j);
     /*
     //Declaro un vector de jugadas y su referencia
     jugadas vectorAuxiliar;
