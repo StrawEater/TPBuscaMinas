@@ -105,22 +105,24 @@ void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
 }
 
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
+//nos devuelve un valor booleando dependiendo de si existe un patron 121,
+// si es true se modifica el p ingresado por uno seguro a jugar y si es false.
 bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p){
-     bool valor = false;
+    bool valor = false; //damos origen a un valor para que printee la funcion.
+    //ciclamos en el vector de jugadas para encontrar una posicion ya jugada que tenga 2 minas adyacentes y
+    // ver si con otras ya jugadas que tengan 1 mina adyacente se tiene un patron 121.
     for (int i = 0; i < j.size(); i++) {
         pos posA = j[i].first;
         int minasAd = j[i].second;
         if(minasAd==2 && posicionValida(t, posA)){
-            pos posAlfa = pos(posA.first, posA.second - 1);
-            pos posBeta = pos(posA.first, posA.second + 1);
-            pos posCelta = pos(posA.first - 1, posA.second);
-            pos posDelta = pos(posA.first + 1, posA.second);
-            if (noBorde(t, posA)) {
-                patron_Y_Asignacion_A_P(t, j, b, valor, posA, p, posAlfa, posBeta, posCelta, posDelta);
-            } else {
-                patron_Y_Asignacion_A_P(t, j, b, valor, posA, p, posAlfa, posBeta, posCelta, posDelta);
-            }
-        } else {}
+            //sacamos las posibles 4 posiciones de los patrones.
+            pos posLeft = pos(posA.first, posA.second - 1);
+            pos posRight = pos(posA.first, posA.second + 1);
+            pos posUp = pos(posA.first - 1, posA.second);
+            pos posDown = pos(posA.first + 1, posA.second);
+            //verificamos el patron con las posibles posiciones y la encontrada con las 2 minas adyacentes. 
+            patron_Y_Asignacion_A_P(t, j, b, valor, posA, p, posLeft, posRight, posUp, posDown);
+        }
     }
     return valor;
 }

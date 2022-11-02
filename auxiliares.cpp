@@ -65,9 +65,6 @@ bool sonPosIguales(pos p1, pos p2){
     return coordXPos1 == coordXPos2 && coordYPos1 == coordYPos2;
 }
 
-bool noBorde(tablero t, pos p){
-    return (0<p.first && p.first<t.size()-1)&&(0<p.second && p.second<t.size()-1);
-}
 bool esJugada(jugadas j,pos p){
     return (getPosIndexEnJugadas(j,p)!=-1);
 }
@@ -93,24 +90,24 @@ bool esValidaYnoBanderitaNiJugada(tablero t,jugadas j, banderitas b, pos p){
 }
 
 
-bool patron_Y_Asignacion_A_P(tablero t, jugadas j, banderitas b, bool& valor,pos posA, pos &p, pos posAlfa, pos posBeta, pos posCelta,pos posDelta) {
-    if (patronVertical(t, j, b,posCelta, posDelta)) {
-        if (esValidaYnoBanderitaNiJugada(t,j, b, posAlfa)) {
-            p = posAlfa;
+bool patron_Y_Asignacion_A_P(tablero t, jugadas j, banderitas b, bool& valor,pos posA, pos &p, pos posLeft, pos posRight, pos posUp,pos posDown) {
+    if (patronVertical(t, j, b,posUp, posDown)) {
+        if (esValidaYnoBanderitaNiJugada(t,j, b, posLeft)) {
+            p = posLeft;
             valor = true;
         }
-        else if (esValidaYnoBanderitaNiJugada(t,j, b, posBeta)) {
-            p = posBeta;
+        else if (esValidaYnoBanderitaNiJugada(t,j, b, posRight)) {
+            p = posRight;
             valor = true;
         } 
         else {}
-    } else if (patronHorizontal(t, j, b,posAlfa, posBeta)) {
-        if (esValidaYnoBanderitaNiJugada(t,j, b, posCelta)) {
-            p = posCelta;
+    } else if (patronHorizontal(t, j, b,posLeft, posRight)) {
+        if (esValidaYnoBanderitaNiJugada(t,j, b, posUp)) {
+            p = posUp;
             valor = true;
         }
-        else if (esValidaYnoBanderitaNiJugada(t,j, b, posDelta)) {
-            p = posDelta;
+        else if (esValidaYnoBanderitaNiJugada(t,j, b, posDown)) {
+            p = posDown;
             valor = true;
         } 
         else {}
