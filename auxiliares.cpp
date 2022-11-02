@@ -23,6 +23,8 @@ bool posicionValida(tablero& t, pos p){
     return FilaValida && ColumnaValida;
 }
 
+//Dada una Posicion y un Vector de Banderitas, encuentra el index dentro del vector,
+// si este no se encuentra en el, devuelve -1.
 int getPosIndexEnBanderitas(banderitas& b, pos p){
     for (int i = 0; i < b.size(); ++i) {
         pos posBanderita = b[i];
@@ -33,6 +35,8 @@ int getPosIndexEnBanderitas(banderitas& b, pos p){
     return -1;
 }
 
+//Dada una Posicion y un Vector de Jugadas, encuentra el index dentro del vector,
+// si este no se encuentra en el, devuelve -1.
 int getPosIndexEnJugadas(jugadas& j, pos p){
 
     for (int i = 0; i < j.size(); ++i) {
@@ -55,6 +59,7 @@ void eliminarPosicionDeBanderita(banderitas& b, int indexPosicion){
     b = nuevoVectorBanderitas;
 }
 
+//Compara dos objetos posiciones y verifica que contenga los mismos valores en la misma posicion
 bool sonPosIguales(pos p1, pos p2){
     int coordYPos1 = p1.first;
     int coordXPos1 = p1.second;
@@ -65,13 +70,16 @@ bool sonPosIguales(pos p1, pos p2){
     return coordXPos1 == coordXPos2 && coordYPos1 == coordYPos2;
 }
 
+//Verifica que la pos no se encuentre en el borde del tablero t
 bool noBorde(tablero t, pos p){
     return (0<p.first && p.first<t.size()-1)&&(0<p.second && p.second<t.size()-1);
 }
+//Verifica si la pos se encuentra dentro del vector de jugadas
 bool esJugada(jugadas j,pos p){
     return (getPosIndexEnJugadas(j,p)!=-1);
 }
 
+//Verifica si la pos se encuentra dentro del vector de banderitas
 bool noEsBanderita(banderitas b, pos p){
     return (getPosIndexEnBanderitas(b,p)==-1);
 }
@@ -88,6 +96,7 @@ bool patronHorizontal(tablero t, jugadas j,banderitas b,pos p3, pos p4){
     return verificoConDePos(t, j, b,p3) && verificoConDePos(t, j, b,p4);
 }
 
+//Verifica que la posicion Dada no sea una jugada ni una banderita y que se encuentra dentro del tablero
 bool esValidaYnoBanderitaNiJugada(tablero t,jugadas j, banderitas b, pos p){
     return posicionValida(t,p) && !esJugada(j,p) && noEsBanderita(b,p);
 }
