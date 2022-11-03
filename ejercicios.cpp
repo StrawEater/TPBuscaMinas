@@ -124,7 +124,7 @@ void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
 //Devuelve un valor (true o false) dependiendo de si existe o no un patron 121,
 //si es true se modifica el p ingresado por uno seguro a jugar y si es false no nos interesa lo que pase con p.
 
-//COMLEJIDAD: 13n+27
+//COMLEJIDAD: n*(12n+25)+1+1 = 12n²+25n+2 = O(n²)
 bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p){
    
     //damos origen a un valor para que devuelva la funcion.
