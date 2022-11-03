@@ -17,122 +17,122 @@ using namespace std;
 //que la cordX no sea mayor a la cantidad de columnas
 //COMPLEJIDAD = 1.
 bool posicionValida(tablero& t, pos p){
-    int columna = p.second; // Complejidad: 1 (instruccion basica)
-    int fila = p.first; // Complejidad: 1 (instruccion basica)
-    bool FilaValida = fila >= 0 && fila < t.size(); // Complejidad: 1 (instruccion basica)
-    bool ColumnaValida = columna >= 0 && columna < t[0].size(); // Complejidad: 1 (instruccion basica)
-    return FilaValida && ColumnaValida; // Complejidad: 1 (instruccion basica)
+    int columna = p.second; // COMPLEJIDAD: 1 (instruccion basica)
+    int fila = p.first; // COMPLEJIDAD: 1 (instruccion basica)
+    bool FilaValida = fila >= 0 && fila < t.size(); // COMPLEJIDAD: 1 (instruccion basica)
+    bool ColumnaValida = columna >= 0 && columna < t[0].size(); // COMPLEJIDAD: 1 (instruccion basica)
+    return FilaValida && ColumnaValida; // COMPLEJIDAD: 1 (instruccion basica)
 }
 
 //Dada una Posicion y un Vector de Banderitas, encuentra el index dentro del vector,
 // si este no se encuentra en el, devuelve -1.
 // COMPLEJIDAD : n
 int getPosIndexEnBanderitas(banderitas& b, pos p){
-    for (int i = 0; i < b.size(); ++i) { // Complejidad: n (Se hace la verificacion un total de n veces)
-        pos posBanderita = b[i]; // Complejidad: n-1 (La instruccion basica sucede n-1 veces, ya que a la enesima vez i=n y escapa del for)
-        if (sonPosIguales(posBanderita,p)){ // Complejidad: n-1 (La instruccion basica sucede n-1 veces, ya que a la enesima vez i=n y escapa del for)
-            return i; // Complejidad: n-1 (La instruccion basica sucede n-1 veces, ya que a la enesima vez i=n y escapa del for)
+    for (int i = 0; i < b.size(); ++i) { // COMPLEJIDAD: n (Se hace la verificacion un total de n veces)
+        pos posBanderita = b[i]; // COMPLEJIDAD: n-1 (La instruccion basica sucede n-1 veces, ya que a la enesima vez i=n y escapa del for)
+        if (sonPosIguales(posBanderita,p)){ // COMPLEJIDAD: n-1 (La instruccion basica sucede n-1 veces, ya que a la enesima vez i=n y escapa del for)
+            return i; // COMPLEJIDAD: n-1 (La instruccion basica sucede n-1 veces, ya que a la enesima vez i=n y escapa del for)
         }
     }
-    return -1; // Complejidad: 1
+    return -1; // COMPLEJIDAD: 1
 }
 //Dada una Posicion y un Vector de Jugadas, encuentra el index dentro del vector,
 // si este no se encuentra en el, devuelve -1.
 // COMPLEJIDAD: n
 int getPosIndexEnJugadas(jugadas& j, pos p){
 
-    for (int i = 0; i < j.size(); ++i) { // Complejidad: n (Se hace la verificacion un total de n veces)
-        pos posJugada = j[i].first; // Complejidad: n-1 (La instruccion basica sucede n-1 veces, ya que a la enesima vez i=n y escapa del for)
+    for (int i = 0; i < j.size(); ++i) { // COMPLEJIDAD: n (Se hace la verificacion un total de n veces)
+        pos posJugada = j[i].first; // COMPLEJIDAD: n-1 (La instruccion basica sucede n-1 veces, ya que a la enesima vez i=n y escapa del for)
 
-        if (sonPosIguales(posJugada,p)){ // Complejidad: n-1 (La instruccion basica sucede n-1 veces, ya que a la enesima vez i=n y escapa del for)
-            return i; // Complejidad: n-1 (La instruccion basica sucede n-1 veces, ya que a la enesima vez i=n y escapa del for)
+        if (sonPosIguales(posJugada,p)){ // COMPLEJIDAD: n-1 (La instruccion basica sucede n-1 veces, ya que a la enesima vez i=n y escapa del for)
+            return i; // COMPLEJIDAD: n-1 (La instruccion basica sucede n-1 veces, ya que a la enesima vez i=n y escapa del for)
         }
     }
-    return -1; // Complejidad: 1
+    return -1; // COMPLEJIDAD: 1
 }
 
 //Devuelve un vector de tipo Banderita indentico al argumento, excepto por no conterner
 //al elemento que se encontraba en indexPosicion
 // COMPLEJIDAD: n
 void eliminarPosicionDeBanderita(banderitas& b, int indexPosicion){
-    banderitas nuevoVectorBanderitas; // Complejidad: 1 (Instruccion Basica)
-    for (int i = 0; i < b.size(); ++i) { // Complejidad: n (Se hace la verificacion un total de n veces)
+    banderitas nuevoVectorBanderitas; // COMPLEJIDAD: 1 (Instruccion Basica)
+    for (int i = 0; i < b.size(); ++i) { // COMPLEJIDAD: n (Se hace la verificacion un total de n veces)
         // Si el elemento no se encuentra en el index que quiero eliminar, lo agrego al nuevo Vector
         // Si el index es el mismo, no lo agrego
-        if (i != indexPosicion) nuevoVectorBanderitas.push_back(b[i]); // Complejidad: n-1 (La instruccion basica sucede n-1 veces, ya que a la enesima vez i=n y escapa del for)
+        if (i != indexPosicion) nuevoVectorBanderitas.push_back(b[i]); // COMPLEJIDAD: n-1 (La instruccion basica sucede n-1 veces, ya que a la enesima vez i=n y escapa del for)
     }
     //Modifico el vector original por el vector sin el elemento que queria eliminar.
-    b = nuevoVectorBanderitas; // Complejidad: 1
+    b = nuevoVectorBanderitas; // COMPLEJIDAD: 1
 }
 
 
 //Compara dos objetos posiciones y verifica que contenga los mismos valores en la misma posicion
 // COMPLEJIDAD: 1
 bool sonPosIguales(pos p1, pos p2){
-    int coordYPos1 = p1.first; // Complejidad: 1 (Instruccion Basica)
-    int coordXPos1 = p1.second; // Complejidad: 1 (Instruccion Basica)
+    int coordYPos1 = p1.first; // COMPLEJIDAD: 1 (Instruccion Basica)
+    int coordXPos1 = p1.second; // COMPLEJIDAD: 1 (Instruccion Basica)
 
-    int coordYPos2 = p2.first; // Complejidad: 1 (Instruccion Basica)
-    int coordXPos2 = p2.second; // Complejidad: 1 (Instruccion Basica)
+    int coordYPos2 = p2.first; // COMPLEJIDAD: 1 (Instruccion Basica)
+    int coordXPos2 = p2.second; // COMPLEJIDAD: 1 (Instruccion Basica)
 
-    return coordXPos1 == coordXPos2 && coordYPos1 == coordYPos2; // Complejidad: 1 (Instruccion Basica)
+    return coordXPos1 == coordXPos2 && coordYPos1 == coordYPos2; // COMPLEJIDAD: 1 (Instruccion Basica)
 }
 
 bool esJugada(jugadas j,pos p){
-    return (getPosIndexEnJugadas(j,p)!=-1); // Complejidad: n + 1 (getPosIndexEnJugadas tiene complejidad n y la comparacion tiene complejida 1)
+    return (getPosIndexEnJugadas(j,p)!=-1); // COMPLEJIDAD: n + 1 (getPosIndexEnJugadas tiene COMPLEJIDAD n y la comparacion tiene complejida 1)
 }
 
 //Verifica si la pos se encuentra dentro del vector de banderitas
 // COMPLEJIDAD: n
 bool noEsBanderita(banderitas b, pos p){
-    return (getPosIndexEnBanderitas(b,p)==-1); // Complejidad: n + 1 (getPosIndexEnJugadas tiene complejidad n y la comparacion tiene complejida 1)
+    return (getPosIndexEnBanderitas(b,p)==-1); // COMPLEJIDAD: n + 1 (getPosIndexEnJugadas tiene COMPLEJIDAD n y la comparacion tiene complejida 1)
 }
 //Verifico condiciones sobre las posiciones para ver si pueden formar parte del patron.
-//COMPLEJIDAD:
+//COMPLEJIDAD: 1 + n+1 + ... +1 + n = 3n + 3(aprox).
 bool verificoConDePos(tablero t,jugadas j,banderitas b,pos p){
     return posicionValida(t,p) && esJugada(j, p) && (minasAdyacentes(t, p)==1) && noEsBanderita(b,p);
 }
 //Existencia de patron vertical.
-//COMPLEJIDAD:
+//COMPLEJIDAD: n + n = 2n
 bool patronVertical(tablero t, jugadas j,banderitas b,pos p1, pos p2){
     return (verificoConDePos(t, j, b ,p1) && verificoConDePos(t, j, b, p2));
 }
 //Existencia de patron horizontal.
-//COMPLEJIDAD:
+//COMPLEJIDAD: n + n = 2n
 bool patronHorizontal(tablero t, jugadas j,banderitas b,pos p3, pos p4){
     return verificoConDePos(t, j, b,p3) && verificoConDePos(t, j, b,p4);
 }
 
 //Verifica que la posicion Dada no sea una jugada ni una banderita y que se encuentra dentro del tablero
-//COMPLEJIDAD:n
+//COMPLEJIDAD: n
 bool esValidaYnoBanderitaNiJugada(tablero t,jugadas j, banderitas b, pos p){
-    return posicionValida(t,p) && !esJugada(j,p) && noEsBanderita(b,p); // Complejidad: 2n + 1
-                                                                        // (posicionValida tiene complejidad 1
-                                                                        //  esJugada tiene complejidad n
-                                                                        //  noEsBanderita tiene complejidad n)
+    return posicionValida(t,p) && !esJugada(j,p) && noEsBanderita(b,p); // COMPLEJIDAD: 2n + 1
+                                                                        // (posicionValida tiene COMPLEJIDAD 1
+                                                                        //  esJugada tiene COMPLEJIDAD n
+                                                                        //  noEsBanderita tiene COMPLEJIDAD n)
 }
 //Se le asigna a p una posible posicion de las que cumplen las condiciones
 // y valor es modificado de false a true.
-//COMPLEJIDAD:
+//COMPLEJIDAD: 4n+6
 bool asignoPosicionYValor(tablero t, jugadas j, banderitas b, bool& valor, pos& p, pos posA, pos posB){
-    if (esValidaYnoBanderitaNiJugada(t,j, b, posA)) {
-        p = posA;
-        valor = true;
+    if (esValidaYnoBanderitaNiJugada(t,j, b, posA)){//COMPLEJIDAD = 2n + 1
+        p = posA; //COMPLEJIDAD: 1
+        valor = true; //COMPLEJIDAD: 1
     }
-    else if (esValidaYnoBanderitaNiJugada(t,j, b, posB)) {
-        p = posB;
-        valor = true;
+    else if (esValidaYnoBanderitaNiJugada(t,j, b, posB)){//COMPLEJIDAD = 2n + 1
+        p = posB;//COMPLEJIDAD: 1
+        valor = true;//COMPLEJIDAD: 1
     }
     else {}
 }
 //Le asignamos a p alguna de sus posibles opciones y a valor se lo modifica de igual manera,
 // esto en caso de que se generara un patron. Sino no pasa nada.
-//COMPLEJIDAD:
+//COMPLEJIDAD: 12n+12
 bool patron_Y_Asignacion_A_P(tablero t, jugadas j, banderitas b, bool& valor, pos &p, pos posLeft, pos posRight, pos posUp,pos posDown) {
-    if (patronVertical(t, j, b,posUp, posDown)) {
-        asignoPosicionYValor(t,j,b,valor,p,posLeft,posRight);
-    } else if (patronHorizontal(t, j, b,posLeft, posRight)) {
-        asignoPosicionYValor(t,j,b,valor,p, posUp,posDown);
+    if (patronVertical(t, j, b,posUp, posDown)){//COMPLEJIDAD: 2n.
+        asignoPosicionYValor(t,j,b,valor,p,posLeft,posRight);//COMPLEJIDAD: 4n+6
+    } else if (patronHorizontal(t, j, b,posLeft, posRight)) {//COMPLEJIDAD: 2n.
+        asignoPosicionYValor(t,j,b,valor,p, posUp,posDown);//COMPLEJIDAD: 4n+6
     } else {}
 }
 
@@ -162,29 +162,29 @@ bool patron_Y_Asignacion_A_P(tablero t, jugadas j, banderitas b, bool& valor, po
 // -Es la posicion Original jugada
 // -Exite un camino de celdas con 0 bombas adyacentes que va desde la pos Original hasta la celda actual.
 
-//COMPLEJIDAD: La complejidad de un solo "ciclo" es n, y el peor caso es un tablero sin bombas
+//COMPLEJIDAD: La COMPLEJIDAD de un solo "ciclo" es n, y el peor caso es un tablero sin bombas
 //             donde la funcion deberia pasar por cada una de las celdas, es decir n^2.
-//             Entonces la complejidad sera: n * n^2 = n^3
+//             Entonces la COMPLEJIDAD sera: n * n^2 = n^3
 void caminoLibre2V(tablero& t, banderitas& b, pos p, jugadas& j){
-    if (esValidaYnoBanderitaNiJugada(t,j,b,p) && minasAdyacentes(t,p) == 0){ // Complejidad: n+1 (esValidaYnoBanderitaNiJugada tiene complejidad n y minasAdyacentes complejidad 1)
+    if (esValidaYnoBanderitaNiJugada(t,j,b,p) && minasAdyacentes(t,p) == 0){ // COMPLEJIDAD: n+1 (esValidaYnoBanderitaNiJugada tiene COMPLEJIDAD n y minasAdyacentes COMPLEJIDAD 1)
         //Agrego la jugada que representa a la celda a Jugadas
-        j.push_back(jugada(p, minasAdyacentes(t,p))); // Complejidad: 1 (Instruccion Basica)
+        j.push_back(jugada(p, minasAdyacentes(t,p))); // COMPLEJIDAD: 1 (Instruccion Basica)
         //LLamo a la funcion en las celdas vecinas
-        for (int filaOffset = -1; filaOffset <= 1; ++filaOffset) { // Complejidad: 4 (la verificacion sucede extamente 3 veces)
-            for (int columnaOffset = -1; columnaOffset <= 1; ++columnaOffset) { //Complejidad: 12 (la verificacion sucede extamente 3 veces por ciclo)
+        for (int filaOffset = -1; filaOffset <= 1; ++filaOffset) { // COMPLEJIDAD: 4 (la verificacion sucede extamente 3 veces)
+            for (int columnaOffset = -1; columnaOffset <= 1; ++columnaOffset) { //COMPLEJIDAD: 12 (la verificacion sucede extamente 3 veces por ciclo)
                 //Si la posicion actual es igual a la posicion original, la ignoro
-                if (filaOffset == 0 && filaOffset == 0) continue; //Complejidad: 9 (Porque sucede 1 vez por cada ciclo y es instruccion basica)
+                if (filaOffset == 0 && filaOffset == 0) continue; //COMPLEJIDAD: 9 (Porque sucede 1 vez por cada ciclo y es instruccion basica)
                 //En otro caso, verifico que sea una posicion valida y corro a la funcion en la celda vecina
-                pos posicionVecina = pos(p.first + filaOffset,p.second+columnaOffset); //Complejidad: 9 (Porque sucede 1 vez por cada ciclo y es instruccion basica )
-                if (posicionValida(t,posicionVecina)){ // Complejidad: 9 (Porque sucede 1 vez por cada ciclo y es instruccion basica )
-                    caminoLibre2V(t,b,posicionVecina,j); //Complejidad: 9 (Porque sucede 1 vez por cada ciclo y es instruccion basica )
+                pos posicionVecina = pos(p.first + filaOffset,p.second+columnaOffset); //COMPLEJIDAD: 9 (Porque sucede 1 vez por cada ciclo y es instruccion basica )
+                if (posicionValida(t,posicionVecina)){ // COMPLEJIDAD: 9 (Porque sucede 1 vez por cada ciclo y es instruccion basica )
+                    caminoLibre2V(t,b,posicionVecina,j); //COMPLEJIDAD: 9 (Porque sucede 1 vez por cada ciclo y es instruccion basica )
                 }
             }
         }
     }
-    else if(esValidaYnoBanderitaNiJugada(t,j,b,p) && minasAdyacentes(t,p) > 0){ // Complejidad: n+1 (esValidaYnoBanderitaNiJugada tiene complejidad n y minasAdyacentes complejidad 1)
+    else if(esValidaYnoBanderitaNiJugada(t,j,b,p) && minasAdyacentes(t,p) > 0){ // COMPLEJIDAD: n+1 (esValidaYnoBanderitaNiJugada tiene COMPLEJIDAD n y minasAdyacentes COMPLEJIDAD 1)
         //Agrego la jugada que representa a la celda a Jugadas y termino la funcion, ya que tiene bombas adyacentes
-        j.push_back(jugada(p, minasAdyacentes(t,p))); // Complejidad: 1 (Instruccion Basica)
+        j.push_back(jugada(p, minasAdyacentes(t,p))); // COMPLEJIDAD: 1 (Instruccion Basica)
     }
 }
 

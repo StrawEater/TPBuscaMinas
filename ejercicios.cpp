@@ -123,21 +123,34 @@ void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
 //Devuelve un valor (true o false) dependiendo de si existe o no un patron 121,
 //si es true se modifica el p ingresado por uno seguro a jugar y si es false no nos interesa lo que pase con p.
+
+//COMLEJIDAD: 13n+27
 bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p){
-    bool valor = false; //damos origen a un valor para que devuelva la funcion.
+   
+    //damos origen a un valor para que devuelva la funcion.
+    bool valor = false; //COMPLEJIDAD: 1.
+
     //ciclamos en el vector de jugadas para encontrar una posicion ya jugada que tenga 2 minas adyacentes y
     // ver si con otras ya jugadas que tengan 1 mina adyacente se tiene un patron 121.
-    for (int i = 0; i < j.size(); i++) {
-        pos posA = j[i].first;
-        int minasAd = j[i].second;
-        if(minasAd==2 && posicionValida(t, posA)){
+
+    for (int i = 0; i < j.size(); i++) {//COMPLEJIDAD: Declaracion y asignacion de i: 1
+                                        // Guarda longitud de j que la llamamos n(PREGUNTAR A JUAN).
+                                        // i=i+1 COMPLEJIDAD: 2, dos funciones elementales.
+                                        
+        pos posA = j[i].first;//COMPLEJIDAD: 1
+        int minasAd = j[i].second;//COMPLEJIDAD: 1
+        if(minasAd==2 && posicionValida(t, posA)){//COMPLEJIDAD: 1 + 4 = 5
+
             //sacamos las posibles 4 posiciones de los patrones.
-            pos posLeft = pos(posA.first, posA.second - 1);
-            pos posRight = pos(posA.first, posA.second + 1);
+            
+            pos posRight = pos(posA.first, posA.second + 1);//COMPLEJIDAD: calcular las 4 posiciones es 4.
             pos posUp = pos(posA.first - 1, posA.second);
             pos posDown = pos(posA.first + 1, posA.second);
-            //verificamos el patron con las posibles posiciones y la encontrada con las 2 minas adyacentes. 
+            pos posLeft = pos(posA.first, posA.second - 1);
+
             patron_Y_Asignacion_A_P(t, j, b, valor, p, posLeft, posRight, posUp, posDown);
+            //verificamos el patron con las posibles posiciones y la encontrada con las 2 minas adyacentes.
+            //COMPLEJIDAD: 12n+12
         }
     }
     return valor;
