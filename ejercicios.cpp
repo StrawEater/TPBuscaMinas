@@ -147,10 +147,11 @@ bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p){
 
             //sacamos las posibles 4 posiciones de los patrones.
             
-            pos posRight = pos(posA.first, posA.second + 1);//COMPLEJIDAD: calcular las 4 posiciones es 4.
+            //COMPLEJIDAD: calcular las 4 posiciones es 4.
             pos posUp = pos(posA.first - 1, posA.second);
             pos posDown = pos(posA.first + 1, posA.second);
             pos posLeft = pos(posA.first, posA.second - 1);
+            pos posRight = pos(posA.first, posA.second + 1);
 
             patron_Y_Asignacion_A_P(t, j, b, valor, p, posLeft, posRight, posUp, posDown);
             //Verificamos el patron con las posibles posiciones y la encontrada con las 2 minas adyacentes.
