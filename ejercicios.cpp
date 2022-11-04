@@ -11,6 +11,8 @@
 #include "auxiliares.h"
 
 using namespace std;
+/**************Tomamos para el peor caso que jugadas puede tener t² o banderitas puede tener t² en su peor caso como longitudes.
+Vamos a tomar t² como n, para facilitar los calculos, siendo t la longitud del tablero y t² es la cantidad total de casillas del mismo.*******/
 
 /******++++**************************** EJERCICIO minasAdyacentes ***********+++***********************/
 
@@ -58,9 +60,9 @@ void cambiarBanderita(tablero& t, jugadas& j, pos p, banderitas& b) {
 //COMPLEJIDAD: 1+n(2+1+1+1+1) = 1+n*6 = 6n+1 = O(n).
 bool perdio(tablero& t, jugadas& j) {
     //recorro todas las jugadas
-    for (int i = 0; i < j.size(); ++i){//COMPLEJIDAD(declaracion y inicializacion de i): 1.
-                                      //COMPLEJIDAD(guarda): n.
-                                      //COMPLEJIDAD(asignacion y suma a i):2.
+    for (int i = 0; i < j.size(); ++i){ //COMPLEJIDAD(Declaración y asignación de i): 1.
+                                        //COMPLEJIDAD(Guarda): n.
+                                        //COMPLEJIDAD: 2, dos funciones elementales.
         pos posDeJugada = j[i].first;//COMPLEJIDAD: 1.
         int columna = posDeJugada.second;//COMPLEJIDAD: 1.
         int fila = posDeJugada.first;//COMPLEJIDAD: 1.
@@ -126,7 +128,6 @@ void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
 //Devuelve un valor (true o false) dependiendo de si existe o no un patron 121,
 //si es true se modifica el p ingresado por uno seguro a jugar y si es false no nos interesa lo que pase con p.
-
 //COMLEJIDAD: n*(12n+25)+1+1 = 12n²+25n+2 = O(n²) = O(t⁴)
 bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p){
    
@@ -136,9 +137,9 @@ bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p){
     //ciclamos en el vector de jugadas para encontrar una posición ya jugada que tenga 2 minas adyacentes y
     // ver si con otras ya jugadas que tengan 1 mina adyacente se tiene un patron 121.
 
-    for (int i = 0; i < j.size(); i++) {//COMPLEJIDAD: Declaración y asignación de i: 1
-                                        // Guarda longitud de j que la llamamos n(PREGUNTAR A JUAN).
-                                        // i=i+1 COMPLEJIDAD: 2, dos funciones elementales.
+    for (int i = 0; i < j.size(); i++) {//COMPLEJIDAD(Declaración y asignación de i): 1.
+                                        //COMPLEJIDAD(Guarda): n.
+                                        //COMPLEJIDAD: 2, dos funciones elementales.
                                         
         pos posA = j[i].first;//COMPLEJIDAD: 1
         int minasAd = j[i].second;//COMPLEJIDAD: 1
