@@ -15,7 +15,7 @@ using namespace std;
 //Verifica que las coordenadas esten entre el rango de la matriz Tablero, y si lo hacen, devuelve True.
 //Que Ninguna de ellas sean negativas. Que la cordY no sea mayor a la cantidad de filas del tablero y
 //que la cordX no sea mayor a la cantidad de columnas
-//COMPLEJIDAD = 1.
+//COMPLEJIDAD = 5.
 bool posicionValida(tablero& t, pos p){
     int columna = p.second; // COMPLEJIDAD: 1 (instruccion basica)
     int fila = p.first; // COMPLEJIDAD: 1 (instruccion basica)
@@ -41,7 +41,7 @@ int getPosIndexEnBanderitas(banderitas& b, pos p){
 // COMPLEJIDAD: n
 int getPosIndexEnJugadas(jugadas& j, pos p){
 
-    for (int i = 0; i < j.size(); ++i) { // COMPLEJIDAD: n (Se hace la verificacion un total de n veces)
+    for (int i = 0; i < j.size(); i++) { // COMPLEJIDAD: n (Se hace la verificacion un total de n veces)
         pos posJugada = j[i].first; // COMPLEJIDAD: n-1 (La instruccion basica sucede n-1 veces, ya que a la enesima vez i=n y escapa del for)
 
         if (sonPosIguales(posJugada,p)){ // COMPLEJIDAD: n-1 (La instruccion basica sucede n-1 veces, ya que a la enesima vez i=n y escapa del for)
@@ -52,11 +52,11 @@ int getPosIndexEnJugadas(jugadas& j, pos p){
 }
 
 //Devuelve un vector de tipo Banderita indentico al argumento, excepto por no conterner
-//al elemento que se encontraba en indexPosicion
+//al elemento que//COMPLEJIDAD: 3 Incremento de i++. se encontraba en indexPosicion
 // COMPLEJIDAD: n
 void eliminarPosicionDeBanderita(banderitas& b, int indexPosicion){
     banderitas nuevoVectorBanderitas; // COMPLEJIDAD: 1 (Instruccion Basica)
-    for (int i = 0; i < b.size(); ++i) { // COMPLEJIDAD: n (Se hace la verificacion un total de n veces)
+    for (int i = 0; i < b.size(); i++) { // COMPLEJIDAD: n (Se hace la verificacion un total de n veces)
         // Si el elemento no se encuentra en el index que quiero eliminar, lo agrego al nuevo Vector
         // Si el index es el mismo, no lo agrego
         if (i != indexPosicion) nuevoVectorBanderitas.push_back(b[i]); // COMPLEJIDAD: n-1 (La instruccion basica sucede n-1 veces, ya que a la enesima vez i=n y escapa del for)
@@ -93,19 +93,32 @@ bool noEsBanderita(banderitas b, pos p){
     return (getPosIndexEnBanderitas(b,p)==-1); // COMPLEJIDAD: n + 1 (getPosIndexEnJugadas tiene COMPLEJIDAD n y la comparacion tiene complejida 1)
 }
 //Verifico condiciones sobre las posiciones para ver si pueden formar parte del patron.
-//COMPLEJIDAD: 1 + n+1 + ... +1 + n = 3n + 3(aprox).
+//COMPLEJIDAD: 2+n.
 bool verificoConDePos(tablero t,jugadas j,banderitas b,pos p){
     return posicionValida(t,p) && esJugada(j, p) && (minasAdyacentes(t, p)==1) && noEsBanderita(b,p);
+    // Complejidad de return = 1 por ser una instruccion elemental
+    // Complejidad de posicionValida = 1.
+    // Complejidad de esJugada = |j|.
+    // Complejidad de minasAdyacentes = 1.
+    // Complejidad de noEsBanderita = |b|.
+    // En el peor caso, todas las casillas son jugadas y no hay bombas ni banderitas, siendo |j| = n y |b| = 0, o
+    // todas las casillas son banderitas y no hay jugadas, siendo |b| = n y |j| = 0
+    // entonces, la complejidad seria: 1 + n + 1 = 2+n
+
 }
 //Existencia de patron vertical.
-//COMPLEJIDAD: n + n = 2n
+//COMPLEJIDAD: 2n+5
 bool patronVertical(tablero t, jugadas j,banderitas b,pos p1, pos p2){
     return (verificoConDePos(t, j, b ,p1) && verificoConDePos(t, j, b, p2));
+    //verificoConDePos tiene complejidad n+2 y siendo que se utiliza dos veces esta misma operacion se hace (n+2)*2
+    // y se le suma 1 por el return dando 2n+5.
 }
 //Existencia de patron horizontal.
-//COMPLEJIDAD: n + n = 2n
+//COMPLEJIDAD: 2n+5
 bool patronHorizontal(tablero t, jugadas j,banderitas b,pos p3, pos p4){
     return verificoConDePos(t, j, b,p3) && verificoConDePos(t, j, b,p4);
+    //verificoConDePos tiene complejidad n+2 y siendo que se utiliza dos veces esta misma operacion se hace (n+2)*2
+    // y se le suma 1 por el return dando 2n+5.
 }
 
 //Verifica que la posicion Dada no sea una jugada ni una banderita y que se encuentra dentro del tablero
@@ -129,16 +142,19 @@ void asignoPosicionYValor(tablero t, jugadas j, banderitas b, bool& valor, pos& 
         valor = true;//COMPLEJIDAD: 1
     }
     else {}
+    //Siendo que la guardas poseen complejidad 2n+1 y las asignaciones 1 cada una, la complejidad total es de 2*(2n+1)+1*4
+    //que es 4n+6
 }
 //Le asignamos a p alguna de sus posibles opciones y a valor se lo modifica de igual manera,
 // esto en caso de que se generara un patron. Sino no pasa nada.
-//COMPLEJIDAD: 12n+16
+//COMPLEJIDAD: 12n+22
 void patron_Y_Asignacion_A_P(tablero t, jugadas j, banderitas b, bool& valor, pos &p, pos posLeft, pos posRight, pos posUp,pos posDown) {
-    if (patronVertical(t, j, b,posUp, posDown)){//COMPLEJIDAD: 2n.
-        asignoPosicionYValor(t,j,b,valor,p,posLeft,posRight);//COMPLEJIDAD: 4n+6
-    } else if (patronHorizontal(t, j, b,posLeft, posRight)) {//COMPLEJIDAD: 2n.
-        asignoPosicionYValor(t,j,b,valor,p, posUp,posDown);//COMPLEJIDAD: 4n+6
+    if (patronVertical(t, j, b,posUp, posDown)){//COMPLEJIDAD: 2n+5.
+        asignoPosicionYValor(t,j,b,valor,p,posLeft,posRight);//COMPLEJIDAD: 4n+6.
+    } else if (patronHorizontal(t, j, b,posLeft, posRight)) {//COMPLEJIDAD: 2n+5.
+        asignoPosicionYValor(t,j,b,valor,p, posUp,posDown);//COMPLEJIDAD: 4n+6.
     } else {}
+    //Sabiendo las complejidades de las funciones anteriores podemos calcular esta siendo 2*(2n+5)+2*(4n+6) igual a 12n+22
 }
 
 // JUGAR PLUS 2V
