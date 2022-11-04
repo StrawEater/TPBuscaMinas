@@ -114,7 +114,7 @@ bool esValidaYnoBanderitaNiJugada(tablero t,jugadas j, banderitas b, pos p){
 //Se le asigna a p una posible posicion de las que cumplen las condiciones
 // y valor es modificado de false a true.
 //COMPLEJIDAD: 4n+6
-bool asignoPosicionYValor(tablero t, jugadas j, banderitas b, bool& valor, pos& p, pos posA, pos posB){
+void asignoPosicionYValor(tablero t, jugadas j, banderitas b, bool& valor, pos& p, pos posA, pos posB){
     if (esValidaYnoBanderitaNiJugada(t,j, b, posA)){//COMPLEJIDAD = 2n + 1
         p = posA; //COMPLEJIDAD: 1
         valor = true; //COMPLEJIDAD: 1
@@ -128,7 +128,7 @@ bool asignoPosicionYValor(tablero t, jugadas j, banderitas b, bool& valor, pos& 
 //Le asignamos a p alguna de sus posibles opciones y a valor se lo modifica de igual manera,
 // esto en caso de que se generara un patron. Sino no pasa nada.
 //COMPLEJIDAD: 12n+12
-bool patron_Y_Asignacion_A_P(tablero t, jugadas j, banderitas b, bool& valor, pos &p, pos posLeft, pos posRight, pos posUp,pos posDown) {
+void patron_Y_Asignacion_A_P(tablero t, jugadas j, banderitas b, bool& valor, pos &p, pos posLeft, pos posRight, pos posUp,pos posDown) {
     if (patronVertical(t, j, b,posUp, posDown)){//COMPLEJIDAD: 2n.
         asignoPosicionYValor(t,j,b,valor,p,posLeft,posRight);//COMPLEJIDAD: 4n+6
     } else if (patronHorizontal(t, j, b,posLeft, posRight)) {//COMPLEJIDAD: 2n.
