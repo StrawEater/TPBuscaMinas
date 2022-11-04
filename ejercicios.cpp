@@ -11,16 +11,16 @@
 #include "auxiliares.h"
 
 using namespace std;
-/**************Tomamos para el peor caso que jugadas puede tener t² o banderitas puede tener t² en su peor caso como longitudes.
-Vamos a tomar t² como n, para facilitar los calculos, siendo t la longitud del tablero y t² es la cantidad total de casillas del mismo.*******/
+/**************Tomamos para el peor caso que jugadas puede tener t² o banderitas puede tener t² como longitudes.
+Vamos a tomar t² como n para facilitar los calculos, siendo t la longitud del tablero y t² es la cantidad total de casillas del mismo.*******/
 
 /******++++**************************** EJERCICIO minasAdyacentes ***********+++***********************/
 
 
 
-//Devuelve la cantidad de minas adyacentes a la posicion dada
+//Devuelve la cantidad de minas adyacentes a la posición dada
 //COMPLEJIDAD: 1 + 1 + 1 + 1 + 4 + 3*(1 + 4 + 3*(1+6+2)) - (6+2) + 1 + 1 = 98 = O(1).
-//El peor caso seria una celda con 8 bombas vecinas, ya que se sumaria cantMinasAdy 8 veces.
+//El peor caso seria una celda con 8 bombas vecinas, ya que se sumaría cantMinasAdy 8 veces.
 //Se le resta (6+2) porque i y j llegaran a i=0 y j=0 evitando la ejecucion del segundo if, pero ejecutando el continue.
 
 int minasAdyacentes(tablero& t, pos p) {
@@ -35,8 +35,8 @@ int minasAdyacentes(tablero& t, pos p) {
                                         //COMPLEJIDAD(Guarda): 4.
                                         //COMPLEJIDAD(Incremento de j++): 3
             //Si la posicion actual es igual a la posicion original, la ignoro
-            if (i == 0 && j == 0){ //COMPLEJIDAD(Evaluacion): 1
-                continue; // COMPLEJIDAD(Instruccion Elemental):1
+            if (i == 0 && j == 0){ //COMPLEJIDAD(Evaluación): 1
+                continue; // COMPLEJIDAD(Instrucción Elemental):1
             }
             //En otro caso, verifico que sea una posicion valida y agrego 1 al contador si la posicion tiene mina
             if (posicionValida(t,pos(coordX+i,coordY+j))){ //COMPLEJIDAD(Verificacion y posicionValida): 1 + 5 = 6
@@ -44,24 +44,24 @@ int minasAdyacentes(tablero& t, pos p) {
             }
         }
     }
-    return cantMinasAdyacentes; // COMPLEJIDAD(Instruccion Basica): 1
+    return cantMinasAdyacentes; // COMPLEJIDAD(Instrucción elemental): 1
 }
 
 /******++++**************************** EJERCICIO plantarBanderita ***********+++***********************/
 
-// Dado un vector de Banderitas y una posicion, junto con otros parametros, cambia el estado de la posicion dada.
-// Si la posicion ya era una banderita, se la elimina del vector banderitas(Deja de ser banderita)
-// Si la posicion no era una banderita, se la agrega al vector banderitas(Se convierte en una banderita)
-// COPLEJIDAD: |b| + 1 + |b|, ya que el peor caso es que quiera eliminar una banderita que este en la ultima posicion de b
-// 2|b| + 1, el peor caso de esto seria que todas las celdas del tablero (n) sean banderitas: 2n+1 = O(n).
+// Dado un vector de Banderitas y una posición, junto con otros parámetros, cambia el estado de la posición dada.
+// Si la posición ya era una banderita, se la elimina del vector banderitas(Deja de ser banderita)
+// Si la posición no era una banderita, se la agrega al vector banderitas(Se convierte en una banderita)
+// COMPLEJIDAD: |b| + 1 + |b|, ya que el peor caso es que quiera eliminar una banderita que este en la última posición de b
+// 2|b| + 1, el peor caso de esto sería que todas las celdas del tablero (n) sean banderitas: 2n+1 = O(n).
 void cambiarBanderita(tablero& t, jugadas& j, pos p, banderitas& b) {
     //Verifico que la posicion se encontraba en Banderitas
-    int indexBanderita = getPosIndexEnBanderitas(b,p); //COMPLEJIDAD(getPosIndexEnBanderitas + ASIGNACION): |b| + 1
-    //Si no lo hacia, la agrega
-    if (indexBanderita == -1){ //COMPLEJIDAD(Verificacion): 1
-        b.push_back(p); //COMPLEJIDAD(Instruccion Elemental): 1
+    int indexBanderita = getPosIndexEnBanderitas(b,p); //COMPLEJIDAD(getPosIndexEnBanderitas + ASIGNACIÓN): |b| + 1
+    //Si no lo hacía, la agrega
+    if (indexBanderita == -1){ //COMPLEJIDAD(Verificación): 1
+        b.push_back(p); //COMPLEJIDAD(Instrucción Elemental): 1
     }else{
-        // Si lo hacia, la elimino
+        // Si lo hacía, la elimino
         eliminarPosicionDeBanderita(b,indexBanderita); //COMPLEJIDAD(eliminarPosicionDeBanderita): |b|
     }
 }
@@ -69,11 +69,12 @@ void cambiarBanderita(tablero& t, jugadas& j, pos p, banderitas& b) {
 /******++++**************************** EJERCICIO perdio ***********+++***********************/
 //Dado un vector de jugadas y un tablero, devuelve si el estado del juego implica que el usuario perdió
 // Que un usuario pierda implica que alguna de sus jugadas fue en una celda que contenía una mina
-//COMPLEJIDAD: 1+n(1+1+1+1+1)+1 = 2+n*5 = 5n+2 = O(n).
+//COMPLEJIDAD: 1+|j|(1+1+1+1+1)+1 = 2+|j|*5 = 5|j|+2.
+// En el peor de lo casos, j es igual a la longitud del tablero, siendo la complejidad 5n+2 = O(n)
 bool perdio(tablero& t, jugadas& j) {
     //recorro todas las jugadas
     for (int i = 0; i < j.size(); i++){ //COMPLEJIDAD(Declaración y asignación de i): 1.
-                                        //COMPLEJIDAD(Guarda): n.
+                                        //COMPLEJIDAD(Guarda): |j|.
                                         //COMPLEJIDAD: 1, dos funciones elementales.
         pos posDeJugada = j[i].first;//COMPLEJIDAD: 1.
         int columna = posDeJugada.second;//COMPLEJIDAD: 1.
@@ -118,15 +119,16 @@ bool gano(tablero& t, jugadas& j) {
 // El nuevo vector de jugadas debería contener:
 // las jugadas que ya se encontraban en el antiguo vector
 // la jugada que represente la posición que el usuario decidió jugar en este momento
-// todas las jugadas que representan a las celdas a las que es posible llegar desde la Pos Original a ella sin pasar por ninguna celda con minas adyacentes
+// todas las jugadas que representan a las celdas a las que es posible llegar desde la Pos jugada hasta ella sin pasar por ninguna celda con minas adyacentes
+// Complejidad O(n²).
 void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
-    caminoLibre2V(t,b,p,j);
+    caminoLibre2V(t,b,p,j); // Complejidad O(n²)
 }
 
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
 //Devuelve un valor (true o false) dependiendo de si existe o no un patron 121,
 //si es true se modifica el p ingresado por uno seguro a jugar y si es false no nos interesa lo que pase con p.
-//COMLEJIDAD: n*(12n+34)+1+1+1 = 12n²+34n+3 = O(n²) = O(t⁴)
+//COMPLEJIDAD: n*(12n+34)+1+1+1 = 12n²+34n+3 = O(n²) = O(t⁴)
 bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p){
    
     //damos origen a un valor para que devuelva la función.
@@ -136,7 +138,7 @@ bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p){
     // ver si con otras ya jugadas que tengan 1 mina adyacente se tiene un patron 121.
 
     for (int i = 0; i < j.size(); i++) {//COMPLEJIDAD(Declaración y asignación de i): 1.
-                                        //COMPLEJIDAD(Guarda): n.
+                                        //COMPLEJIDAD(Guarda): |j|. en el peor de los casos es n.
                                         //COMPLEJIDAD: 1.
                                         
         pos posA = j[i].first;//COMPLEJIDAD: 1
