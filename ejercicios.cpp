@@ -88,7 +88,7 @@ bool gano(tablero& t, jugadas& j) {
         for(int b=0;b<t[a].size();b++) {
             if(t[a][b]) {                       //Si en algún casillero hay una bomba...
                 moduloTablero--;
-                pos posicionTablero(a,b);
+                pos posicionTablero = pos(a,b);
                 for(int c=0;c<j.size();c++) {   //...recorro la lista de jugadas en búsqueda de ese casillero
                     if(sonPosIguales(posicionTablero, j[c].first))
                         return false;           //De haber sido jugado, no gana y retorna false
