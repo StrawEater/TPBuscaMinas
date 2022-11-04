@@ -109,6 +109,8 @@ bool gano(tablero& t, jugadas& j) {
 // todas las jugadas que representan a las celdas a las que es posible llegar desde la Pos Original a ella sin pasar por ninguna celda con minas adyacentes
 void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
     caminoLibre2V(t,b,p,j);
+    
+    
     /*
     //Declaro un vector de jugadas y su referencia
     jugadas vectorAuxiliar;

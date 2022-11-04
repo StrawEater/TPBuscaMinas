@@ -141,16 +141,6 @@ void patron_Y_Asignacion_A_P(tablero t, jugadas j, banderitas b, bool& valor, po
     } else {}
 }
 
-/*bool jugadaHecha(jugada jugadaChequeada, jugadas juego) {
-    for(int i=0;i<juego.size();i++) {
-        if(juego[i].first == jugadaChequeada.first) {
-            return true;
-            break;
-        }
-    return false;
-}
-}*/
-
 // JUGAR PLUS 2V
 // Verifica que la celda en la posicion pasada cumple las condiciones par ser agregada en jugadas
 // - No es una Celda Jugada ni una Banerita
