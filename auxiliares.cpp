@@ -170,10 +170,10 @@ void caminoLibre2V(tablero& t, banderitas& b, pos p, jugadas& j){
         //Agrego la jugada que representa a la celda a Jugadas
         j.push_back(jugada(p, minasAdyacentes(t,p))); // COMPLEJIDAD: 1 (Instruccion Basica)
         //LLamo a la funcion en las celdas vecinas
-        for (int filaOffset = -1; filaOffset <= 1; ++filaOffset) { // COMPLEJIDAD: 4 (la verificacion sucede extamente 3 veces)
-            for (int columnaOffset = -1; columnaOffset <= 1; ++columnaOffset) { //COMPLEJIDAD: 12 (la verificacion sucede extamente 3 veces por ciclo)
+        for (int filaOffset = -1; filaOffset <= 1; filaOffset++) { // COMPLEJIDAD: 4 (la verificacion sucede extamente 3 veces)
+            for (int columnaOffset = -1; columnaOffset <= 1; columnaOffset++) { //COMPLEJIDAD: 12 (la verificacion sucede extamente 3 veces por ciclo)
                 //Si la posicion actual es igual a la posicion original, la ignoro
-                if (filaOffset == 0 && filaOffset == 0) continue; //COMPLEJIDAD: 9 (Porque sucede 1 vez por cada ciclo y es instruccion basica)
+                if (filaOffset == 0 && columnaOffset == 0) continue; //COMPLEJIDAD: 9 (Porque sucede 1 vez por cada ciclo y es instruccion basica)
                 //En otro caso, verifico que sea una posicion valida y corro a la funcion en la celda vecina
                 pos posicionVecina = pos(p.first + filaOffset,p.second+columnaOffset); //COMPLEJIDAD: 9 (Porque sucede 1 vez por cada ciclo y es instruccion basica )
                 if (posicionValida(t,posicionVecina)){ // COMPLEJIDAD: 9 (Porque sucede 1 vez por cada ciclo y es instruccion basica )

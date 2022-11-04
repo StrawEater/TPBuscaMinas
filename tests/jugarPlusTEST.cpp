@@ -12,17 +12,17 @@ using namespace std;
 #pragma region Tableros
 
 #pragma region Tablero1
-//┌───┬───┬───┬───┬───┐
-//│ * │ * │ b │ ■ │ 1 │
-//├───┼───┼───┼───┼───┤
-//│ b │ 3 │ 3 │ * │ b │
-//├───┼───┼───┼───┼───┤
-//│ 1 │ * │ 2 │ 1 │ 1 │
-//├───┼───┼───┼───┼───┤
-//│ 2 │ 3 │ 2 │ ■ │ 0 │
-//├───┼───┼───┼───┼───┤
-//│ * │ b │ * │ ■ │ 0 │
-//└───┴───┴───┴───┴───┘
+//┌───┬───┬───┬───┬───┐ //┌───┬───┬───┬───┬───┐
+//│ * │ * │ b │ ■ │ 1 │ //│ * │ * │ 2 │ 1 │ 1 │
+//├───┼───┼───┼───┼───┤ //├───┼───┼───┼───┼───┤
+//│ b │ 3 │ 3 │ * │ b │ //│ 3 │ 3 │ 3 │ * │ 1 │
+//├───┼───┼───┼───┼───┤ //├───┼───┼───┼───┼───┤
+//│ 1 │ * │ 2 │ 1 │ 1 │ //│ 1 │ * │ 2 │ 1 │ 1 │
+//├───┼───┼───┼───┼───┤ //├───┼───┼───┼───┼───┤
+//│ 2 │ 3 │ 2 │ ■ │ 0 │ //│ 2 │ 3 │ 2 │ 1 │ 0 │
+//├───┼───┼───┼───┼───┤ //├───┼───┼───┼───┼───┤
+//│ * │ b │ * │ ■ │ 0 │ //│ * │ 2 │ * │ 1 │ 0 │
+//└───┴───┴───┴───┴───┘ //└───┴───┴───┴───┴───┘
 
 static tablero t1 = {
         { cMINA,  cMINA,  cVACIA, cVACIA, cVACIA },
@@ -50,21 +50,21 @@ static jugadas jugadasTab1 = {
 #pragma endregion Tablero1
 
 #pragma region Tablero2
-//┌───┬───┬───┬───┬───┬───┬───┐
-//│ ■ │ ■ │ ■ │ * │ 2 │ ■ │ b │
-//├───┼───┼───┼───┼───┼───┼───┤
-//│ ■ │ 1 │ 2 │ 1 │ 2 │ * │ 1 │
-//├───┼───┼───┼───┼───┼───┼───┤
-//│ 1 │ B │ 1 │ 0 │ 1 │ 1 │ 1 │
-//├───┼───┼───┼───┼───┼───┼───┤
-//│ 1 │ 2 │ ■ │ 1 │ 0 │ 0 │ 0 │
-//├───┼───┼───┼───┼───┼───┼───┤
-//│ b │ ■ │ * │ 2 │ 1 │ b │ 0 │
-//├───┼───┼───┼───┼───┼───┼───┤
-//│ b │ ■ │ 1 │ 2 │ * │ 1 │ 0 │
-//├───┼───┼───┼───┼───┼───┼───┤
-//│ * │ ■ │ 0 │ 1 │ 1 │ 1 │ 0 │
-//└───┴───┴───┴───┴───┴───┴───┘
+//┌───┬───┬───┬───┬───┬───┬───┐ //┌───┬───┬───┬───┬───┬───┬───┐
+//│ ■ │ ■ │ ■ │ * │ 2 │ ■ │ b │ //│ 0 │ 0 │ 1 │ * │ 2 │ 1 │ 1 │
+//├───┼───┼───┼───┼───┼───┼───┤ //├───┼───┼───┼───┼───┼───┼───┤
+//│ ■ │ 1 │ 2 │ 1 │ 2 │ * │ 1 │ //│ 1 │ 1 │ 2 │ 1 │ 2 │ * │ 1 │
+//├───┼───┼───┼───┼───┼───┼───┤ //├───┼───┼───┼───┼───┼───┼───┤
+//│ 1 │ B │ 1 │ 0 │ 1 │ 1 │ 1 │ //│ 1 │ * │ 1 │ 0 │ 1 │ 1 │ 1 │
+//├───┼───┼───┼───┼───┼───┼───┤ //├───┼───┼───┼───┼───┼───┼───┤
+//│ 1 │ 2 │ ■ │ 1 │ 0 │ 0 │ 0 │ //│ 1 │ 2 │ 2 │ 1 │ 0 │ 0 │ 0 │
+//├───┼───┼───┼───┼───┼───┼───┤ //├───┼───┼───┼───┼───┼───┼───┤
+//│ b │ ■ │ * │ 2 │ 1 │ b │ 0 │ //│ 0 │ 1 │ * │ 2 │ 1 │ 1 │ 0 │
+//├───┼───┼───┼───┼───┼───┼───┤ //├───┼───┼───┼───┼───┼───┼───┤
+//│ b │ ■ │ 1 │ 2 │ * │ 1 │ 0 │ //│ 1 │ 2 │ 1 │ 2 │ * │ 1 │ 0 │
+//├───┼───┼───┼───┼───┼───┼───┤ //├───┼───┼───┼───┼───┼───┼───┤
+//│ * │ ■ │ 0 │ 1 │ 1 │ 1 │ 0 │ //│ * │ 1 │ 0 │ 1 │ 1 │ 1 │ 0 │
+//└───┴───┴───┴───┴───┴───┴───┘ //└───┴───┴───┴───┴───┴───┴───┘
 static tablero t2 = {
         { cVACIA, cVACIA, cVACIA, cMINA, cVACIA, cVACIA, cVACIA },
         { cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cMINA, cVACIA },
@@ -99,19 +99,19 @@ static jugadas jugadasTab2 = {
 #pragma endregion Tablero2
 
 #pragma region Tablero3
-//┌───┬───┬───┬───┬───┬───┐
-//│ 0 │ 1 │ 1 │ 1 │ 1 │ * │
-//├───┼───┼───┼───┼───┼───┤
-//│ 0 │ 1 │ * │ 1 │ 1 │ 1 │
-//├───┼───┼───┼───┼───┼───┤
-//│ 0 │ 2 │ 2 │ 2 │ 0 │ 0 │
-//├───┼───┼───┼───┼───┼───┤
-//│ 0 │ 1 │ * │ 2 │ 1 │ 1 │
-//├───┼───┼───┼───┼───┼───┤
-//│ 1 │ 2 │ 1 │ 2 │ * │ 1 │
-//├───┼───┼───┼───┼───┼───┤
-//│ * │ 1 │ 0 │ 1 │ 1 │ 1 │
-//└───┴───┴───┴───┴───┴───┘
+//┌───┬───┬───┬───┬───┬───┐ //┌───┬───┬───┬───┬───┬───┐
+//│ ■ │ ■ │ ■ │ 1 │ 1 │ B │ //│ 0 │ 1 │ 1 │ 1 │ 1 │ * │
+//├───┼───┼───┼───┼───┼───┤ //├───┼───┼───┼───┼───┼───┤
+//│ 0 │ 1 │ B │ 1 │ 1 │ ■ │ //│ 0 │ 1 │ * │ 1 │ 1 │ 1 │
+//├───┼───┼───┼───┼───┼───┤ //├───┼───┼───┼───┼───┼───┤
+//│ 0 │ 2 │ 2 │ 2 │ 0 │ 0 │ //│ 0 │ 2 │ 2 │ 2 │ 0 │ 0 │
+//├───┼───┼───┼───┼───┼───┤ //├───┼───┼───┼───┼───┼───┤
+//│ 0 │ 1 │ B │ 2 │ 1 │ 1 │ //│ 0 │ 1 │ * │ 2 │ 1 │ 1 │
+//├───┼───┼───┼───┼───┼───┤ //├───┼───┼───┼───┼───┼───┤
+//│ ■ │ ■ │ 1 │ 2 │ * │ 1 │ //│ 1 │ 2 │ 1 │ 2 │ * │ 1 │
+//├───┼───┼───┼───┼───┼───┤ //├───┼───┼───┼───┼───┼───┤
+//│ * │ 1 │ 0 │ 1 │ 1 │ 1 │ //│ * │ 1 │ 0 │ 1 │ 1 │ 1 │
+//└───┴───┴───┴───┴───┴───┘ //└───┴───┴───┴───┴───┴───┘
 static tablero t3 = {
         { cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cMINA},
         { cVACIA, cVACIA, cMINA, cVACIA, cVACIA, cVACIA},
@@ -190,7 +190,7 @@ static jugadas jugadasTab4 = {
 #pragma endregion Tableros
 
 TEST(jugarPlusTest, imprimirAlgo){
-    printTablero(t4, {banderitasTab4}, {jugadasTab4});
+    printTablero(t3, banderitasTab3, jugadasTab3);
     ASSERT_TRUE(true);
 }
 
@@ -206,7 +206,9 @@ bool mismasJugadas(jugadas jugadasEsperadas, jugadas jugadasDevueltas){
                 break;
             }
         }
-        if (!encontrada) return false;
+        if (!encontrada){
+            return false;
+        }
     }
     return jugadasEsperadas.size() == jugadasDevueltas.size();
 }
@@ -219,7 +221,7 @@ jugadas subVectorJugadas(jugadas vectorJugadas, int inicio, int final){
     return subVectorJ;
 }
 
-#pragma region TestTablero1
+
 
 void testJugadasDevueltas(pos posJugada, jugadas jugadasEsperadas, tablero t, banderitas banderitasTablero, jugadas jugadasTablero){
     int cantidadDeJugadasOriginales = jugadasTablero.size();
@@ -236,23 +238,29 @@ void testJugadasDevueltas(pos posJugada, jugadas jugadasEsperadas, tablero t, ba
     }
 }
 
+#pragma region TestTablero1
+
 TEST(jugarPlusTest, tablero1pos_0_4){
     pos posJugada = pos(0,4);
     jugadas jugadasEsperadas = {
             jugada(pos(0, 4), 1),
+            //
+            //
+            //
+            //
     };
-    jugadas jugadasDevueltas = {jugada(pos(0, 4), 1),};
-
     testJugadasDevueltas(posJugada, jugadasEsperadas, t1, banderitasTab1, jugadasTab1);
 }
 
 TEST(jugarPlusTest, tablero1pos_4_4){
     pos posJugada = pos(4,4);
     jugadas jugadasEsperadas = {
+            //
+            //
+            jugada(pos(2, 3), 1),jugada(pos(2, 4), 1),
             jugada(pos(3, 4), 0),
             jugada(pos(4, 4), 0),
     };
-    jugadas jugadasDevueltas = {jugada(pos(4, 4), 0), jugada(pos(3, 4), 0)};
     testJugadasDevueltas(posJugada, jugadasEsperadas, t1, banderitasTab1, jugadasTab1);
 
 }
@@ -263,14 +271,15 @@ TEST(jugarPlusTest, tablero1pos_4_4){
 TEST(jugarPlusTest, tablero2pos_6_6){
     pos posJugada = pos(6,6);
     jugadas jugadasEsperadas = {
-            jugada(pos(6, 6), 0),
-            jugada(pos(5, 6), 0),
-            jugada(pos(4, 6), 0),
-            jugada(pos(3, 6), 0),
-            jugada(pos(3, 5), 0),
-            jugada(pos(3, 4), 0),
+            //
+            jugada(pos(1, 2), 2),jugada(pos(1, 3), 1),jugada(pos(1, 4), 2),
+            jugada(pos(2, 2), 1),jugada(pos(2, 3), 0),jugada(pos(2, 4), 1),jugada(pos(2, 5), 1),jugada(pos(2, 6), 1),
+            jugada(pos(3, 3), 1),jugada(pos(3, 4), 0),jugada(pos(3, 5), 0),jugada(pos(3, 6), 0),
+            jugada(pos(4, 3), 2),jugada(pos(4, 4), 1),jugada(pos(4, 6), 0),
+            jugada(pos(5, 5), 1),jugada(pos(5, 6), 0),
+            jugada(pos(6, 5), 1),jugada(pos(6, 6), 0),
     };
-    jugadas jugadasDevueltas = {jugada(pos(4, 4), 1),};
+
     testJugadasDevueltas(posJugada, jugadasEsperadas, t2, banderitasTab2, jugadasTab2);
 
 }
@@ -278,9 +287,15 @@ TEST(jugarPlusTest, tablero2pos_6_6){
 TEST(jugarPlusTest, tablero2pos_6_2){
     pos posJugada = pos(6,2);
     jugadas jugadasEsperadas = {
-            jugada(pos(6, 2), 0),
+            //
+            //
+            //
+            //
+            //
+            jugada(pos(5, 2), 1),jugada(pos(5, 3), 2),
+            jugada(pos(6, 2), 0),jugada(pos(6, 3), 1),
     };
-    jugadas jugadasDevueltas = {jugada(pos(6, 2), 0),};
+
     testJugadasDevueltas(posJugada, jugadasEsperadas, t2, banderitasTab2, jugadasTab2);
 
 }
@@ -288,9 +303,15 @@ TEST(jugarPlusTest, tablero2pos_6_2){
 TEST(jugarPlusTest, tablero2pos_3_0){
     pos posJugada = pos(3,0);
     jugadas jugadasEsperadas = {
+            //
+            //
+            //
             jugada(pos(3, 0), 1),
+            //
+            //
+            //
     };
-    jugadas jugadasDevueltas = {jugada(pos(3, 0), 1),};
+
     testJugadasDevueltas(posJugada, jugadasEsperadas, t2, banderitasTab2, jugadasTab2);
 
 }
@@ -298,9 +319,15 @@ TEST(jugarPlusTest, tablero2pos_3_0){
 TEST(jugarPlusTest, tablero2pos_2_3){
     pos posJugada = pos(2,3);
     jugadas jugadasEsperadas = {
-            jugada(pos(2, 3), 0),
+            //
+            jugada(pos(1, 2), 2),jugada(pos(1, 3), 1),jugada(pos(1, 4), 2),
+            jugada(pos(2, 2), 1),jugada(pos(2, 3), 0),jugada(pos(2, 4), 1),jugada(pos(2, 5), 1),jugada(pos(2, 6), 1),
+            jugada(pos(3, 3), 1),jugada(pos(3, 4), 0),jugada(pos(3, 5), 0),jugada(pos(3, 6), 0),
+            jugada(pos(4, 3), 2),jugada(pos(4, 4), 1),jugada(pos(4, 6), 0),
+            jugada(pos(5, 5), 1),jugada(pos(5, 6), 0),
+            jugada(pos(6, 5), 1),jugada(pos(6, 6), 0),
     };
-    jugadas jugadasDevueltas = {jugada(pos(2, 3), 0),};
+
     testJugadasDevueltas(posJugada, jugadasEsperadas, t2, banderitasTab2, jugadasTab2);
 
 }
@@ -308,9 +335,15 @@ TEST(jugarPlusTest, tablero2pos_2_3){
 TEST(jugarPlusTest, tablero2pos_2_6){
     pos posJugada = pos(2,6);
     jugadas jugadasEsperadas = {
+            //
+            //
             jugada(pos(2, 6), 0),
+            //
+            //
+            //
+            //
     };
-    jugadas jugadasDevueltas = {jugada(pos(2, 6), 0),};
+
     testJugadasDevueltas(posJugada, jugadasEsperadas, t2, banderitasTab2, jugadasTab2);
 
 }
@@ -322,11 +355,14 @@ TEST(jugarPlusTest, tablero2pos_2_6){
 TEST(jugarPlusTest, tablero3pos_1_0){
     pos posJugada = pos(1,0);
     jugadas jugadasEsperadas = {
-            jugada(pos(1, 0), 0),
-            jugada(pos(2, 0), 0),
-            jugada(pos(3, 0), 0),
+            //
+            jugada(pos(1, 0), 0), jugada(pos(1, 1), 1),
+            jugada(pos(2, 0), 0), jugada(pos(2, 1), 2),
+            jugada(pos(3, 0), 0), jugada(pos(3, 1), 1),
+            //
+            //
     };
-    jugadas jugadasDevueltas = {jugada(pos(1, 0), 0),};
+
     testJugadasDevueltas(posJugada, jugadasEsperadas, t3, banderitasTab3, jugadasTab3);
 
 }
@@ -334,10 +370,14 @@ TEST(jugarPlusTest, tablero3pos_1_0){
 TEST(jugarPlusTest, tablero3pos_2_5){
     pos posJugada = pos(2,5);
     jugadas jugadasEsperadas = {
-            jugada(pos(2, 5), 0),
-            jugada(pos(2, 4), 0),
+            //
+            jugada(pos(1, 3), 1),jugada(pos(1, 4), 1),
+            jugada(pos(2, 3), 2),jugada(pos(2, 4), 0),jugada(pos(2, 5), 0),
+            jugada(pos(3, 3), 2),jugada(pos(3, 4), 1),jugada(pos(3, 5), 1),
+            //
+            //
     };
-    jugadas jugadasDevueltas = {jugada(pos(2, 5), 0),};
+
     testJugadasDevueltas(posJugada, jugadasEsperadas, t3, banderitasTab3, jugadasTab3);
 
 }
@@ -345,9 +385,14 @@ TEST(jugarPlusTest, tablero3pos_2_5){
 TEST(jugarPlusTest, tablero3pos_3_3){
     pos posJugada = pos(3,3);
     jugadas jugadasEsperadas = {
+            //
+            //
+            //
             jugada(pos(3, 3), 2),
+            //
+            //
     };
-    jugadas jugadasDevueltas = {jugada(pos(3, 3), 2),};
+
     testJugadasDevueltas(posJugada, jugadasEsperadas, t3, banderitasTab3, jugadasTab3);
 
 }
@@ -373,7 +418,7 @@ TEST(jugarPlusTest, tablero4pos_0_1){
             jugada(pos(5,6), 0),
             jugada(pos(5,7), 0),
     };
-    jugadas jugadasDevueltas = {jugada(pos(4, 0), 1),};
+
     testJugadasDevueltas(posJugada, jugadasEsperadas, t4, banderitasTab4, jugadasTab4);
 
 }
@@ -391,7 +436,7 @@ TEST(jugarPlusTest, tablero4pos_7_1){
             jugada(pos(4, 2), 0)
 
     };
-    jugadas jugadasDevueltas = {jugada(pos(4, 0), 1),};
+
     testJugadasDevueltas(posJugada, jugadasEsperadas, t4, banderitasTab4, jugadasTab4);
 
 }
@@ -401,7 +446,7 @@ TEST(jugarPlusTest, tablero4pos_5_5){
     jugadas jugadasEsperadas = {
             jugada(pos(5, 5), 1),
     };
-    jugadas jugadasDevueltas = {jugada(pos(4, 0), 1),};
+
     testJugadasDevueltas(posJugada, jugadasEsperadas, t4, banderitasTab4, jugadasTab4);
 
 }
@@ -411,7 +456,7 @@ TEST(jugarPlusTest, tablero4pos_3_2){
     jugadas jugadasEsperadas = {
             jugada(pos(3,2),1),
     };
-    jugadas jugadasDevueltas = {jugada(pos(4, 0), 1),};
+
     testJugadasDevueltas(posJugada, jugadasEsperadas, t4, banderitasTab4, jugadasTab4);
 
 }
@@ -434,7 +479,7 @@ TEST(jugarPlusTest, tablero4pos_4_6){
             jugada(pos(5,6), 0),
             jugada(pos(5,7), 0)
     };
-    jugadas jugadasDevueltas = {jugada(pos(4, 0), 1),};
+
     testJugadasDevueltas(posJugada, jugadasEsperadas, t4, banderitasTab4, jugadasTab4);
 
 }
