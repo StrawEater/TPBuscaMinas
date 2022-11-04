@@ -142,7 +142,7 @@ void caminoLibre(tablero& t, banderitas& b, pos p, bool profunda, string direcci
     int ejeFijo, ejeVariable, direccionMovimiento, ejeTableroRelevante;
     bool testeoEnRango;
     pair<string,string> direccionAlternativa;
-    pos posicionActual, posicionSiguiente;
+    pos posicionActual, posicionAnterior;
 
     if(direccion == "arriba") {
         ejeFijo = p.first;
@@ -152,7 +152,7 @@ void caminoLibre(tablero& t, banderitas& b, pos p, bool profunda, string direcci
         testeoEnRango = ejeVariable < ejeTableroRelevante;
         pair<string,string> direccionAlternativa("izquierda","derecha");
         pos posicionActual(ejeFijo,ejeVariable);
-        pos posicionSiguiente(ejeFijo, ejeVariable+=direccionMovimiento);
+        pos posicionAnterior(ejeFijo, ejeVariable-=direccionMovimiento);
     }
     else if(direccion == "abajo") {
         ejeFijo = p.first;
@@ -162,7 +162,7 @@ void caminoLibre(tablero& t, banderitas& b, pos p, bool profunda, string direcci
         testeoEnRango = ejeVariable > ejeTableroRelevante;
         pair<string,string> direccionAlternativa("izquierda","derecha");
         pos posicionActual(ejeFijo,ejeVariable);
-        pos posicionSiguiente(ejeFijo, ejeVariable+=direccionMovimiento);
+        pos posicionAnterior(ejeFijo, ejeVariable-=direccionMovimiento);
     }
     else if(direccion == "izquierda") {
         ejeFijo = p.second;
@@ -172,7 +172,7 @@ void caminoLibre(tablero& t, banderitas& b, pos p, bool profunda, string direcci
         testeoEnRango = ejeVariable > ejeTableroRelevante;
         pair<string,string> direccionAlternativa("arriba","abajo");
         pos posicionActual(ejeVariable,ejeFijo);
-        pos posicionSiguiente(ejeVariable+=direccionMovimiento, ejeFijo);
+        pos posicionAnterior(ejeVariable-=direccionMovimiento, ejeFijo);
     }
     else if(direccion == "derecha") {
         ejeFijo = p.second;
@@ -182,39 +182,37 @@ void caminoLibre(tablero& t, banderitas& b, pos p, bool profunda, string direcci
         testeoEnRango = ejeVariable < ejeTableroRelevante;
         pair<string,string> direccionAlternativa("arriba","abajo");
         pos posicionActual(ejeVariable,ejeFijo);
-        pos posicionSiguiente(ejeVariable+=direccionMovimiento, ejeFijo);
+        pos posicionAnterior(ejeVariable-=direccionMovimiento, ejeFijo);
     }
 
 
     //Ya tengo las variables del algoritmo determinadas, ahora empiezo a ciclar
     for(;testeoEnRango; ejeVariable+=direccionMovimiento) {
         
+        //Armo la jugada que luego testeo si necesito agregar
         jugada jugadaActual(posicionActual, minasAdyacentes(t, posicionActual));
-        //Chequeo que, de ser profunda y...
-        //1. Si la siguiente celda es inválida, choca con banderita/adyacentes y no está hecha
-        if(!jugadaHecha(jugadaActual, j) && profunda && (ejeVariable+1 == ejeTableroRelevante || minasAdyacentes(t, posicionSiguiente) != 0 || getPosIndexEnBanderitas(b, posicionSiguiente) != -1)) {
-            //Cambio la dirección de movimiento, profunda en ambos lados y agrego la jugada al vector
-            j.push_back(jugadaActual);
-            caminoLibre(t, b, p, true, direccionAlternativa.first, j);
-            caminoLibre(t, b, p, true, direccionAlternativa.second, j);
+
+
+        //1. Si la celda es profunda y es banderita o mina, le pido que busque a partir de la dirección anterior hacia las direcciones alternativas profundo
+        if(profunda && (getPosIndexEnBanderitas(b,posicionActual) || t[posicionActual.first][posicionActual.second] == true)) {
+            caminoLibre(t, b, posicionAnterior, true, direccionAlternativa.first, j);
+            caminoLibre(t, b, posicionAnterior, true, direccionAlternativa.second, j);
+            break;
+
+        //2. Si la celda es banderita o mina (no profunda), corto la bùsqueda
+        if(getPosIndexEnBanderitas(b,posicionActual) || t[posicionActual.first][posicionActual.second] == true) {
+            break;
         }
 
-        //2. Si la siguiente celda es válida, no choca con banderita/adyacentes y no está hecha
-        else if(!jugadaHecha(jugadaActual, j) && profunda && minasAdyacentes(t, posicionSiguiente) == 0 && getPosIndexEnBanderitas(b, posicionSiguiente) == -1) {
-            //Agrego jugada en el vector (falta agregar)
+        //3. No choca con banderita y no es mina. Agrego la jugada. Si es profunda sigo la búsqueda y busco hacia ambos lados alternativos
+        if(!esJugada(j, posicionActual) && profunda) {
             j.push_back(jugadaActual);
-            //Busco hacia direcciones alternativas
             caminoLibre(t, b, p, false, direccionAlternativa.first, j);
             caminoLibre(t, b, p, false, direccionAlternativa.second, j);
         }
 
-        //La búsqueda entonces es no profunda. Me fijo si tengo adyacentes/banderitas
-        //3. De haber adyacentes/banderitas, corto la búsqueda
-        if(!jugadaHecha(jugadaActual, j) && minasAdyacentes(t, posicionActual) == 0 || getPosIndexEnBanderitas(b, posicionActual) == -1) {
-                break;
-        }
-        else {
-        //No hay adyacentes/banderitas, agrego la jugada y sigo
+        //4. No choca con banderita, no es mina ni profunda. Entonces agrego la jugada
+        if(!esJugada(j, posicionActual) && !profunda) {
             j.push_back(jugadaActual);
         }
     }
