@@ -53,20 +53,23 @@ void cambiarBanderita(tablero& t, jugadas& j, pos p, banderitas& b) {
 }
 
 /******++++**************************** EJERCICIO perdio ***********+++***********************/
-//Dado un vector de jugadas y un tablero, devuelve si el estado del juego implica que el usuario perdio
-// Que un usuario pierda implica que alguna de sus jugadas fue en una celda que contenia una mina
+//Dado un vector de jugadas y un tablero, devuelve si el estado del juego implica que el usuario perdió
+// Que un usuario pierda implica que alguna de sus jugadas fue en una celda que contenía una mina
+//COMPLEJIDAD: 1+n(2+1+1+1+1) = 1+n*6 = 6n+1 = O(n).
 bool perdio(tablero& t, jugadas& j) {
     //recorro todas las jugadas
-    for (int i = 0; i < j.size(); ++i) {
-        pos posDeJugada = j[i].first;
-        int columna = posDeJugada.second;
-        int fila = posDeJugada.first;
-        //Si la posicion de la celda jugada tiene un bomba, es porque perdi.
-        if (t[fila][columna]){
+    for (int i = 0; i < j.size(); ++i){//COMPLEJIDAD(declaracion y inicializacion de i): 1.
+                                      //COMPLEJIDAD(guarda): n.
+                                      //COMPLEJIDAD(asignacion y suma a i):2.
+        pos posDeJugada = j[i].first;//COMPLEJIDAD: 1.
+        int columna = posDeJugada.second;//COMPLEJIDAD: 1.
+        int fila = posDeJugada.first;//COMPLEJIDAD: 1.
+        //Si la posición de la celda jugada tiene una bomba, es porque perdí.
+        if (t[fila][columna]){//COMPLEJIDAD: 1.
             return true;
         }
     }
-    //Si ninguna celda jugada tiene una bomba en ella, aun no perdi.
+    //Si ninguna celda jugada tiene una bomba en ella, aún no perdí.
     return false;
 }
 
@@ -81,7 +84,7 @@ bool gano(tablero& t, jugadas& j) {
     //Empiezo a recorrer el tablero
     for(int a=0;a<t.size();a++) {
         for(int b=0;b<t[a].size();b++) {
-            if(t[a][b]) {                       //Si en algun casillero hay una bomba...
+            if(t[a][b]) {                       //Si en algún casillero hay una bomba...
                 moduloTablero--;
                 pos posicionTablero(a,b);
                 for(int c=0;c<j.size();c++) {   //...recorro la lista de jugadas en búsqueda de ese casillero
@@ -97,11 +100,11 @@ bool gano(tablero& t, jugadas& j) {
 }
 
 /******++++**************************** EJERCICIO jugarPlus ***********+++***********************/
-// Dado un tablero, banderitas, jugadas, y la posicion de la celda que el usuario decidio jugar, devuelve el nuevo vector de jugadas
-// El nuevo vector de jugadas deberia contener:
-// la jugadas que ya se encontraban en el antiguo vector
-// la jugada que represente la posicion que el usuario decidio jugar en este momento
-// todas las jugadas que representan a las celdas a las que es posible llegar desde la Pos Origal a ella sin pasar por ninguna celda con minas adyacentes
+// Dado un tablero, banderitas, jugadas, y la posición de la celda que el usuario decidió jugar, devuelve el nuevo vector de jugadas
+// El nuevo vector de jugadas debería contener:
+// las jugadas que ya se encontraban en el antiguo vector
+// la jugada que represente la posición que el usuario decidió jugar en este momento
+// todas las jugadas que representan a las celdas a las que es posible llegar desde la Pos Original a ella sin pasar por ninguna celda con minas adyacentes
 void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
     caminoLibre2V(t,b,p,j);
     /*
@@ -124,16 +127,16 @@ void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
 //Devuelve un valor (true o false) dependiendo de si existe o no un patron 121,
 //si es true se modifica el p ingresado por uno seguro a jugar y si es false no nos interesa lo que pase con p.
 
-//COMLEJIDAD: n*(12n+25)+1+1 = 12n²+25n+2 = O(n²)
+//COMLEJIDAD: n*(12n+25)+1+1 = 12n²+25n+2 = O(n²) = O(t⁴)
 bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p){
    
-    //damos origen a un valor para que devuelva la funcion.
+    //damos origen a un valor para que devuelva la función.
     bool valor = false; //COMPLEJIDAD: 1.
 
-    //ciclamos en el vector de jugadas para encontrar una posicion ya jugada que tenga 2 minas adyacentes y
+    //ciclamos en el vector de jugadas para encontrar una posición ya jugada que tenga 2 minas adyacentes y
     // ver si con otras ya jugadas que tengan 1 mina adyacente se tiene un patron 121.
 
-    for (int i = 0; i < j.size(); i++) {//COMPLEJIDAD: Declaracion y asignacion de i: 1
+    for (int i = 0; i < j.size(); i++) {//COMPLEJIDAD: Declaración y asignación de i: 1
                                         // Guarda longitud de j que la llamamos n(PREGUNTAR A JUAN).
                                         // i=i+1 COMPLEJIDAD: 2, dos funciones elementales.
                                         
@@ -149,8 +152,8 @@ bool sugerirAutomatico121(tablero& t, banderitas& b, jugadas& j, pos& p){
             pos posLeft = pos(posA.first, posA.second - 1);
 
             patron_Y_Asignacion_A_P(t, j, b, valor, p, posLeft, posRight, posUp, posDown);
-            //verificamos el patron con las posibles posiciones y la encontrada con las 2 minas adyacentes.
-            //COMPLEJIDAD: 12n+12
+            //Verificamos el patron con las posibles posiciones y la encontrada con las 2 minas adyacentes.
+            //COMPLEJIDAD: 12n+16
         }
     }
     return valor;

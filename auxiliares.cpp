@@ -127,7 +127,7 @@ void asignoPosicionYValor(tablero t, jugadas j, banderitas b, bool& valor, pos& 
 }
 //Le asignamos a p alguna de sus posibles opciones y a valor se lo modifica de igual manera,
 // esto en caso de que se generara un patron. Sino no pasa nada.
-//COMPLEJIDAD: 12n+12
+//COMPLEJIDAD: 12n+16
 void patron_Y_Asignacion_A_P(tablero t, jugadas j, banderitas b, bool& valor, pos &p, pos posLeft, pos posRight, pos posUp,pos posDown) {
     if (patronVertical(t, j, b,posUp, posDown)){//COMPLEJIDAD: 2n.
         asignoPosicionYValor(t,j,b,valor,p,posLeft,posRight);//COMPLEJIDAD: 4n+6
