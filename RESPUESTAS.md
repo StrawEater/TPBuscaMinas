@@ -12,19 +12,19 @@ En cambio si se jugase con esta nueva estructura se tendria que guardar n² dato
 el tamaño de columnas o filas del tablero.
 
 No obstante, al ya poseer esta estructura, podriamos modificar las funciones jugarPlus y sugerirAutomatico121 ya que el
-chequeo de esJUgada (dichas funciones lo requieren) sería más sencilla, y directamente podriamos crear una función que verifique 
+chequeo de esJugada (dichas funciones lo requieren) sería más sencilla, y directamente podriamos crear una función que verifique 
 si esa jugada es "-1" (indica si fue o todavia no fue jugada esa casilla)
 
 - jugarPLus
 
-En dicha función, si la cambiasemos de forma que corresponda con esta  nueva estructura modificariamos el for de la misma por
-otra funcion que recorra las minas adyacentes a la jugada y que desbloquease las jugadas que corresponde a "-1".
+En dicha función, si la cambiasemos de forma que corresponda con esta  nueva estructura se debería modificar el for de la misma por
+otra función que recorra las minas adyacentes a la jugada y que desbloquease las jugadas adyacentes que correspondan a "-1".
 
-La misma tendria una complejidad de o(n²)
+La misma tendria una complejidad de o(n²) y depende del largo del tablero
 
 
 - sugerirAutomatico121
 
-En esta función, se haria más sencillo el chequeo de esJugada ya que se eliminarian los fo de la misma, y toda la función 
-sugerirAutomatico solo tendria una sola llamada for en getPosIndexEnBanderitas, con lo cual la complejidad en el peor de los 
+En esta función, se haria más sencillo el chequeo de esJugada ya que se eliminarian los for de las mismas (son llamadas al verificar los patrones)
+, con lo cual la función sugerirAutomatico121 solo tendria una sola llamada for en getPosIndexEnBanderitas, con lo cual la complejidad en el peor de los 
 casos sería o(n)
