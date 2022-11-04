@@ -20,8 +20,6 @@ int getPosIndexEnJugadas(jugadas& j, pos p);
 
 bool sonPosIguales(pos p1, pos p2);
 
-bool noBorde(tablero t, pos p);
-
 bool esJugada(jugadas j, pos p);
 
 bool noEsBanderita(banderitas b, pos p);
@@ -34,12 +32,15 @@ bool patronHorizontal(tablero t, jugadas j, banderitas b,pos p3, pos p4);
 
 bool esValidaYnoBanderitaNiJugada(tablero t, jugadas j, banderitas b, pos p);
 
-bool
-patron_Y_Asignacion_A_P(tablero t, jugadas j, banderitas b, bool& valor,pos posA, pos &p, pos posAlfa, pos posBeta, pos posCelta,pos posDelta);
+void asignoPosicionYValor(tablero t, jugadas j, banderitas b, bool& valor, pos& p, pos posA, pos posB);
+
+void
+patron_Y_Asignacion_A_P(tablero t, jugadas j, banderitas b, bool& valor, pos &p, pos posLeft, pos posRight, pos posUp,pos posDown);
 
 bool sonPosIguales(pos p1, pos p2);
 
 void caminoLibre(tablero& t, banderitas& b, pos p, bool profunda, string direccion, jugadas& j);
+void caminoLibre2V(tablero& t, banderitas& b, pos p, jugadas& j);
 
 void quitarDuplicados(jugadas& origen);
 
