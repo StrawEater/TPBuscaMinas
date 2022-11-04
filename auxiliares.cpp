@@ -193,14 +193,14 @@ void caminoLibre(tablero& t, banderitas& b, pos p, bool profunda, string direcci
         jugada jugadaActual(posicionActual, minasAdyacentes(t, posicionActual));
 
 
-        //1. Si la celda es profunda y es banderita o mina, le pido que busque a partir de la dirección anterior hacia las direcciones alternativas profundo
-        if(profunda && (getPosIndexEnBanderitas(b,posicionActual) || t[posicionActual.first][posicionActual.second] == true)) {
+        //1. Si la celda es profunda y es banderita o mina o jugada, le pido que busque a partir de la dirección anterior hacia las direcciones alternativas profundo
+        if(profunda && (getPosIndexEnBanderitas(b,posicionActual) || t[posicionActual.first][posicionActual.second] == true || esJugada(j, posicionActual))) {
             caminoLibre(t, b, posicionAnterior, true, direccionAlternativa.first, j);
             caminoLibre(t, b, posicionAnterior, true, direccionAlternativa.second, j);
             break;
-
-        //2. Si la celda es banderita o mina (no profunda), corto la bùsqueda
-        if(getPosIndexEnBanderitas(b,posicionActual) || t[posicionActual.first][posicionActual.second] == true) {
+        }
+        //2. Si la celda es banderita o mina o jugada (no profunda), corto la bùsqueda
+        if(getPosIndexEnBanderitas(b,posicionActual) || t[posicionActual.first][posicionActual.second] == true || esJugada(j,posicionActual)) {
             break;
         }
 
