@@ -399,24 +399,37 @@ TEST(jugarPlusTest, tablero3pos_3_3){
 
 #pragma endregion TestTablero3
 
+//┌───┬───┬───┬───┬───┬───┬───┬───┐
+//│ ■ │ 0 │ 0 │ 0 │ 1 │ 1 │ b │ B │
+//├───┼───┼───┼───┼───┼───┼───┼───┤
+//│ 1 │ 1 │ 1 │ 0 │ 1 │ * │ 2 │ 1 │
+//├───┼───┼───┼───┼───┼───┼───┼───┤
+//│ ■ │ B │ 1 │ 0 │ 1 │ 1 │ 1 │ 0 │
+//├───┼───┼───┼───┼───┼───┼───┼───┤
+//│ ■ │ 1 │ 1 │ 0 │ 0 │ 0 │ 0 │ 0 │
+//├───┼───┼───┼───┼───┼───┼───┼───┤
+//│ ■ │ ■ │ 0 │ 1 │ 1 │ 1 │ 0 │ ■ │
+//├───┼───┼───┼───┼───┼───┼───┼───┤
+//│ * │ 1 │ 0 │ 1 │ * │ 1 │ 0 │ 0 │
+//├───┼───┼───┼───┼───┼───┼───┼───┤
+//│ 1 │ 1 │ 0 │ 1 │ 1 │ 1 │ 1 │ 1 │
+//├───┼───┼───┼───┼───┼───┼───┼───┤
+//│ ■ │ 0 │ 0 │ 0 │ 0 │ 0 │ 1 │ * │
+//└───┴───┴───┴───┴───┴───┴───┴───┘
+
 #pragma region TestTablero4
 TEST(jugarPlusTest, tablero4pos_0_1){
     pos posJugada = pos(0,1);
     jugadas jugadasEsperadas = {
-            jugada(pos(0, 1), 0),
-            jugada(pos(0, 2), 0),
-            jugada(pos(0,3), 0),
-            jugada(pos(1,3), 0),
-            jugada(pos(2,3), 0),
-            jugada(pos(2,7), 0),
-            jugada(pos(3,3), 0),
-            jugada(pos(3,4), 0),
-            jugada(pos(3,5), 0),
-            jugada(pos(3,6), 0),
-            jugada(pos(3,7), 0),
-            jugada(pos(4,6), 0),
-            jugada(pos(5,6), 0),
-            jugada(pos(5,7), 0),
+            jugada(pos(0,1), 0), jugada(pos(0,2), 0), jugada(pos(0,3), 0), jugada(pos(0,4), 1),
+            jugada(pos(1,0), 1), jugada(pos(1,1), 1), jugada(pos(1,2), 1), jugada(pos(1,3), 0), jugada(pos(1,4), 1), jugada(pos(1,6), 2), jugada(pos(1,7),1),
+            jugada(pos(2,2), 1), jugada(pos(2,3), 0), jugada(pos(2,4), 1), jugada(pos(2,5), 1), jugada(pos(2,6), 1), jugada(pos(2,7), 0),
+            jugada(pos(3,1), 1), jugada(pos(3,2), 1), jugada(pos(3,3), 0), jugada(pos(3,4), 0), jugada(pos(3,5), 0), jugada(pos(3,6), 0), jugada(pos(3,7), 0),
+            jugada(pos(4,2), 0), jugada(pos(4,3), 1), jugada(pos(4,4), 1), jugada(pos(4,5), 1), jugada(pos(4,6), 0),
+            jugada(pos(5,1), 1), jugada(pos(5,2), 0), jugada(pos(5,3), 1), jugada(pos(5,5), 1), jugada(pos(5,6), 0), jugada(pos(5,7), 0),
+            jugada(pos(6,0), 1), jugada(pos(6,1), 1), jugada(pos(6,2), 0), jugada(pos(6,3), 1), jugada(pos(6,4), 1), jugada(pos(6,5), 1), jugada(pos(6,6),1), jugada(pos(6,7),1),
+            jugada(pos(7,1), 0), jugada(pos(7,2), 0), jugada(pos(7,3), 0), jugada(pos(7,4), 0), jugada(pos(7,5), 0), jugada(pos(7,6), 1)
+
     };
 
     testJugadasDevueltas(posJugada, jugadasEsperadas, t4, banderitasTab4, jugadasTab4);
@@ -426,14 +439,14 @@ TEST(jugarPlusTest, tablero4pos_0_1){
 TEST(jugarPlusTest, tablero4pos_7_1){
     pos posJugada = pos(7,1);
     jugadas jugadasEsperadas = {
-            jugada(pos(7, 1), 0),
-            jugada(pos(7, 2), 0),
-            jugada(pos(7, 3), 0),
-            jugada(pos(7, 4), 0),
-            jugada(pos(7, 5), 0),
-            jugada(pos(6, 2), 0),
-            jugada(pos(5, 2), 0),
-            jugada(pos(4, 2), 0)
+            jugada(pos(0,1), 0), jugada(pos(0,2), 0), jugada(pos(0,3), 0), jugada(pos(0,4), 1),
+            jugada(pos(1,0), 1), jugada(pos(1,1), 1), jugada(pos(1,2), 1), jugada(pos(1,3), 0), jugada(pos(1,4), 1), jugada(pos(1,6), 2), jugada(pos(1,7),1),
+            jugada(pos(2,2), 1), jugada(pos(2,3), 0), jugada(pos(2,4), 1), jugada(pos(2,5), 1), jugada(pos(2,6), 1), jugada(pos(2,7), 0),
+            jugada(pos(3,1), 1), jugada(pos(3,2), 1), jugada(pos(3,3), 0), jugada(pos(3,4), 0), jugada(pos(3,5), 0), jugada(pos(3,6), 0), jugada(pos(3,7), 0),
+            jugada(pos(4,2), 0), jugada(pos(4,3), 1), jugada(pos(4,4), 1), jugada(pos(4,5), 1), jugada(pos(4,6), 0),
+            jugada(pos(5,1), 1), jugada(pos(5,2), 0), jugada(pos(5,3), 1), jugada(pos(5,5), 1), jugada(pos(5,6), 0), jugada(pos(5,7), 0),
+            jugada(pos(6,0), 1), jugada(pos(6,1), 1), jugada(pos(6,2), 0), jugada(pos(6,3), 1), jugada(pos(6,4), 1), jugada(pos(6,5), 1), jugada(pos(6,6),1), jugada(pos(6,7),1),
+            jugada(pos(7,1), 0), jugada(pos(7,2), 0), jugada(pos(7,3), 0), jugada(pos(7,4), 0), jugada(pos(7,5), 0), jugada(pos(7,6), 1)
 
     };
 
@@ -444,7 +457,7 @@ TEST(jugarPlusTest, tablero4pos_7_1){
 TEST(jugarPlusTest, tablero4pos_5_5){
     pos posJugada = pos(5,5);
     jugadas jugadasEsperadas = {
-            jugada(pos(5, 5), 1),
+            jugada(pos(5,5), 1)
     };
 
     testJugadasDevueltas(posJugada, jugadasEsperadas, t4, banderitasTab4, jugadasTab4);
@@ -454,7 +467,7 @@ TEST(jugarPlusTest, tablero4pos_5_5){
 TEST(jugarPlusTest, tablero4pos_3_2){
     pos posJugada = pos(3,2);
     jugadas jugadasEsperadas = {
-            jugada(pos(3,2),1),
+            jugada(pos(3,2), 1)
     };
 
     testJugadasDevueltas(posJugada, jugadasEsperadas, t4, banderitasTab4, jugadasTab4);
@@ -464,21 +477,16 @@ TEST(jugarPlusTest, tablero4pos_3_2){
 TEST(jugarPlusTest, tablero4pos_4_6){
     pos posJugada = pos(4,6);
     jugadas jugadasEsperadas = {
-            jugada(pos(0, 1), 0),
-            jugada(pos(0, 2), 0),
-            jugada(pos(0,3), 0),
-            jugada(pos(1,3), 0),
-            jugada(pos(2,3), 0),
-            jugada(pos(2,7), 0),
-            jugada(pos(3,3), 0),
-            jugada(pos(3,4), 0),
-            jugada(pos(3,5), 0),
-            jugada(pos(3,6), 0),
-            jugada(pos(3,7), 0),
-            jugada(pos(4,6), 0),
-            jugada(pos(5,6), 0),
-            jugada(pos(5,7), 0)
+            jugada(pos(0,1), 0), jugada(pos(0,2), 0), jugada(pos(0,3), 0), jugada(pos(0,4), 1),
+            jugada(pos(1,0), 1), jugada(pos(1,1), 1), jugada(pos(1,2), 1), jugada(pos(1,3), 0), jugada(pos(1,4), 1), jugada(pos(1,6), 2), jugada(pos(1,7),1),
+            jugada(pos(2,2), 1), jugada(pos(2,3), 0), jugada(pos(2,4), 1), jugada(pos(2,5), 1), jugada(pos(2,6), 1), jugada(pos(2,7), 0),
+            jugada(pos(3,1), 1), jugada(pos(3,2), 1), jugada(pos(3,3), 0), jugada(pos(3,4), 0), jugada(pos(3,5), 0), jugada(pos(3,6), 0), jugada(pos(3,7), 0),
+            jugada(pos(4,2), 0), jugada(pos(4,3), 1), jugada(pos(4,4), 1), jugada(pos(4,5), 1), jugada(pos(4,6), 0),
+            jugada(pos(5,1), 1), jugada(pos(5,2), 0), jugada(pos(5,3), 1), jugada(pos(5,5), 1), jugada(pos(5,6), 0), jugada(pos(5,7), 0),
+            jugada(pos(6,0), 1), jugada(pos(6,1), 1), jugada(pos(6,2), 0), jugada(pos(6,3), 1), jugada(pos(6,4), 1), jugada(pos(6,5), 1), jugada(pos(6,6),1), jugada(pos(6,7),1),
+            jugada(pos(7,1), 0), jugada(pos(7,2), 0), jugada(pos(7,3), 0), jugada(pos(7,4), 0), jugada(pos(7,5), 0), jugada(pos(7,6), 1)
     };
+
 
     testJugadasDevueltas(posJugada, jugadasEsperadas, t4, banderitasTab4, jugadasTab4);
 
