@@ -89,15 +89,20 @@ bool perdio(tablero& t, jugadas& j) {
 }
 
 /******++++**************************** EJERCICIO gano ***********+++***********************/
+//Dado un tablero y un conjunto de jugadas, determina si dicho conjunto hace que el jugador gane la partida
+//El entero moduloTablero aumenta por cada tablero que se encuentra, y decrementa cuando halla una bomba. De esta forma, logramos contar la cantidad de tableros bomba
+//Esta función está compuesta por un ciclo for de complejidad (por definición) n, que contiene un ciclo for de complejidad n, que contiene otro ciclo for de complejidad n que a la vez corre otro ciclo for de complejidad n
+//El peor caso se da cuando el tablero es cuadrado (recorro los dos primeros ciclos for dos veces y eso lleva a un O(n⁴)) y a la vez no hay bombas jugadas, que lleva a multiplicarlo (porque ya está dentro de el ciclo n²) por otro n², dado por el ciclo for con el ciclo size() que se corre cada vez que corro el ciclo
+//COMPLEJIDAD: Tgano(n) pertenece a O(n⁴)
 bool gano(tablero& t, jugadas& j) {
     //El jugador gana si se dan dos condiciones:
     //  1. No se jugó un casillero bomba
     //  2. La cantidad de jugadas es la misma que casilleros sin bomba
 
-    int moduloTablero = 0;  //Un contador eficiente de casilleros del tablero
+    int moduloTablero = 0;  //Un contador de casilleros del tablero                                                         //COMPLEJIDAD 1
     
     //Empiezo a recorrer el tablero
-    for(int a=0;a<t.size();a++) {
+    for(int a=0;a<t.size();a++) {                                                                                           //COMPLEJIDAD n4
         for(int b=0;b<t[a].size();b++) {
             if(t[a][b]) {                       //Si en algún casillero hay una bomba...
                 moduloTablero--;
