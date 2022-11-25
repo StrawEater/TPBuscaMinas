@@ -126,7 +126,13 @@ bool gano(tablero& t, jugadas& j) {
 // todas las jugadas que representan a las celdas a las que es posible llegar desde la Pos jugada hasta ella sin pasar por ninguna celda con minas adyacentes
 // Complejidad O(n²).
 void jugarPlus(tablero& t, banderitas& b, pos p, jugadas& j) {
-    caminoLibre2V(t,b,p,j); // Complejidad O(n²)
+    if(t[p.first][p.second]) {
+        j.push_back(jugada(p, minasAdyacentes(t,p)));
+    }
+    else
+    {
+        caminoLibre2V(t,b,p,j);
+    }
 }
 
 /******++++**************************** EJERCICIO sugerirAutomatico121 ***********+++***********************/
