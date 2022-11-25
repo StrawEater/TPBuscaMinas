@@ -196,10 +196,35 @@ static jugadas jugadasTab4 = {
 
 #pragma endregion Tablero4
 
+#pragma region Tablero5
+
+//┌───┬───┬───┬───┬───┐
+//│ 0 │ 0 │ 0 │ 0 │ 0 │
+//├───┼───┼───┼───┼───┤
+//│ 0 │ 0 │ 0 │ 0 │ 0 │
+//├───┼───┼───┼───┼───┤
+//│ 0 │ 0 │ 0 │ 0 │ 0 │
+//├───┼───┼───┼───┼───┤
+//│ 0 │ 1 │ 1 │ 1 │ 0 │
+//├───┼───┼───┼───┼───┤
+//│ 0 │ 1 │ * │ 1 │ 0 │
+//└───┴───┴───┴───┴───┘
+
+tablero unaSolaMina = {
+        {cVACIA, cVACIA, cVACIA, cVACIA, cVACIA},
+        {cVACIA, cVACIA, cVACIA, cVACIA, cVACIA},
+        {cVACIA, cVACIA, cVACIA, cVACIA, cVACIA},
+        {cVACIA, cVACIA, cVACIA, cVACIA, cVACIA},
+        {cVACIA, cVACIA, cMINA,  cVACIA, cVACIA}, // mina en (4, 2)
+};
+banderitas b3 {};
+
+#pragma endregion Tablero5
+
 #pragma endregion Tableros
 
 TEST(jugarPlusTest, imprimirAlgo){
-    printTablero(t4, {}, {});
+    printTablero(unaSolaMina, {}, {});
     ASSERT_TRUE(true);
 }
 
@@ -501,3 +526,11 @@ TEST(jugarPlusTest, tablero4pos_4_6){
 
 }
 #pragma endregion TestTablero4
+
+TEST(jugarPlusTest, juegoSobreUnaMina) {
+    jugadas j = {};
+    pos posMina = pos(4, 2);
+    jugarPlus(unaSolaMina, b3, posMina, j);
+    // al pisar la mina no se descubren posiciones adicionales (ademas pierdo, pero eso no lo chequeo en este test)
+    ASSERT_EQ(j.size(), 1);
+};
