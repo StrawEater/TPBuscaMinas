@@ -11,11 +11,27 @@ A modo de ejemplo, si se jugase con un tablero de n elementos, se tendria que in
 
 No obstante, al ya poseer esta estructura, podriamos modificar las funciones jugarPlus y sugerirAutomatico121 ya que el
 chequeo de esJugada (dichas funciones lo requieren) sería más sencilla, y directamente podriamos crear una función que verifique 
-si esa posicion es "-1", indicando si fue o no jugada. Esto reduciria la complejidad de esJugada, originalmente la lonjitud de j y en su peor caso n, a 1 independientemente del tamblero.  
+si esa posicion es "-1", indicando si fue o no jugada. Esto reduciria la complejidad de esJugada, originalmente la lonjitud de j y en su peor caso n, a 1 independientemente del tablero.  
+
 
 - jugarPLus
 
-En dicha función, si la cambiasemos de forma que corresponda con esta nueva estructura su complejidad en el peor caso posible disminuiria de forma significativa. Esto sucede porque su complejidad viene de la funcion EsJugada, la cual tiene que chequear todo el vector jugadas cada vez, teniendo complejidad longitud de j. Si la estructura de j fuera una matriz, la complejidad de chequear que una posicion es o no jugada se vuelve 1, bajando la complejidad de cada ciclo a 1. Es decir, la complejidad en su peor caso se convertiria en n.
+En dicha función, si la cambiasemos de forma que corresponda con esta nueva estructura su complejidad no disminuiría. El peor caso sería un tablero sin bombas y con banderas que se encontrarían distribuidas en forma de un tablero de ajedrez.
+
+Por ejemplo:
+
+                                   ┌───┬───┬───┐
+                                   | B │ 0 │ B │
+                                   ├───┼───┼───┤
+                                   │ 0 │ B │ 0 │
+                                   ├───┼───┼───┤
+                                   │ B │ 0 │ B │
+                                   └───┴───┴───┘
+
+Si se fuera a jugar una posición sin banderas, el codigo se correría n veces (1 vez por cada celda), con una complejidad igual a la que se tiene para verificar si una celda es bandera o no. La cual es igual a la cantidad de banderas en el tablero correspondiente, que sería n/2 o (n-1)/2 dependiendo si n es par o impar, respectivamente. 
+
+Entonces, se corre n veces un codigo con complejidad n/2 o (n-1)/2, lo cual daría una complejidad de n²/2 o (n²-n)/2, que sería equivalente a O(n²).
+
 
 - sugerirAutomatico121
 
