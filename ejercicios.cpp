@@ -91,18 +91,17 @@ bool perdio(tablero& t, jugadas& j) {
 /******++++**************************** EJERCICIO gano ***********+++***********************/
 //Dado un tablero y un conjunto de jugadas, determina si dicho conjunto hace que el jugador gane la partida
 //El entero moduloTablero aumenta por cada tablero que se encuentra, y decrementa cuando halla una bomba. De esta forma, logramos contar la cantidad de tableros bomba
-//Esta función está compuesta por un ciclo for de complejidad (por definición) n, que contiene un ciclo for de complejidad n, que contiene otro ciclo for de complejidad n que a la vez corre otro ciclo for de complejidad n
-//El peor caso se da cuando el tablero es cuadrado (recorro los dos primeros ciclos for dos veces y eso lleva a un O(n⁴)) y a la vez no hay bombas jugadas, que lleva a multiplicarlo (porque ya está dentro de el ciclo n²) por otro n², dado por el ciclo for con el ciclo size() que se corre cada vez que corro el ciclo
-//COMPLEJIDAD: Tgano(n) pertenece a O(n⁴)
+//Sea t la cantidad de filas del tablero. El peor caso se da cuando el tablero es cuadrado (tengo que recorrer el primer y segundo ciclo for t veces) y eso lleva la complejidad a O(t²). Luego, cuando llego a una posición me fijo en el vector jugadas si la posición se jugó. En el peor caso, tendría que recorrer un vector jugadas que tenga todas las jugadas del tablero (ninguna bomba) y al final tenga la que estoy buscando. Es decir, recorre t² jugadas, lo que lleva el orden propio de este for a O(t²). Cuando multiplicamos, nos queda una función de orden t⁴. Como estamos calculando la complejidad en cuanto a la cantidad t² = n de casilleros del tablero, el orden de la función es n²
+//COMPLEJIDAD: Tgano(n) pertenece a O(n²)
 bool gano(tablero& t, jugadas& j) {
     //El jugador gana si se dan dos condiciones:
     //  1. No se jugó un casillero bomba
     //  2. La cantidad de jugadas es la misma que casilleros sin bomba
 
-    int moduloTablero = 0;  //Un contador de casilleros del tablero                                                         //COMPLEJIDAD 1
+    int moduloTablero = 0;  //Un contador de casilleros del tablero
     
     //Empiezo a recorrer el tablero
-    for(int a=0;a<t.size();a++) {                                                                                           //COMPLEJIDAD n4
+    for(int a=0;a<t.size();a++) {
         for(int b=0;b<t[a].size();b++) {
             if(t[a][b]) {                       //Si en algún casillero hay una bomba...
                 moduloTablero--;
